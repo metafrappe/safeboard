@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: backend
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Compile
+        run: python3 -I -m compileall -q backend/safeboard
+      - name: Unit tests
+        run: |
+          if ls backend/tests/test_*.py >/dev/null 2>&1; then
+            python3 -I -m unittest discover -s backend/tests -t backend -v
+          else
+            echo "No backend tests yet. The test epic adds them."
+          fi
+
+  frontend:
+    name: frontend
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Smoke check (built page served by the backend, no live data)
+        working-directory: backend
+        run: |
+          export SAFEBOARD_PORT=3196 SAFEBOARD_DATA_DIR="$RUNNER_TEMP/safeboard" SAFEBOARD_PAPERCLIP_API=http://127.0.0.1:9/api SAFEBOARD_REPOS=
+          python3 -m safeboard &
+          for i in $(seq 1 20); do curl -fsS -o /dev/null http://127.0.0.1:3196/ && break; sleep 1; done
+          curl -fsS http://127.0.0.1:3196/ | grep -q '<title>SAFeBoard</title>'
+          curl -fsS -o /dev/null http://127.0.0.1:3196/font.woff2
+          curl -fsS http://127.0.0.1:3196/api/data | python3 -c 'import json,sys; d=json.load(sys.stdin); assert "errors" in d and "at" in d'
+          curl -fsS http://127.0.0.1:3196/api/burndown | python3 -c 'import json,sys; json.load(sys.stdin)'
+      - name: Playwright tests
+        run: |
+          if ls tests/*.spec.* >/dev/null 2>&1; then
+            npx playwright install --with-deps chromium webkit
+            npx playwright test
+          else
+            echo "No Playwright tests yet. The test epic adds them."
+          fi
+
+  build-and-test:
+    name: build-and-test
+    if: always()
+    needs: [backend, frontend]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: All jobs passed
+        run: |
+          test "${{ needs.backend.result }}" = success
+          test "${{ needs.frontend.result }}" = success
