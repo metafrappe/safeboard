@@ -1,0 +1,19 @@
+{
+  "name": "safeboard-frontend",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "font": "node scripts/copy-font.mjs",
+    "predev": "npm run font",
+    "dev": "vite",
+    "prebuild": "npm run font",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "8.4.0"
+  },
+  "dependencies": {
+    "@fontsource-variable/outfit": "5.3.0"
+  }
+}

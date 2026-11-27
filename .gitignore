@@ -1,0 +1,16 @@
+# Build output and dependencies
+node_modules/
+frontend/dist/
+frontend/public/font.woff2
+__pycache__/
+*.pyc
+
+# Data never enters the repository (architecture decision, question 2)
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+sprint.json
+.env
+.env.*
+safeboard.local.toml
