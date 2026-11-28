@@ -35,6 +35,11 @@ def load(name):
     return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
 
 
+def team(agent_name):
+    """The team comes from the agent name, as in the ledger design: "Team X ..." becomes team_x."""
+    return "team_" + re.match(r"Team (\w+) ", agent_name).group(1).lower()
+
+
 class BlockerActionFixtures(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -197,8 +202,8 @@ class BlockerActionFixtures(unittest.TestCase):
         # 9: the target agent is in another team, so the issue goes to that team's PO.
         target = self.paperclip[9][f"GET /api/agents/{rows[9][0]['target']}"]["body"]
         agents = self.paperclip[9][f"GET /api/companies/{self.data['company_id']}/agents"]["body"]
-        po = [a["id"] for a in agents if a["team"] == target["team"] and a["role"] == "po"]
-        self.assertNotEqual(target["team"], self.cases[9]["blocker"]["root_issue_team"])
+        po = [a["id"] for a in agents if team(a["name"]) == team(target["name"]) and a["name"].endswith(" PO")]
+        self.assertNotEqual(team(target["name"]), self.cases[9]["blocker"]["root_issue_team"])
         self.assertEqual([w["body"] for w in self.writes(9)], [{"assigneeAgentId": po[0]}])
         # 10: the question text never reaches the ledger or the expected file.
         question = self.presses(10)[0]["body"]["question_text"]

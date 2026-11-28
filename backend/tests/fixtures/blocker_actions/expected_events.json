@@ -1,0 +1,2028 @@
+{
+ "note": "Sahte veri. Gerçek kayıttan alınmadı. Açıklama README.md dosyasındadır.",
+ "cases": [
+  {
+   "id": 1,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 101,
+     "created": true,
+     "body": {
+      "id": 101,
+      "outcome": null
+     }
+    },
+    {
+     "step": 2,
+     "status": 202,
+     "request_id": 102,
+     "created": true,
+     "body": {
+      "id": 102,
+      "outcome": null
+     }
+    },
+    {
+     "step": 3,
+     "status": 202,
+     "request_id": 103,
+     "created": true,
+     "body": {
+      "id": 103,
+      "outcome": null
+     }
+    },
+    {
+     "step": 4,
+     "status": 202,
+     "request_id": 104,
+     "created": true,
+     "body": {
+      "id": 104,
+      "outcome": null
+     }
+    },
+    {
+     "step": 5,
+     "status": 202,
+     "request_id": 105,
+     "created": true,
+     "body": {
+      "id": 105,
+      "outcome": null
+     }
+    },
+    {
+     "step": 6,
+     "status": 202,
+     "request_id": 106,
+     "created": true,
+     "body": {
+      "id": 106,
+      "outcome": null
+     }
+    },
+    {
+     "step": 7,
+     "status": 202,
+     "request_id": 107,
+     "created": true,
+     "body": {
+      "id": 107,
+      "outcome": "done"
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 101,
+     "action_type": "escalate_next",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": null,
+     "escalation_step": 2,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "escalate_next",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": null,
+      "step": 2
+     },
+     "interaction_id": null
+    },
+    {
+     "id": 102,
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": "agent-demo-dev-1",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:01:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "assign_owner",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": "agent-demo-dev-1",
+      "step": null
+     },
+     "interaction_id": null
+    },
+    {
+     "id": 103,
+     "action_type": "assign_agent",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": "agent-demo-dev-2",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:02:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "assign_agent",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": "agent-demo-dev-2",
+      "step": null
+     },
+     "interaction_id": null
+    },
+    {
+     "id": 104,
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": "agent-demo-dev-1",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:03:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "wake_agent",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": "agent-demo-dev-1",
+      "step": null
+     },
+     "interaction_id": null
+    },
+    {
+     "id": 105,
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:04:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "customer_question",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": "card-demo-101"
+    },
+    {
+     "id": 106,
+     "action_type": "kaizen_candidate",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:05:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "kaizen_candidate",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": null
+    },
+    {
+     "id": 107,
+     "action_type": "root_cause_record",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "target": "dep.cross_team",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-02T09:06:00Z",
+     "outcome": "done",
+     "listed_in_due": false,
+     "dedupe": {
+      "action_type": "root_cause_record",
+      "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+      "target": "dep.cross_team",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 101,
+     "reported_at": "2026-03-02T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": null
+    },
+    {
+     "request_id": 102,
+     "reported_at": "2026-03-02T09:11:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": [
+      {
+       "method": "PATCH",
+       "path": "/api/issues/DEMO-101",
+       "body": {
+        "assigneeAgentId": "agent-demo-dev-1"
+       }
+      }
+     ]
+    },
+    {
+     "request_id": 103,
+     "reported_at": "2026-03-02T09:12:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": [
+      {
+       "method": "PATCH",
+       "path": "/api/issues/DEMO-101",
+       "body": {
+        "assigneeAgentId": "agent-demo-dev-2"
+       }
+      }
+     ]
+    },
+    {
+     "request_id": 104,
+     "reported_at": "2026-03-02T09:13:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": [
+      {
+       "method": "POST",
+       "path": "/api/agents/agent-demo-dev-1/heartbeat/invoke"
+      }
+     ]
+    },
+    {
+     "request_id": 105,
+     "reported_at": "2026-03-02T09:14:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done",
+      "interaction_id": "card-demo-101"
+     },
+     "paperclip_writes": [
+      {
+       "method": "POST",
+       "path": "/api/issues/DEMO-101/interactions",
+       "body": {
+        "kind": "ask_user_questions",
+        "resolverPolicy": "human_only"
+       }
+      }
+     ]
+    },
+    {
+     "request_id": 106,
+     "reported_at": "2026-03-02T09:15:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": null
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:101:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "101",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "escalate_next"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:102:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:01:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:01:00Z",
+     "source": "safeboard",
+     "source_ref": "102",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:103:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:02:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:02:00Z",
+     "source": "safeboard",
+     "source_ref": "103",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:104:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:03:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:03:00Z",
+     "source": "safeboard",
+     "source_ref": "104",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:105:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:04:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:04:00Z",
+     "source": "safeboard",
+     "source_ref": "105",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:106:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:05:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:05:00Z",
+     "source": "safeboard",
+     "source_ref": "106",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "kaizen_candidate"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:107:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:06:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:06:00Z",
+     "source": "safeboard",
+     "source_ref": "107",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "root_cause_record"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:107:root_cause_recorded",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:06:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:06:00Z",
+     "source": "safeboard",
+     "source_ref": "107",
+     "action": "blocker.root_cause_recorded",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:107:requested",
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "root_cause_record",
+      "root_cause_code": "dep.cross_team"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:107:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:06:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:06:00Z",
+     "source": "safeboard",
+     "source_ref": "107",
+     "action": "action.completed",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:107:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "root_cause_record"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:101:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "101",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:101:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "escalate_next"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:102:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:11:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:11:00Z",
+     "source": "safeboard",
+     "source_ref": "102",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:102:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:103:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:12:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:12:00Z",
+     "source": "safeboard",
+     "source_ref": "103",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:103:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:104:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:13:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:13:00Z",
+     "source": "safeboard",
+     "source_ref": "104",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:104:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:105:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:14:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:14:00Z",
+     "source": "safeboard",
+     "source_ref": "105",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:105:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:106:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-02T09:15:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-02T09:15:00Z",
+     "source": "safeboard",
+     "source_ref": "106",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-101",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:106:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "kaizen_candidate"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": [
+    {
+     "action": "kaizen.candidate_created",
+     "source": "safeboard",
+     "kaizen_key": {
+      "rule_key": "manual.blocker",
+      "subject_kind": "blocker_key",
+      "subject": "issue:DEMO-101",
+      "period": "2026-W10"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "responses": [
+    {
+     "step": 1,
+     "status": 403,
+     "request_id": 201,
+     "created": true,
+     "body": {
+      "error": "Bu eylem için yetkiniz yok."
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 201,
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-201@2026-03-03T08:00:00Z",
+     "target": "agent-demo-dev-1",
+     "escalation_step": null,
+     "requested_by": "demo.kisi@example.test",
+     "requested_at": "2026-03-03T09:00:00Z",
+     "outcome": "denied",
+     "listed_in_due": false,
+     "dedupe": null,
+     "interaction_id": null
+    }
+   ],
+   "rte": [],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:201:denied",
+     "schema_version": 2,
+     "occurred_at": "2026-03-03T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-03T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "201",
+     "action": "action.denied",
+     "actor_kind": "board_user",
+     "actor_id": "demo.kisi@example.test",
+     "issue_id": "DEMO-201",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-201@2026-03-03T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 3,
+   "responses": [
+    {
+     "step": 1,
+     "status": 403,
+     "request_id": null,
+     "created": false,
+     "body": "forbidden"
+    }
+   ],
+   "action_requests": [],
+   "rte": [],
+   "ledger_events": [],
+   "kaizen_events": []
+  },
+  {
+   "id": 4,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 401,
+     "created": true,
+     "body": {
+      "id": 401,
+      "outcome": null
+     }
+    },
+    {
+     "step": 2,
+     "status": 202,
+     "request_id": 401,
+     "created": false,
+     "body": {
+      "id": 401,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 401,
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+     "target": "agent-demo-dev-4",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-05T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "assign_owner",
+      "blocker_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+      "target": "agent-demo-dev-4",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 401,
+     "reported_at": "2026-03-05T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": [
+      {
+       "method": "PATCH",
+       "path": "/api/issues/DEMO-401",
+       "body": {
+        "assigneeAgentId": "agent-demo-dev-4"
+       }
+      }
+     ]
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:401:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-05T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-05T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "401",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-401",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:401:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-05T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-05T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "401",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-401",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:401:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 5,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 501,
+     "created": true,
+     "body": {
+      "id": 501,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 501,
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+     "target": "agent-demo-dev-5",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-06T09:00:00Z",
+     "outcome": "denied",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "wake_agent",
+      "blocker_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+      "target": "agent-demo-dev-5",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 501,
+     "reported_at": "2026-03-06T09:10:00Z",
+     "outcome": "denied",
+     "result": {
+      "outcome": "denied"
+     },
+     "paperclip_writes": []
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:501:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-06T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-06T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "501",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-501",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:501:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-06T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-06T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "501",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-501",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:501:requested",
+     "outcome": "denied",
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 6,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 601,
+     "created": true,
+     "body": {
+      "id": 601,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 601,
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+     "target": "agent-demo-dev-6",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-07T09:00:00Z",
+     "outcome": "skipped_state_changed",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "wake_agent",
+      "blocker_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+      "target": "agent-demo-dev-6",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 601,
+     "reported_at": "2026-03-07T09:10:00Z",
+     "outcome": "skipped_state_changed",
+     "result": {
+      "outcome": "skipped_state_changed"
+     },
+     "paperclip_writes": []
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:601:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-07T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-07T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "601",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-601",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:601:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-07T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-07T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "601",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-601",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:601:requested",
+     "outcome": "skipped_state_changed",
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 7,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 701,
+     "created": true,
+     "body": {
+      "id": 701,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 701,
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+     "target": "agent-demo-dev-7",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-08T09:00:00Z",
+     "outcome": "skipped_state_changed",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "wake_agent",
+      "blocker_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+      "target": "agent-demo-dev-7",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 701,
+     "reported_at": "2026-03-08T09:10:00Z",
+     "outcome": "skipped_state_changed",
+     "result": {
+      "outcome": "skipped_state_changed"
+     },
+     "paperclip_writes": []
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:701:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-08T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-08T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "701",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-701",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:701:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-08T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-08T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "701",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-701",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:701:requested",
+     "outcome": "skipped_state_changed",
+     "source_code": null,
+     "payload": {
+      "action_type": "wake_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 8,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 801,
+     "created": true,
+     "body": {
+      "id": 801,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 801,
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+     "target": "agent-demo-dev-8",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-09T09:00:00Z",
+     "outcome": "denied",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "assign_owner",
+      "blocker_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+      "target": "agent-demo-dev-8",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 801,
+     "reported_at": "2026-03-09T09:10:00Z",
+     "outcome": "denied",
+     "result": {
+      "outcome": "denied"
+     },
+     "paperclip_writes": []
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:801:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-09T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-09T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "801",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-801",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:801:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-09T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-09T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "801",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-801",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:801:requested",
+     "outcome": "denied",
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_owner"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 9,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 901,
+     "created": true,
+     "body": {
+      "id": 901,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 901,
+     "action_type": "assign_agent",
+     "blocker_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+     "target": "agent-demo-dev-9",
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-10T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "assign_agent",
+      "blocker_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+      "target": "agent-demo-dev-9",
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 901,
+     "reported_at": "2026-03-10T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": [
+      {
+       "method": "PATCH",
+       "path": "/api/issues/DEMO-901",
+       "body": {
+        "assigneeAgentId": "agent-demo-po-y"
+       }
+      }
+     ]
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:901:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-10T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-10T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "901",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-901",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:901:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-10T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-10T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "901",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-901",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:901:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "assign_agent"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 10,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 1001,
+     "created": true,
+     "body": {
+      "id": 1001,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 1001,
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-11T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "customer_question",
+      "blocker_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": "card-demo-1001"
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 1001,
+     "reported_at": "2026-03-11T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done",
+      "interaction_id": "card-demo-1001"
+     },
+     "paperclip_writes": [
+      {
+       "method": "POST",
+       "path": "/api/issues/DEMO-1001/interactions",
+       "body": {
+        "kind": "ask_user_questions",
+        "resolverPolicy": "human_only"
+       }
+      }
+     ]
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:1001:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-11T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-11T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "1001",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-1001",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:1001:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-11T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-11T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "1001",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-1001",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:1001:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 11,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 1101,
+     "created": true,
+     "body": {
+      "id": 1101,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 1101,
+     "action_type": "customer_question",
+     "blocker_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-12T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "customer_question",
+      "blocker_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": "card-demo-1101"
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 1101,
+     "reported_at": "2026-03-12T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done",
+      "interaction_id": "card-demo-1101"
+     },
+     "paperclip_writes": [
+      {
+       "method": "POST",
+       "path": "/api/companies/company-demo/issues",
+       "body": {
+        "title": "Karar sorusu",
+        "projectId": "project-demo-safeboard"
+       }
+      },
+      {
+       "method": "POST",
+       "path": "/api/issues/DEMO-1190/interactions",
+       "body": {
+        "kind": "ask_user_questions",
+        "resolverPolicy": "human_only"
+       }
+      }
+     ]
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:1101:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-12T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-12T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "1101",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": null,
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:1101:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-12T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-12T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "1101",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": null,
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:1101:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 12,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 1201,
+     "created": true,
+     "body": {
+      "id": 1201,
+      "outcome": null
+     }
+    },
+    {
+     "step": 2,
+     "status": 202,
+     "request_id": 1201,
+     "created": false,
+     "body": {
+      "id": 1201,
+      "outcome": null
+     }
+    },
+    {
+     "step": 3,
+     "status": 202,
+     "request_id": 1201,
+     "created": false,
+     "body": {
+      "id": 1201,
+      "outcome": "done"
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 1201,
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-13T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "customer_question",
+      "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": "card-demo-1201"
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 1201,
+     "reported_at": "2026-03-13T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done",
+      "interaction_id": "card-demo-1201"
+     },
+     "paperclip_writes": [
+      {
+       "method": "POST",
+       "path": "/api/issues/DEMO-1201/interactions",
+       "body": {
+        "kind": "ask_user_questions",
+        "resolverPolicy": "human_only"
+       }
+      }
+     ]
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:1201:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-13T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-13T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "1201",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-1201",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:1201:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-13T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-13T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "1201",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-1201",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:1201:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "customer_question"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": []
+  },
+  {
+   "id": 13,
+   "responses": [
+    {
+     "step": 1,
+     "status": 202,
+     "request_id": 1301,
+     "created": true,
+     "body": {
+      "id": 1301,
+      "outcome": null
+     }
+    }
+   ],
+   "action_requests": [
+    {
+     "id": 1301,
+     "action_type": "kaizen_candidate",
+     "blocker_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+     "target": null,
+     "escalation_step": null,
+     "requested_by": "local",
+     "requested_at": "2026-03-14T09:00:00Z",
+     "outcome": "done",
+     "listed_in_due": true,
+     "dedupe": {
+      "action_type": "kaizen_candidate",
+      "blocker_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+      "target": null,
+      "step": null
+     },
+     "interaction_id": null
+    }
+   ],
+   "rte": [
+    {
+     "request_id": 1301,
+     "reported_at": "2026-03-14T09:10:00Z",
+     "outcome": "done",
+     "result": {
+      "outcome": "done"
+     },
+     "paperclip_writes": null
+    }
+   ],
+   "ledger_events": [
+    {
+     "event_uid": "safeboard:action_request:1301:requested",
+     "schema_version": 2,
+     "occurred_at": "2026-03-14T09:00:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-14T09:00:00Z",
+     "source": "safeboard",
+     "source_ref": "1301",
+     "action": "action.requested",
+     "actor_kind": "board_user",
+     "actor_id": "local",
+     "issue_id": "DEMO-1301",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": null,
+     "outcome": null,
+     "source_code": null,
+     "payload": {
+      "action_type": "kaizen_candidate"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    },
+    {
+     "event_uid": "safeboard:action_request:1301:completed",
+     "schema_version": 2,
+     "occurred_at": "2026-03-14T09:10:00Z",
+     "time_basis": "source",
+     "observed_after": null,
+     "recorded_at": "2026-03-14T09:10:00Z",
+     "source": "safeboard",
+     "source_ref": "1301",
+     "action": "action.completed",
+     "actor_kind": "agent",
+     "actor_id": "agent-demo-rte",
+     "issue_id": "DEMO-1301",
+     "run_id": null,
+     "pr_ref": null,
+     "causation_id": "safeboard:action_request:1301:requested",
+     "outcome": "done",
+     "source_code": null,
+     "payload": {
+      "action_type": "kaizen_candidate"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ],
+   "kaizen_events": [
+    {
+     "action": "kaizen.evidence_added",
+     "source": "safeboard",
+     "kaizen_key": {
+      "rule_key": "manual.blocker",
+      "subject_kind": "blocker_key",
+      "subject": "pr:example-org/demo-backend#13:gate:qual.ci_failed",
+      "period": "2026-W11"
+     },
+     "objects": [
+      {
+       "object_kind": "blocker",
+       "object_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+       "link_basis": "explicit"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "responses": [
+    {
+     "step": 1,
+     "status": 400,
+     "request_id": null,
+     "created": false,
+     "body": {
+      "error": "Bu kök neden kodu sözlükte yok."
+     }
+    }
+   ],
+   "action_requests": [],
+   "rte": [],
+   "ledger_events": [],
+   "kaizen_events": []
+  },
+  {
+   "id": 15,
+   "responses": [],
+   "action_requests": [],
+   "rte": [],
+   "ledger_events": [],
+   "kaizen_events": []
+  }
+ ]
+}

@@ -1,0 +1,838 @@
+{
+ "note": "Sahte veri. Gerçek kayıttan alınmadı. Açıklama README.md dosyasındadır.",
+ "fake": true,
+ "board_origin": "http://127.0.0.1:3195",
+ "company_id": "company-demo",
+ "safeboard_project_id": "project-demo-safeboard",
+ "rte_agent_id": "agent-demo-rte",
+ "permissions": {
+  "local": [
+   "escalate_next",
+   "assign_owner",
+   "assign_agent",
+   "wake_agent",
+   "customer_question",
+   "kaizen_candidate",
+   "root_cause_record"
+  ],
+  "tailscale": []
+ },
+ "root_cause_codes": [
+  "quota.pool_exhausted",
+  "exec.adapter_failed",
+  "dep.cross_team",
+  "cap.agent_paused",
+  "gate.human_question",
+  "gate.human_approval",
+  "gate.missing_auto_merge_label",
+  "qual.ci_failed",
+  "qual.main_ci_failed",
+  "proc.unassigned",
+  "proc.wake_skipped",
+  "unknown.unclassified"
+ ],
+ "cases": [
+  {
+   "id": 1,
+   "title": "`local` kullanıcı yedi eylem düğmesine birer kez basar.",
+   "design_sections": [
+    "4.1",
+    "4.2",
+    "4.5"
+   ],
+   "first_request_id": 101,
+   "blocker": {
+    "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+    "blocker_key": "issue:DEMO-101",
+    "root_issue_id": "DEMO-101",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 1,
+    "root_cause_code": "dep.cross_team"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-02T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Eskalasyonu başlat",
+     "action_type": "escalate_next",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {}
+    },
+    {
+     "step": 2,
+     "at": "2026-03-02T09:01:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {}
+    },
+    {
+     "step": 3,
+     "at": "2026-03-02T09:02:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Başka ajana ver",
+     "action_type": "assign_agent",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {
+      "target_agent_id": "agent-demo-dev-2"
+     }
+    },
+    {
+     "step": 4,
+     "at": "2026-03-02T09:03:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Ajanı uyandır",
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {}
+    },
+    {
+     "step": 5,
+     "at": "2026-03-02T09:04:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: hangi sürüm önce çıksın?"
+     }
+    },
+    {
+     "step": 6,
+     "at": "2026-03-02T09:05:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Kaizen adayı yap",
+     "action_type": "kaizen_candidate",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {}
+    },
+    {
+     "step": 7,
+     "at": "2026-03-02T09:06:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Kök nedeni kaydet",
+     "action_type": "root_cause_record",
+     "blocker_id": "issue:DEMO-101@2026-03-02T08:00:00Z",
+     "body": {
+      "root_cause_code": "dep.cross_team"
+     }
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 101,
+     "at": "2026-03-02T09:10:00Z"
+    },
+    {
+     "request_id": 102,
+     "at": "2026-03-02T09:11:00Z"
+    },
+    {
+     "request_id": 103,
+     "at": "2026-03-02T09:12:00Z"
+    },
+    {
+     "request_id": 104,
+     "at": "2026-03-02T09:13:00Z"
+    },
+    {
+     "request_id": 105,
+     "at": "2026-03-02T09:14:00Z"
+    },
+    {
+     "request_id": 106,
+     "at": "2026-03-02T09:15:00Z"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "title": "Tailscale kullanıcısı bir düğmeye basar. İstek `403` alır.",
+   "design_sections": [
+    "4.3",
+    "4.5"
+   ],
+   "first_request_id": 201,
+   "blocker": {
+    "blocker_id": "issue:DEMO-201@2026-03-03T08:00:00Z",
+    "blocker_key": "issue:DEMO-201",
+    "root_issue_id": "DEMO-201",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-03T09:00:00Z",
+     "user": {
+      "kind": "tailscale",
+      "login": "demo.kisi@example.test"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-201@2026-03-03T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": []
+  },
+  {
+   "id": 3,
+   "title": "`Origin` başlığı farklı olan istek reddedilir.",
+   "design_sections": [
+    "4.3"
+   ],
+   "first_request_id": 301,
+   "blocker": {
+    "blocker_id": "issue:DEMO-301@2026-03-04T08:00:00Z",
+    "blocker_key": "issue:DEMO-301",
+    "root_issue_id": "DEMO-301",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-04T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://baska-kaynak.example.test",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-301@2026-03-04T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": []
+  },
+  {
+   "id": 4,
+   "title": "Aynı düğmeye iki kez basılır. Tek istek açılır.",
+   "design_sections": [
+    "4.1",
+    "4.5"
+   ],
+   "first_request_id": 401,
+   "blocker": {
+    "blocker_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+    "blocker_key": "issue:DEMO-401",
+    "root_issue_id": "DEMO-401",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-4",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-05T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+     "body": {}
+    },
+    {
+     "step": 2,
+     "at": "2026-03-05T09:00:05Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-401@2026-03-05T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 401,
+     "at": "2026-03-05T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "title": "Durdurulmuş ajana \"Ajanı uyandır\" denir. Sonuç `denied` olur.",
+   "design_sections": [
+    "4.1",
+    "4.3",
+    "4.5"
+   ],
+   "first_request_id": 501,
+   "blocker": {
+    "blocker_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+    "blocker_key": "issue:DEMO-501",
+    "root_issue_id": "DEMO-501",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-5",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-06T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Ajanı uyandır",
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-501@2026-03-06T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 501,
+     "at": "2026-03-06T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "title": "Çalışan koşusu olan ajana \"Ajanı uyandır\" denir. Sonuç `skipped_state_changed` olur.",
+   "design_sections": [
+    "4.1",
+    "4.3",
+    "4.5"
+   ],
+   "first_request_id": 601,
+   "blocker": {
+    "blocker_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+    "blocker_key": "issue:DEMO-601",
+    "root_issue_id": "DEMO-601",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-6",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-07T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Ajanı uyandır",
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-601@2026-03-07T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 601,
+     "at": "2026-03-07T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "title": "Üstünde açık iş olmayan ajana \"Ajanı uyandır\" denir. Ajan uyandırılmaz.",
+   "design_sections": [
+    "4.1",
+    "4.3",
+    "4.5"
+   ],
+   "first_request_id": 701,
+   "blocker": {
+    "blocker_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+    "blocker_key": "issue:DEMO-701",
+    "root_issue_id": "DEMO-701",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-7",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-08T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Ajanı uyandır",
+     "action_type": "wake_agent",
+     "blocker_id": "issue:DEMO-701@2026-03-08T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 701,
+     "at": "2026-03-08T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "title": "Durdurulmuş sahip için \"Sahibine ver\" denir. Sonuç `denied` olur.",
+   "design_sections": [
+    "4.2",
+    "4.5"
+   ],
+   "first_request_id": 801,
+   "blocker": {
+    "blocker_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+    "blocker_key": "issue:DEMO-801",
+    "root_issue_id": "DEMO-801",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-8",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-09T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Sahibine ver",
+     "action_type": "assign_owner",
+     "blocker_id": "issue:DEMO-801@2026-03-09T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 801,
+     "at": "2026-03-09T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "title": "Başka takımdaki ajana \"Başka ajana ver\" denir. İş o takımın PO ajanına gider.",
+   "design_sections": [
+    "4.3",
+    "4.5"
+   ],
+   "first_request_id": 901,
+   "blocker": {
+    "blocker_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+    "blocker_key": "issue:DEMO-901",
+    "root_issue_id": "DEMO-901",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-10T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Başka ajana ver",
+     "action_type": "assign_agent",
+     "blocker_id": "issue:DEMO-901@2026-03-10T08:00:00Z",
+     "body": {
+      "target_agent_id": "agent-demo-dev-9"
+     }
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 901,
+     "at": "2026-03-10T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "title": "\"Müşteriye sor\" basılır. Sorunun metni deftere yazılmaz.",
+   "design_sections": [
+    "4.4",
+    "4.5"
+   ],
+   "first_request_id": 1001,
+   "blocker": {
+    "blocker_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+    "blocker_key": "issue:DEMO-1001",
+    "root_issue_id": "DEMO-1001",
+    "root_issue_team": "team_x",
+    "owner_kind": "human",
+    "owner_ref": "kisi-demo-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "gate.human_question"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-11T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1001@2026-03-11T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: ödeme ekranı mı, rapor ekranı mı önce bitsin?"
+     }
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 1001,
+     "at": "2026-03-11T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "title": "Kökün Paperclip işi yoksa \"Müşteriye sor\" önce \"Karar sorusu\" işi açar.",
+   "design_sections": [
+    "4.4",
+    "4.5"
+   ],
+   "first_request_id": 1101,
+   "blocker": {
+    "blocker_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+    "blocker_key": "repo:example-org/demo-backend:main:qual.main_ci_failed",
+    "root_issue_id": null,
+    "root_issue_team": null,
+    "owner_kind": "role",
+    "owner_ref": "team_z_rte",
+    "owner_team": null,
+    "escalation_step": 0,
+    "root_cause_code": "qual.main_ci_failed"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-12T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "repo:example-org/demo-backend:main:qual.main_ci_failed@2026-03-12T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: ana dal kırmızıyken sürüm çıksın mı?"
+     }
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 1101,
+     "at": "2026-03-12T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "title": "İkinci \"Müşteriye sor\" basışı yeni kart açmaz.",
+   "design_sections": [
+    "4.1",
+    "4.4",
+    "4.5"
+   ],
+   "first_request_id": 1201,
+   "blocker": {
+    "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+    "blocker_key": "issue:DEMO-1201",
+    "root_issue_id": "DEMO-1201",
+    "root_issue_team": "team_x",
+    "owner_kind": "human",
+    "owner_ref": "kisi-demo-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "gate.human_question"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-13T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: iki tasarımdan hangisi seçilsin?"
+     }
+    },
+    {
+     "step": 2,
+     "at": "2026-03-13T09:05:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: iki tasarımdan hangisi seçilsin?"
+     }
+    },
+    {
+     "step": 3,
+     "at": "2026-03-13T10:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Müşteriye sor",
+     "action_type": "customer_question",
+     "blocker_id": "issue:DEMO-1201@2026-03-13T08:00:00Z",
+     "body": {
+      "question_text": "Sahte soru: iki tasarımdan hangisi seçilsin?"
+     }
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 1201,
+     "at": "2026-03-13T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "title": "Açık Kaizen adayı varsa yalnız kanıt eklenir.",
+   "design_sections": [
+    "4.2",
+    "4.5"
+   ],
+   "first_request_id": 1301,
+   "blocker": {
+    "blocker_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+    "blocker_key": "pr:example-org/demo-backend#13:gate:qual.ci_failed",
+    "root_issue_id": "DEMO-1301",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "qual.ci_failed"
+   },
+   "kaizen_items": [
+    {
+     "rule_key": "manual.blocker",
+     "subject_kind": "blocker_key",
+     "subject": "pr:example-org/demo-backend#13:gate:qual.ci_failed",
+     "period": "2026-W11",
+     "state": "candidate"
+    }
+   ],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-14T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Kaizen adayı yap",
+     "action_type": "kaizen_candidate",
+     "blocker_id": "pr:example-org/demo-backend#13:gate:qual.ci_failed@2026-03-14T08:00:00Z",
+     "body": {}
+    }
+   ],
+   "rte_reports": [
+    {
+     "request_id": 1301,
+     "at": "2026-03-14T09:10:00Z"
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "title": "\"Kök nedeni kaydet\" sözlükte olmayan kodu reddeder.",
+   "design_sections": [
+    "4.2",
+    "5.3"
+   ],
+   "first_request_id": 1401,
+   "blocker": {
+    "blocker_id": "issue:DEMO-1401@2026-03-15T08:00:00Z",
+    "blocker_key": "issue:DEMO-1401",
+    "root_issue_id": "DEMO-1401",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "unknown.unclassified"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-15T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "origin": "http://127.0.0.1:3195",
+     "button": "Kök nedeni kaydet",
+     "action_type": "root_cause_record",
+     "blocker_id": "issue:DEMO-1401@2026-03-15T08:00:00Z",
+     "body": {
+      "root_cause_code": "demo.sozlukte_yok"
+     }
+    }
+   ],
+   "rte_reports": []
+  },
+  {
+   "id": 15,
+   "title": "İki bağlantı düğmesi deftere hiçbir şey yazmaz.",
+   "design_sections": [
+    "4.2"
+   ],
+   "first_request_id": 1501,
+   "blocker": {
+    "blocker_id": "pr:example-org/demo-backend#15:gate:qual.ci_failed@2026-03-16T08:00:00Z",
+    "blocker_key": "pr:example-org/demo-backend#15:gate:qual.ci_failed",
+    "root_issue_id": "DEMO-1501",
+    "root_issue_team": "team_x",
+    "owner_kind": "agent",
+    "owner_ref": "agent-demo-dev-1",
+    "owner_team": "team_x",
+    "escalation_step": 0,
+    "root_cause_code": "qual.ci_failed"
+   },
+   "kaizen_items": [],
+   "resolved_interaction_ids": [],
+   "presses": [
+    {
+     "step": 1,
+     "at": "2026-03-16T09:00:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "button": "Paperclip'te aç",
+     "link": true,
+     "href": "/DEMO/issues/DEMO-1501"
+    },
+    {
+     "step": 2,
+     "at": "2026-03-16T09:01:00Z",
+     "user": {
+      "kind": "local",
+      "login": "local"
+     },
+     "button": "GitHub'da aç",
+     "link": true,
+     "href": "https://github.example.test/example-org/demo-backend/pull/15"
+    }
+   ],
+   "rte_reports": []
+  }
+ ]
+}
