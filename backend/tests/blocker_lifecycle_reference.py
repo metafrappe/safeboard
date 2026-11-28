@@ -4,7 +4,8 @@ This is not product code. It is the smallest model that turns the fake ledger in
 `fixtures/blocker_lifecycle/` into blocker episodes, so the fixture test can
 check the hand-written expected results and the drop-and-rebuild rule.
 
-The product derivation lives in `safeboard.escalation` and `safeboard.kaizen`.
+The product derivation is not written yet. It will live in `safeboard.escalation`
+and `safeboard.kaizen`. When it exists, the rebuild test must run against it.
 """
 import datetime as dt
 import sqlite3
@@ -138,9 +139,7 @@ def rule7_subjects(episodes, thresholds):
     for episode in episodes:
         when = period_key(episode["opened_at"], period)
         openings[(episode["blocker_key"], when)] = openings.get((episode["blocker_key"], when), 0) + 1
-        code = episode["root_cause_code"]
-        if code not in rule["byRootCause"]["excludeCodes"]:
-            keys_by_code.setdefault((code, when), set()).add(episode["blocker_key"])
+        keys_by_code.setdefault((episode["root_cause_code"], when), set()).add(episode["blocker_key"])
     held = {("blocker_key", key, when) for (key, when), count in openings.items()
             if count >= rule["byBlockerKey"]["opensInPeriodAtLeast"]}
     held |= {("root_cause_code", code, when) for (code, when), keys in keys_by_code.items()

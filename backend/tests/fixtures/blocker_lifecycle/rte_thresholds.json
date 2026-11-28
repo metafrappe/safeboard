@@ -25,8 +25,7 @@
         "byRootCause": {
           "subject": "root_cause_code",
           "maxDistinctBlockerKeysPerPeriod": 4,
-          "distinctBlockerKeysInPeriodAtLeast": 5,
-          "excludeCodes": ["unknown.unclassified"]
+          "distinctBlockerKeysInPeriodAtLeast": 5
         },
         "evidence": ["episode_list", "total_waiting_issues", "root_cause_code"],
         "dedupeKey": "rule+subject+period",

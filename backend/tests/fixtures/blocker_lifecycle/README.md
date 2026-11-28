@@ -44,6 +44,27 @@ Her durumun dört girdisi vardır.
 
 Defter satırında özet alanları yoktur. `prev_hash` ve `row_hash` değerini defter yazan kod hesaplar.
 
+Defter satırında şu on alan da yoktur. Bu veri o alanları denemez.
+
+- `id`
+- `actor_role`
+- `team`
+- `account_ref`
+- `account_certainty`
+- `model`
+- `requirement_id`
+- `correlation_id`
+- `causation_id`
+- `corrects_event_uid`
+
+6\. durumda "Kök nedeni kaydet" eylemi üç olay yazar. Kaynak tasarımın 4.5 bölümüdür.
+
+1. `action.requested`
+2. `blocker.root_cause_recorded`
+3. `action.completed`
+
+Üç olayın anı aynıdır. `action.completed` olayının `outcome` değeri `done` olur.
+
 ## Beklenen sonuç nasıl okunur?
 
 Her durumun dört sonucu vardır.
@@ -63,6 +84,8 @@ Sahte sayılar gerçek sayılardan bilerek farklıdır. Böylece koda sabit say�
 
 Kodunuz eşiği bu kayıttan okumalıdır. Sayıyı koda yazmayın.
 
+Kural 7 her kök neden koduna bakar. `unknown.unclassified` kodu da sayılır. Kayıtta istisna listesi yoktur.
+
 ## Tasarımın açık yazmadığı noktalar
 
 Tasarım aşağıdaki noktaları açık yazmıyor. Bu veri her nokta için bir okuma seçti. Okuma yanlışsa veriyi Team B PO ile düzeltin.
@@ -78,7 +101,7 @@ Tasarım aşağıdaki noktaları açık yazmıyor. Bu veri her nokta için bir o
 9. **Kural adı.** Kural 7 adayının `rule_key` değeri `rule7` olur. Bu ad RTE kaydındaki anahtardır.
 10. **Toplam bekleyen iş.** Veride toplam ile tekil sayı aynı çıkar. Böylece iki okuma da aynı sonucu verir.
 11. **"Son aşama".** 2. durumda önce sahiplenme, sonra eskalasyon olur. Ters sıra bu veride yoktur.
-12. **Elle açılan aday.** 12. durumda girdi `action.requested` olayıdır. Beklenen yeni olay `kaizen.candidate_created` olayıdır.
+12. **Elle açılan aday.** 12. durumda girdi `action.requested` olayıdır. Beklenen yeni olay `kaizen.candidate_created` olayıdır. Tasarıma göre adayı RTE açar. RTE sonucu bildirince `action.completed` olayı yazılır. Bu veri o adımı kapsamaz. Bu yüzden beklenen olaylarda `action.completed` yoktur.
 
 ## Testi koşmak
 
@@ -96,5 +119,7 @@ Test şunları denetler:
 - Beklenen dönemler kaynak olaylardan çıkar.
 - Tablo silinip yeniden kurulunca aşamalar aynı kalır.
 - Kural 7 sonuçları sahte RTE kaydıyla tutarlıdır.
+- Kök neden eylemi üç olay yazar.
+- Kural 7 her kök neden koduna bakar.
 
 `backend/tests/blocker_lifecycle_reference.py` dosyası yalnız test içindir. Bu dosya ürün kodu değildir.

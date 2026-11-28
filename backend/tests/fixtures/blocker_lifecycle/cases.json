@@ -704,6 +704,34 @@
               "link_basis": "explicit"
             }
           ]
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-6:completed",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T06:30:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-6",
+          "action": "action.completed",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": "done",
+          "source_code": null,
+          "payload": {
+            "action_type": "root_cause_record"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-6:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
         }
       ],
       "collect_runs": [
