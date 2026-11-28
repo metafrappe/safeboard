@@ -118,6 +118,37 @@ class BlockerLifecycleFixtures(unittest.TestCase):
         for number in (1, 2, 3, 4, 5, 6, 7):
             self.assertEqual(self.expected[number]["ledger_events"], [])
 
+    def test_root_cause_action_writes_three_events(self):
+        # Design section 4.5: request, record and completion are written in one transaction.
+        requests = [e for case in self.cases.values() for e in case["audit_events"]
+                    if e["action"] == "action.requested" and e["payload"]["action_type"] == "root_cause_record"]
+        self.assertTrue(requests)
+        for request in requests:
+            ref_id = request["source_ref"]
+            events = {e["action"]: e for case in self.cases.values() for e in case["audit_events"]
+                      if e["source_ref"] == ref_id}
+            with self.subTest(request=ref_id):
+                self.assertEqual(sorted(events),
+                                 ["action.completed", "action.requested", "blocker.root_cause_recorded"])
+                done = events["action.completed"]
+                self.assertEqual(done["event_uid"], "safeboard:action_request:%s:completed" % ref_id)
+                self.assertEqual(done["outcome"], "done")
+                self.assertEqual(done["payload"]["action_type"], "root_cause_record")
+                self.assertEqual({e["occurred_at"] for e in events.values()}, {request["occurred_at"]})
+                self.assertEqual(done["objects"], request["objects"])
+
+    def test_rule7_looks_at_every_root_cause_code(self):
+        # Design section 5.4 names no exception, so the fake record must not carry one.
+        by_code = self.rule7["byRootCause"]
+        self.assertEqual(sorted(by_code), ["distinctBlockerKeysInPeriodAtLeast",
+                                           "maxDistinctBlockerKeysPerPeriod", "subject"])
+        opened_at = self.expected[9]["episodes"][0]["opened_at"]
+        episodes = [dict(blocker_key="issue:DEMO-%d" % n, opened_at=opened_at, root_cause_code=ref.UNCLASSIFIED)
+                    for n in range(by_code["distinctBlockerKeysInPeriodAtLeast"])]
+        period = ref.period_key(opened_at, self.thresholds["kaizenRules"]["period"])
+        self.assertEqual(ref.rule7_subjects(episodes, self.thresholds),
+                         {("root_cause_code", ref.UNCLASSIFIED, period)})
+
     def test_rule7_cases_agree_with_the_fake_rte_record(self):
         for number in range(1, 13):
             case, expected = self.cases[number], self.expected[number]
