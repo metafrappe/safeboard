@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAFeBoard</title>
+<style>
+@font-face { font-family: "Outfit"; src: url("/font.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  color-scheme: light;
+  --page: #f6f5f1; --surface: #fcfcfb; --surface-2: #efeee9; --surface-3: #e6e4dd; --ring: rgba(11,11,11,.08);
+  --shadow: 0 1px 2px rgba(11,11,11,.04), 0 8px 24px rgba(11,11,11,.05); --bar-bg: rgba(246,245,241,.86);
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #77756f; --grid: #e7e6df; --axis: #c3c2b7;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100;
+  --good: #006300; --good-bg: #e3f1e3; --warn: #8a5a00; --warn-bg: #fbefd2; --bad: #b42a2a; --bad-bg: #f8e1df;
+  --accent: #2a78d6; --link: #1c5cab;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 20px; --sp-6: 28px; --sp-7: 40px;
+  --r-card: 16px; --r-inner: 11px; --r-ctl: 7px; --r-pill: 999px; --hit: 44px;
+  --fs-sm: 14px; --fs-md: 16px; --fs-lg: 20px; --fs-xl: 26px; --fs-hero: 56px;
+  --ease: cubic-bezier(.65, 0, .35, 1); --dur: 180ms; --bar-h: 60px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --page: #0f0f0e; --surface: #1a1a19; --surface-2: #242422; --surface-3: #2e2e2b; --ring: rgba(255,255,255,.08);
+    --shadow: 0 1px 2px rgba(0,0,0,.3); --bar-bg: rgba(15,15,14,.86);
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #9a988f; --grid: #2c2c2a; --axis: #383835;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+    --good: #5cc45c; --good-bg: #17301a; --warn: #f0b54a; --warn-bg: #33270e; --bad: #f08080; --bad-bg: #3a1a1a;
+    --accent: #3987e5; --link: #86b6ef;
+  }
+}
+@media (any-pointer: coarse) { :root { --hit: 48px; } }
+@media (prefers-reduced-motion: reduce) { :root { --dur: 0ms; } html { scroll-behavior: auto !important; } }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-h) + var(--sp-4)); }
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 var(--fs-md)/1.5 "Outfit", system-ui, sans-serif; overflow-anchor: auto; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: var(--fs-lg); font-weight: 650; letter-spacing: -.01em; }
+h2 { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -.005em; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.sub { color: var(--ink-2); font-size: var(--fs-sm); }
+.muted { color: var(--muted); font-size: var(--fs-sm); }
+.num { font-variant-numeric: tabular-nums; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* sticky bar */
+.bar { position: sticky; top: 0; z-index: 10; background: var(--bar-bg); -webkit-backdrop-filter: saturate(1.4) blur(12px); backdrop-filter: saturate(1.4) blur(12px); box-shadow: 0 1px 0 var(--ring); }
+.bar-in { max-width: 1280px; margin: 0 auto; padding: var(--sp-2) var(--sp-4); display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-4); min-height: var(--bar-h); }
+.brand { display: flex; align-items: center; gap: var(--sp-2); }
+.logo { width: 26px; height: 26px; border-radius: 8px; background: var(--ink); color: var(--surface); display: grid; place-items: center; font-weight: 700; font-size: var(--fs-sm); }
+.nav { display: flex; gap: var(--sp-1); overflow-x: auto; scrollbar-width: none; flex: 1 1 auto; min-width: 0; order: 3; width: 100%; }
+@media (min-width: 900px) { .nav { order: 0; width: auto; } }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { color: var(--ink-2); font-size: var(--fs-sm); white-space: nowrap; padding: 0 var(--sp-3); min-height: 36px; display: inline-flex; align-items: center; border-radius: var(--r-ctl); }
+.nav a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
+.nav a[aria-current="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--ring); }
+.ctl { display: flex; align-items: center; gap: var(--sp-2); margin-left: auto; }
+.live { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); white-space: nowrap; }
+#ago { display: inline-block; min-width: 20ch; font-variant-numeric: tabular-nums; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); flex: none; }
+.live.paused .dot { background: var(--axis); } .live.stale .dot { background: var(--bad); }
+.btn { font: inherit; font-size: var(--fs-sm); color: var(--ink); background: var(--surface); border: 0; box-shadow: 0 0 0 1px var(--ring); border-radius: var(--r-ctl); min-height: 36px; min-width: 36px; padding: 0 var(--sp-3); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); position: relative; transition: background var(--dur) var(--ease); }
+.btn::after { content: ""; position: absolute; inset: calc((36px - var(--hit)) / 2); }
+.btn:hover { background: var(--surface-2); }
+.btn[aria-pressed="true"] { background: var(--surface-3); }
+#pause { min-width: 9ch; }
+.btn.ghost { box-shadow: none; background: transparent; color: var(--link); padding: 0 var(--sp-2); }
+.btn.ghost:hover { background: var(--surface-2); }
+
+main { max-width: 1280px; margin: 0 auto; padding: var(--sp-5) var(--sp-4) var(--sp-7); display: grid; gap: var(--sp-5); }
+.card { background: var(--surface); border-radius: var(--r-card); box-shadow: 0 0 0 1px var(--ring), var(--shadow); padding: var(--sp-5); display: grid; gap: var(--sp-4); min-width: 0; align-content: start; }
+.card-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--sp-2) var(--sp-4); }
+.card-head > div:not(.seg) { display: grid; gap: var(--sp-1); min-width: 0; }
+.grid { display: grid; gap: var(--sp-5); }
+@media (min-height: 800px) { .scroll { height: 520px; } }
+@media (min-width: 960px) { .g-hero { grid-template-columns: 1.15fr 1fr; } .g-2 { grid-template-columns: 1fr 1fr; } .g-wide { grid-template-columns: 1.4fr 1fr; } }
+.skel { background: var(--surface-2); border-radius: var(--r-inner); }
+
+.hero-line { display: flex; align-items: flex-end; gap: var(--sp-3); flex-wrap: wrap; min-height: 56px; }
+.hero-num { font-size: var(--fs-hero); font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+.delta { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-sm); border-radius: var(--r-pill); padding: 2px var(--sp-2); }
+.delta.up { color: var(--bad); background: var(--bad-bg); } .delta.down { color: var(--good); background: var(--good-bg); } .delta.flat { color: var(--ink-2); background: var(--surface-2); }
+.stack { display: flex; height: 14px; gap: 2px; }
+.stack span { border-radius: 4px; min-width: 4px; transition: flex-grow var(--dur) var(--ease); }
+.legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); gap: var(--sp-3); }
+.legend div { display: grid; gap: 2px; }
+.legend .k { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); }
+.legend .k i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.legend .v { font-size: var(--fs-lg); font-weight: 600; }
+.kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+@media (min-width: 640px) { .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.kpi { background: var(--surface-2); border-radius: var(--r-inner); padding: var(--sp-3) var(--sp-4); display: grid; gap: 2px; min-width: 0; min-height: 86px; align-content: start; }
+.kpi .v { font-size: var(--fs-xl); font-weight: 600; line-height: 1.15; }
+.kpi .l { font-size: var(--fs-sm); color: var(--ink-2); }
+.good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
+.pill { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-sm); border-radius: var(--r-pill); padding: 2px var(--sp-2); white-space: nowrap; font-weight: 500; }
+.pill.good { color: var(--good); background: var(--good-bg); } .pill.warn { color: var(--warn); background: var(--warn-bg); } .pill.bad { color: var(--bad); background: var(--bad-bg); } .pill.idle { color: var(--ink-2); background: var(--surface-2); }
+
+.chart { position: relative; min-width: 0; height: 240px; }
+.chart svg { display: block; width: 100%; height: 240px; overflow: visible; }
+.chart text { font: 400 14px "Outfit", system-ui, sans-serif; fill: var(--muted); font-variant-numeric: tabular-nums; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--surface); font-size: var(--fs-sm); line-height: 1.4; padding: var(--sp-2) var(--sp-3); border-radius: 8px; white-space: nowrap; transform: translate(-50%, -100%); opacity: 0; transition: opacity var(--dur) var(--ease); z-index: 2; }
+.tip.on { opacity: 1; }
+.series-key { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); font-size: var(--fs-sm); color: var(--ink-2); }
+.series-key span { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.series-key i { width: 10px; height: 10px; border-radius: 3px; }
+
+.repo-name { font-weight: 600; font-size: var(--fs-md); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-3); }
+.facts div { display: grid; gap: 2px; }
+.facts .v { font-size: var(--fs-lg); font-weight: 600; }
+.facts .l { font-size: var(--fs-sm); color: var(--ink-2); }
+.merged { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.merged li { display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); }
+.merged a { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.tools { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-3); align-items: center; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: var(--sp-1); background: var(--surface-2); border-radius: var(--r-inner); padding: var(--sp-1); }
+.seg button { font: inherit; font-size: var(--fs-sm); color: var(--ink-2); background: transparent; border: 0; border-radius: var(--r-ctl); min-height: 36px; padding: 0 var(--sp-3); cursor: pointer; position: relative; transition: background var(--dur) var(--ease), color var(--dur) var(--ease); }
+.seg button::after { content: ""; position: absolute; inset: calc((36px - var(--hit)) / 2) 0; }
+.seg button:hover { color: var(--ink); }
+.seg button { font-weight: 500; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--ring); }
+.search { font: inherit; font-size: var(--fs-md); color: var(--ink); background: var(--surface); border: 0; box-shadow: 0 0 0 1px var(--ring); border-radius: var(--r-inner); min-height: var(--hit); padding: 0 var(--sp-3); width: 100%; max-width: 260px; }
+.search::placeholder { color: var(--muted); }
+
+.scroll { height: 440px; overflow-y: auto; overscroll-behavior: contain; padding-right: var(--sp-1); scrollbar-gutter: stable; }
+.rows { display: grid; gap: var(--sp-4); }
+.row { display: grid; gap: var(--sp-2); }
+.row-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-3); }
+.row-title { font-size: var(--fs-sm); color: var(--ink); min-width: 0; }
+.row-title a { font-weight: 600; margin-right: var(--sp-1); }
+.row-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; font-size: var(--fs-sm); color: var(--ink-2); }
+.row-count { font-size: var(--fs-lg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.track { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; display: flex; gap: 2px; }
+.track span { height: 100%; border-radius: 4px; transition: width var(--dur) var(--ease); }
+.agent { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sp-1) var(--sp-3); align-items: center; }
+.agent .nm { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-2); font-size: var(--fs-sm); min-width: 0; }
+.agent .st { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--axis); }
+.agent .st.running { background: var(--good); } .agent .st.error { background: var(--bad); } .agent .st.paused { background: var(--warn); }
+.agent .tot { font-size: var(--fs-sm); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.agent .track { grid-column: 1 / -1; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.timeline li { display: grid; grid-template-columns: auto 1fr; gap: var(--sp-3); font-size: var(--fs-sm); }
+.timeline time { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 5ch; }
+.timeline a { font-weight: 600; margin-right: var(--sp-1); }
+.err { background: var(--bad-bg); color: var(--bad); padding: var(--sp-3) var(--sp-4); border-radius: var(--r-inner); font-size: var(--fs-sm); }
+.empty { color: var(--muted); font-size: var(--fs-sm); padding: var(--sp-4) 0; }
+
+.bd { gap: var(--sp-4); }
+.card-head .seg { flex: 0 1 auto; max-width: 100%; }
+#akis[aria-busy="true"] .bd-chart, #akis[aria-busy="true"] .bd-stats { opacity: .55; transition: opacity var(--dur) var(--ease); }
+.bd-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3); }
+@media (min-width: 640px) { .bd-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .bd-stats { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.bd-chart { height: 400px; }
+.bd-chart svg { height: 400px; }
+.series-key i.ln { width: 18px; height: 3px; border-radius: 2px; }
+.series-key i.ln.dash { background: repeating-linear-gradient(90deg, var(--ink-2) 0 5px, transparent 5px 9px); }
+.bd-verdict { font-size: var(--fs-md); color: var(--ink); background: var(--surface-2); border-radius: var(--r-inner); padding: var(--sp-3) var(--sp-4); }
+.bd-more summary { cursor: pointer; font-size: var(--fs-sm); color: var(--link); min-height: var(--hit); display: flex; align-items: center; list-style: none; }
+.bd-more summary::-webkit-details-marker { display: none; }
+.bd-more summary::before { content: "▸"; margin-right: var(--sp-2); transition: transform var(--dur) var(--ease); }
+.bd-more[open] summary::before { transform: rotate(90deg); }
+.bd-more-in { display: grid; gap: var(--sp-5); padding-top: var(--sp-3); }
+.table-wrap { overflow-x: auto; }
+.bd-table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+.bd-table th, .bd-table td { text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--grid); white-space: nowrap; }
+.bd-table th { color: var(--ink-2); font-weight: 500; }
+.bd-table .n { text-align: right; font-variant-numeric: tabular-nums; }
+.bd-table tr.today td { font-weight: 600; }
+.bd-form { display: grid; gap: var(--sp-3); max-width: 420px; }
+.bd-form label { display: grid; gap: var(--sp-1); font-size: var(--fs-sm); color: var(--ink-2); }
+.bd-form input { font: inherit; font-size: var(--fs-md); color: var(--ink); background: var(--surface); border: 0; box-shadow: 0 0 0 1px var(--axis); border-radius: var(--r-ctl); min-height: var(--hit); padding: 0 var(--sp-3); }
+.bd-form .btn { justify-self: start; min-height: var(--hit); }
+:focus { outline: none; }
+html.kbd :focus-visible { box-shadow: inset 0 -3px 0 var(--accent); }
+html.kbd a:focus-visible { box-shadow: none; text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 4px; text-decoration-color: var(--accent); }
+@media (forced-colors: active) { html.kbd :focus-visible { outline: 2px solid CanvasText; box-shadow: none; } .stack span, .track span, .dot, .st { forced-color-adjust: none; } }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <div class="brand"><span class="logo" aria-hidden="true">S</span><h1>SAFeBoard</h1></div>
+    <nav class="nav" aria-label="Bölümler">
+      <a href="#genel" data-sec="genel">Genel</a>
+      <a href="#akis" data-sec="akis">Burndown</a>
+      <a href="#pr" data-sec="pr">PR'lar</a>
+      <a href="#engeller" data-sec="engeller">Engeller</a>
+      <a href="#yuk" data-sec="yuk">İş yükü</a>
+    </nav>
+    <div class="ctl">
+      <span class="live" id="live"><span class="dot" aria-hidden="true"></span><span id="ago">Yükleniyor</span></span>
+      <button type="button" class="btn" id="pause" aria-pressed="false" title="Otomatik yenilemeyi durdur">Durdur</button>
+      <button type="button" class="btn" id="refresh">Yenile</button>
+    </div>
+  </div>
+</div>
+<p class="sr" id="announce" role="status"></p>
+
+<main>
+  <div id="errors"></div>
+
+  <div class="grid g-hero" id="genel">
+    <section class="card" aria-labelledby="h-open">
+      <div class="card-head"><div><h2 id="h-open">Bitmemiş iş</h2><p class="sub">İşlerin şu an hangi durumda olduğunu gösterir.</p></div>
+        <a class="btn ghost" href="http://127.0.0.1:3100/AJA/issues" target="_blank" rel="noopener">Paperclip'te aç</a></div>
+      <div class="hero-line"><span class="hero-num num" id="open">–</span><span id="delta"></span></div>
+      <div class="stack" id="stack" role="img"></div>
+      <div class="legend" id="legend"></div>
+    </section>
+    <section class="card" aria-labelledby="h-kpi">
+      <div class="card-head"><div><h2 id="h-kpi">Bugün</h2><p class="sub">Takımların bugünkü hızı ve bilgisayarın durumu.</p></div></div>
+      <div class="kpis" id="kpis"></div>
+    </section>
+  </div>
+
+  <section class="card bd" aria-labelledby="h-bd" id="akis">
+    <div class="card-head">
+      <div><h2 id="h-bd">Sprint burndown</h2><p class="sub" id="bd-when">Sprint yükleniyor.</p></div>
+      <div class="seg" role="group" aria-label="Burndown takımı" id="bd-teams"></div>
+    </div>
+    <div class="bd-stats" id="bd-stats"></div>
+    <div class="series-key">
+      <span><i class="ln" style="background:var(--s1)"></i>Kalan iş</span>
+      <span><i class="ln dash"></i>İdeal çizgi, bugünkü kapsama göre</span>
+      <span><i class="ln" style="background:var(--muted)"></i>Sprint kapsamı</span>
+      <span><i style="background:var(--s3)"></i>O gün biten</span>
+      <span><i style="background:var(--s2)"></i>O gün eklenen</span>
+    </div>
+    <div class="chart bd-chart" id="bd-chart"></div>
+    <p class="bd-verdict" id="bd-verdict"></p>
+    <details class="bd-more">
+      <summary>Günlük tablo ve sprint takvimi</summary>
+      <div class="bd-more-in">
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Burndown günlük tablo"><table class="bd-table"><thead><tr><th>Gün</th><th class="n">Kapsam</th><th class="n">Kalan</th><th class="n">İdeal</th><th class="n">Biten</th><th class="n">Eklenen</th><th class="n">Çıkarılan</th></tr></thead><tbody id="bd-rows"></tbody></table></div>
+        <form class="bd-form" id="bd-form">
+          <p class="sub">Paperclip'te sprint kaydı yok. Takvimi PO ya da RTE buradan belirler. Burndown bu takvimle hesaplanır.</p>
+          <label>Sprint adı<input name="name" required maxlength="60"></label>
+          <label>Başlangıç günü<input name="start" type="date" required></label>
+          <label>Bitiş günü<input name="end" type="date" required></label>
+          <button class="btn" type="submit">Takvimi kaydet</button>
+          <p class="sub" id="bd-form-msg" role="status"></p>
+        </form>
+      </div>
+    </details>
+  </section>
+
+  <section aria-labelledby="h-pr" class="grid" style="gap:var(--sp-3)" id="pr">
+    <h2 id="h-pr">PR akışı</h2>
+    <div class="grid g-2" id="repos"></div>
+  </section>
+
+  <div class="grid g-wide" id="engeller">
+    <section class="card" aria-labelledby="h-block">
+      <div class="card-head"><div><h2 id="h-block">Engel kökleri</h2><p class="sub">Sağdaki sayı, o işi bekleyen iş sayısıdır. İşin adına tıklayınca Paperclip'te açılır.</p></div></div>
+      <div class="scroll" tabindex="0" role="region" aria-label="Engel kökleri listesi"><div class="rows" id="blocked"></div></div>
+    </section>
+    <section class="card" aria-labelledby="h-recent">
+      <div class="card-head"><div><h2 id="h-recent">Son biten işler</h2></div></div>
+      <div class="scroll" tabindex="0" role="region" aria-label="Son biten işler listesi"><ol class="timeline" id="recent"></ol></div>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="h-load" id="yuk">
+    <div class="card-head"><div><h2 id="h-load">İş yükü</h2><p class="sub">Her ajanın elindeki bitmemiş iş. Nokta, ajanın şu anki durumunu gösterir.</p></div></div>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Takım seçimi" id="teams"></div>
+      <div class="seg" role="group" aria-label="Sıralama" id="sorts"></div>
+      <label class="sr" for="q">Ajan ara</label>
+      <input class="search" id="q" type="search" placeholder="Ajan ara" autocomplete="off">
+    </div>
+    <div class="series-key" id="load-key"></div>
+    <div class="scroll" tabindex="0" role="region" aria-label="İş yükü listesi"><div class="rows" id="load"></div></div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const PC = "http://127.0.0.1:3100/AJA/issues/";
+const fmtDay = new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short" });
+const fmtTime = new Intl.DateTimeFormat("tr-TR", { hour: "2-digit", minute: "2-digit" });
+const fmtTip = new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+// Fixed categorical order (validated reference slots 1-4): colour follows the status, never its rank.
+const ST = [
+  { key: "in_progress", label: "Sürüyor", color: "var(--s1)" },
+  { key: "blocked", label: "Başka işi bekliyor", color: "var(--s2)" },
+  { key: "in_review", label: "İncelemede", color: "var(--s3)" },
+  { key: "todo", label: "Sırada", color: "var(--s4)" },
+];
+const STATUS_TR = { todo: "Sırada", in_progress: "Sürüyor", in_review: "İncelemede", blocked: "Bekliyor", done: "Bitti", cancelled: "İptal", backlog: "Birikimde" };
+const AGENT_TR = { running: "çalışıyor", idle: "boşta", paused: "durdu", error: "hata" };
+const TEAMS = ["Hepsi", "Team A", "Team B", "Team SAFe", "Diğer"];
+const SORTS = [["load", "Çok iş"], ["blocked", "Çok bekleyen"], ["name", "Ada göre"]];
+const REFRESH_MS = 30000;
+
+// Per-viewer conveniences only; the page works without storage.
+const store = { get(k, d) { try { return localStorage.getItem("safeboard." + k) ?? d; } catch { return d; } }, set(k, v) { try { localStorage.setItem("safeboard." + k, v); } catch {} } };
+let team = TEAMS.includes(store.get("team", "Hepsi")) ? store.get("team", "Hepsi") : "Hepsi", sort = store.get("sort", "load"), query = "", paused = store.get("paused", "0") === "1";
+let last = null, lastAt = 0, timer = null;
+
+document.addEventListener("keydown", (e) => { if (e.key === "Tab") document.documentElement.classList.add("kbd"); });
+document.addEventListener("pointerdown", () => document.documentElement.classList.remove("kbd"));
+
+/* ---------------------------------------------------------------------------
+   Layout stability engine. Every DOM change goes through Event-Condition-Action
+   rules, so no click, refresh or resize may move what the reader is looking at.
+   Events: update:before, update:after, interaction:end, region:offscreen, nav:start, nav:end, bar:resize.
+--------------------------------------------------------------------------- */
+const STOP = Symbol("stop");
+const Layout = (() => {
+  const rules = [];
+  const state = { hover: null, focus: null, queue: new Map(), locks: new Map(), navScrolling: false, debug: /[?&]debug\b/.test(location.search) };
+  const rule = (name, on, when, then) => rules.push({ name, on: [].concat(on), when, then });
+  function fire(event, ctx = {}) {
+    ctx.event = event; ctx.fired = [];
+    for (const r of rules) {
+      if (!r.on.includes(event) || !r.when(ctx, state)) continue;
+      ctx.fired.push(r.name);
+      if (r.then(ctx, state) === STOP) break;
+    }
+    if (state.debug && ctx.fired.length) console.debug("[layout]", event, ctx.el?.id || "", ctx.fired.join(" → "));
+    return ctx;
+  }
+  return { rule, fire, state };
+})();
+const shown = new Map();
+const cardOf = (el) => el.closest(".card") || el;
+const barH = () => document.querySelector(".bar").getBoundingClientRect().height;
+const inView = (el) => { const r = el.getBoundingClientRect(); return r.bottom > barH() && r.top < innerHeight; };
+const selectionInside = (el) => { const sel = getSelection(); return !!(sel && !sel.isCollapsed && el.contains(sel.anchorNode)); };
+
+// update:before
+Layout.rule("same-markup-skips", "update:before", (c) => shown.get(c.el.id) === c.html, (c) => { c.cancel = true; return STOP; });
+Layout.rule("auto-refresh-waits-while-reader-interacts", "update:before",
+  (c, s) => c.source === "auto" && (cardOf(c.el) === s.hover || cardOf(c.el) === s.focus || selectionInside(cardOf(c.el))),
+  (c, s) => { s.queue.set(c.el.id, c); c.cancel = true; return STOP; });
+Layout.rule("auto-refresh-waits-during-section-jump", "update:before", (c, s) => c.source === "auto" && s.navScrolling,
+  (c, s) => { s.queue.set(c.el.id, c); c.cancel = true; return STOP; });
+Layout.rule("measure-anchor-and-region", "update:before", () => true, (c) => {
+  const top = barH() + 8;
+  c.anchor = [...document.querySelectorAll("main .card, main > .grid > section > h2")].find((n) => !c.el.contains(n) && !n.contains(c.el) && n.getBoundingClientRect().bottom > top) || null;
+  c.anchorTop = c.anchor ? c.anchor.getBoundingClientRect().top : 0;
+  c.oldH = c.el.offsetHeight;
+  c.wasAbove = c.el.getBoundingClientRect().bottom <= top;
+  c.box = c.el.closest(".scroll"); c.inner = c.box ? c.box.scrollTop : 0;
+  c.focusKey = c.el.contains(document.activeElement) ? document.activeElement.dataset.key : null;
+});
+
+// update:after
+Layout.rule("keep-inner-scroll", "update:after", (c) => !!c.box, (c) => { c.box.scrollTop = Math.min(c.inner, c.box.scrollHeight - c.box.clientHeight); });
+Layout.rule("keep-focus", "update:after", (c) => !!c.focusKey, (c) => {
+  const f = c.el.querySelector(`[data-key="${CSS.escape(c.focusKey)}"]`);
+  if (f) f.focus({ preventScroll: true });
+});
+Layout.rule("hold-height-when-visible-region-shrinks", "update:after",
+  (c) => c.el.offsetHeight < c.oldH && !c.wasAbove && inView(cardOf(c.el)),
+  (c, s) => { const h = Math.max(c.oldH, s.locks.get(c.el.id) || 0); c.el.style.minHeight = h + "px"; s.locks.set(c.el.id, h); });
+Layout.rule("compensate-scroll-for-shift-above", "update:after", (c) => !!c.anchor, (c) => {
+  const d = c.anchor.getBoundingClientRect().top - c.anchorTop;
+  if (Math.abs(d) > 0.5) window.scrollBy({ top: d, behavior: "instant" });
+});
+
+// region:offscreen  (a held region may shrink back only where the reader cannot see it)
+Layout.rule("release-hold-below-viewport", "region:offscreen", (c, s) => s.locks.has(c.el.id) && c.below, (c, s) => {
+  c.el.style.minHeight = ""; s.locks.delete(c.el.id);
+});
+Layout.rule("release-hold-above-viewport-with-compensation", "region:offscreen", (c, s) => s.locks.has(c.el.id) && !c.below, (c, s) => {
+  const h = c.el.offsetHeight; c.el.style.minHeight = ""; s.locks.delete(c.el.id);
+  const d = c.el.offsetHeight - h; if (d) window.scrollBy({ top: d, behavior: "instant" });
+});
+
+// interaction:end  (apply what the auto refresh deferred, under the same rules)
+Layout.rule("flush-deferred-updates", "interaction:end", (c, s) => s.queue.size > 0 && !s.navScrolling, (c, s) => {
+  for (const [id, q] of [...s.queue]) {
+    const card = cardOf(q.el);
+    if (card === s.hover || card === s.focus) continue;
+    s.queue.delete(id); patch(q.el, q.html, "deferred", q.after);
+  }
+});
+
+// navigation and chrome
+Layout.rule("mark-section-jump", "nav:start", () => true, (c, s) => { s.navScrolling = true; });
+Layout.rule("end-section-jump", "nav:end", (c, s) => s.navScrolling, (c, s) => { s.navScrolling = false; Layout.fire("interaction:end"); });
+Layout.rule("sticky-bar-offset-follows-bar", "bar:resize", () => true, (c) => { document.documentElement.style.setProperty("--bar-h", Math.round(c.height) + "px"); });
+
+function patch(el, html, source = "auto", after) {
+  const c = Layout.fire("update:before", { el, html, source, after });
+  if (c.cancel) return false;
+  el.innerHTML = html;
+  shown.set(el.id, html);
+  if (after) after();
+  Layout.fire("update:after", c);
+  return true;
+}
+
+// Wire DOM events into the engine.
+document.addEventListener("pointerover", (e) => { const card = e.target.closest?.(".card"); if (card !== Layout.state.hover) { Layout.state.hover = card; if (!card) Layout.fire("interaction:end"); } });
+document.addEventListener("pointerleave", () => { Layout.state.hover = null; Layout.fire("interaction:end"); });
+document.addEventListener("focusin", (e) => { Layout.state.focus = e.target.closest?.(".card") || null; });
+document.addEventListener("focusout", () => setTimeout(() => { if (!document.activeElement || !document.activeElement.closest(".card")) { Layout.state.focus = null; Layout.fire("interaction:end"); } }, 0));
+document.addEventListener("selectionchange", () => { if (getSelection().isCollapsed) Layout.fire("interaction:end"); });
+const offIO = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (e.isIntersecting) return;
+  const region = e.target.querySelector("[data-region]") || e.target;
+  for (const id of Layout.state.locks.keys()) { const el = $(id); if (el && e.target.contains(el)) Layout.fire("region:offscreen", { el, below: e.boundingClientRect.top > 0 }); }
+}));
+document.querySelectorAll("main .card").forEach((c) => offIO.observe(c));
+new ResizeObserver((es) => Layout.fire("bar:resize", { height: es[0].contentRect.height })).observe(document.querySelector(".bar"));
+let navTimer;
+document.querySelectorAll(".nav a").forEach((a) => a.addEventListener("click", () => {
+  Layout.fire("nav:start");
+  clearTimeout(navTimer);
+  const done = () => { clearTimeout(navTimer); removeEventListener("scrollend", done); Layout.fire("nav:end"); };
+  addEventListener("scrollend", done, { once: true });
+  navTimer = setTimeout(done, 1500);
+}));
+
+function niceMax(v) { const p = Math.pow(10, Math.floor(Math.log10(Math.max(v, 1)))); return Math.ceil(v / p) * p || 10; }
+function axes(W, H, m, max, steps = 4) {
+  let s = "";
+  for (let k = 0; k <= steps; k++) {
+    const v = Math.round((max * k) / steps), y = m.t + (1 - v / max) * (H - m.t - m.b);
+    s += `<line x1="${m.l}" x2="${W - m.r}" y1="${y}" y2="${y}" stroke="${k ? "var(--grid)" : "var(--axis)"}"/><text x="${m.l - 8}" y="${y + 5}" text-anchor="end">${v}</text>`;
+  }
+  return s;
+}
+function attachTip(box, hits) {
+  const tip = box.querySelector(".tip");
+  box.querySelectorAll("[data-i]").forEach((el) => {
+    el.addEventListener("pointerenter", () => {
+      const h = hits[el.dataset.i];
+      tip.innerHTML = h.html;
+      tip.style.left = Math.min(Math.max(h.x, 80), box.clientWidth - 80) + "px";
+      tip.style.top = h.y - 10 + "px";
+      tip.classList.add("on");
+      if (h.onShow) h.onShow();
+    });
+    el.addEventListener("pointerleave", () => { tip.classList.remove("on"); const g = box.querySelector(".guide"); if (g) g.setAttribute("opacity", 0); });
+  });
+}
+
+function burnChart(box, pts) {
+  const W = Math.max(200, Math.floor(box.getBoundingClientRect().width)), H = 240, m = { l: 40, r: 12, t: 16, b: 32 };
+  const max = niceMax(Math.max(...pts.map((p) => p.open)));
+  const x = (i) => m.l + (i / Math.max(1, pts.length - 1)) * (W - m.l - m.r);
+  const y = (v) => m.t + (1 - v / max) * (H - m.t - m.b);
+  const line = pts.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p.open).toFixed(1)}`).join("");
+  const area = `${line}L${x(pts.length - 1)},${y(0)}L${x(0)},${y(0)}Z`;
+  const every = Math.max(2, Math.ceil(pts.length / (W / 80)));
+  let ticks = "";
+  pts.forEach((p, i) => { if (i % every === 0 && i < pts.length - 2) ticks += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${fmtDay.format(new Date(p.t))}</text>`; });
+  const lp = pts[pts.length - 1], slot = (W - m.l - m.r) / Math.max(1, pts.length - 1);
+  let hits = "";
+  pts.forEach((p, i) => { hits += `<rect data-i="${i}" x="${x(i) - slot / 2}" y="${m.t}" width="${slot}" height="${H - m.t - m.b}" fill="transparent"/>`; });
+  const html = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kalan iş çizgisi. Şu an ${lp.open} iş bitmedi.">
+    <defs><linearGradient id="burn-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--s1)" stop-opacity=".22"/><stop offset="1" stop-color="var(--s1)" stop-opacity="0"/></linearGradient></defs>
+    ${axes(W, H, m, max)}${ticks}<path d="${area}" fill="url(#burn-fill)"/><path d="${line}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <line class="guide" x1="0" x2="0" y1="${m.t}" y2="${H - m.b}" stroke="var(--axis)" opacity="0"/>
+    <circle class="pt" r="5" cx="${x(pts.length - 1)}" cy="${y(lp.open)}" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>
+    <text x="${x(pts.length - 1) - 10}" y="${y(lp.open) - 2}" text-anchor="end" style="fill:var(--ink);font-weight:600">${lp.open}</text>${hits}</svg><div class="tip"></div>`;
+  patch(box, html, "auto", () => {
+  const guide = box.querySelector(".guide"), pt = box.querySelector(".pt");
+  attachTip(box, pts.map((p, i) => ({ x: x(i), y: y(p.open), html: `<b>${p.open}</b> iş bitmedi<br>${fmtTip.format(new Date(p.t))}`,
+    onShow: () => { guide.setAttribute("x1", x(i)); guide.setAttribute("x2", x(i)); guide.setAttribute("opacity", 1); pt.setAttribute("cx", x(i)); pt.setAttribute("cy", y(p.open)); } })));
+  });
+}
+
+function dailyChart(box, days) {
+  const W = Math.max(200, Math.floor(box.getBoundingClientRect().width)), H = 240, m = { l: 40, r: 8, t: 16, b: 32 };
+  const max = niceMax(Math.max(...days.flatMap((d) => [d.new, d.done])));
+  const slot = (W - m.l - m.r) / days.length, bw = Math.max(3, Math.min(14, slot / 2 - 3));
+  const y = (v) => m.t + (1 - v / max) * (H - m.t - m.b), base = y(0);
+  const bar = (x0, v, c) => { const h = Math.max(0, base - y(v)); if (!h) return ""; const r = Math.min(4, bw / 2, h); return `<path d="M${x0},${base}V${base - h + r}Q${x0},${base - h} ${x0 + r},${base - h}H${x0 + bw - r}Q${x0 + bw},${base - h} ${x0 + bw},${base - h + r}V${base}Z" fill="${c}"/>`; };
+  const every = Math.max(1, Math.ceil(days.length / (W / 70)));
+  let s = axes(W, H, m, max), hits = "";
+  days.forEach((d, i) => {
+    const cx = m.l + i * slot + slot / 2;
+    s += bar(cx - bw - 1, d.new, "var(--s2)") + bar(cx + 1, d.done, "var(--s3)");
+    if (i % every === 0) s += `<text x="${cx}" y="${H - 8}" text-anchor="middle">${fmtDay.format(new Date(d.d))}</text>`;
+    hits += `<rect data-i="${i}" x="${m.l + i * slot}" y="${m.t}" width="${slot}" height="${H - m.t - m.b}" fill="transparent"/>`;
+  });
+  const t = days[days.length - 1];
+  patch(box, `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bugün ${t.new} iş açıldı, ${t.done} iş bitti.">${s}${hits}</svg><div class="tip"></div>`, "auto", () => attachTip(box, days.map((d, i) => ({ x: m.l + i * slot + slot / 2, y: y(Math.max(d.new, d.done)), html: `${fmtDay.format(new Date(d.d))}<br>Açılan <b>${d.new}</b>, biten <b>${d.done}</b>` }))));
+}
+
+const kpi = (v, l, cls = "") => `<div class="kpi"><span class="v num ${cls}">${v}</span><span class="l">${l}</span></div>`;
+function ciPill(state) {
+  if (state === "success") return `<span class="pill good">✓ Main yeşil</span>`;
+  if (state === "failure") return `<span class="pill bad">✕ Main kırmızı</span>`;
+  if (state === "bilinmiyor") return `<span class="pill idle">– CI yok</span>`;
+  return `<span class="pill warn">● CI çalışıyor</span>`;
+}
+const segBtns = (items, cur, kind) => items.map(([v, l]) => `<button type="button" aria-pressed="${v === cur}" data-key="${kind}:${esc(v)}" data-v="${esc(v)}">${esc(l)}</button>`).join("");
+
+function renderLoad(source = "auto") {
+  patch($("teams"), segBtns(TEAMS.map((t) => [t, t]), team, "team"), source);
+  patch($("sorts"), segBtns(SORTS, sort, "sort"), source);
+  patch($("load-key"), ST.map((s) => `<span><i style="background:${s.color}"></i>${s.label}</span>`).join(""));
+  const tot = (r) => ST.reduce((a, s) => a + r[s.key], 0);
+  const q = query.toLocaleLowerCase("tr");
+  let rows = (last?.paperclip?.workload || []).filter((r) => (team === "Hepsi" || r.team === team) && (!q || r.name.toLocaleLowerCase("tr").includes(q)));
+  rows = rows.slice().sort(sort === "name" ? (a, b) => a.name.localeCompare(b.name, "tr") : sort === "blocked" ? (a, b) => b.blocked - a.blocked || tot(b) - tot(a) : (a, b) => tot(b) - tot(a));
+  const max = Math.max(1, ...rows.map(tot));
+  patch($("load"), rows.map((r) => {
+    const segs = ST.filter((s) => r[s.key]).map((s) => `<span style="width:${(r[s.key] / max) * 100}%;background:${s.color}" title="${s.label}: ${r[s.key]}"></span>`).join("");
+    const parts = ST.filter((s) => r[s.key]).map((s) => `${s.label} ${r[s.key]}`).join(", ");
+    return `<div class="agent"><span class="nm"><span class="st ${esc(r.state)}" aria-hidden="true"></span>${esc(r.name)}<span class="muted">${esc(AGENT_TR[r.state] || "")}</span></span>
+      <span class="tot">${tot(r)} iş</span><div class="track" role="img" aria-label="${esc(r.name)}: ${parts}">${segs}</div></div>`;
+  }).join("") || `<p class="empty">Bu seçime uyan ajan yok. Süzgeci ya da aramayı değiştirin.</p>`, source);
+}
+
+function onSeg(id, apply) {
+  $(id).addEventListener("click", (e) => { const b = e.target.closest("button[data-v]"); if (!b) return; apply(b.dataset.v); renderLoad("user"); });
+}
+onSeg("teams", (v) => { team = v; store.set("team", v); });
+onSeg("sorts", (v) => { sort = v; store.set("sort", v); });
+$("q").addEventListener("input", (e) => { query = e.target.value.trim(); renderLoad("user"); });
+
+function render(d, source = "auto") {
+  last = d; lastAt = Date.now();
+  $("live").classList.remove("stale");
+  patch($("errors"), (d.errors || []).map((e) => `<p class="err">${esc(e)}</p>`).join(""));
+  const pc = d.paperclip, gh = d.github || [];
+  if (pc) {
+    const s = pc.status, open = ST.reduce((a, x) => a + (s[x.key] || 0), 0) + (s.backlog || 0);
+    patch($("open"), String(open));
+    const ago = pc.burn[Math.max(0, pc.burn.length - 5)].open, diff = open - ago;
+    patch($("delta"), `<span class="delta ${diff > 0 ? "up" : diff < 0 ? "down" : "flat"}">${diff > 0 ? "▲" : diff < 0 ? "▼" : "■"} ${Math.abs(diff)} iş, son 24 saatte</span>`);
+    $("stack").setAttribute("aria-label", ST.map((x) => `${x.label} ${s[x.key] || 0}`).join(", "));
+    patch($("stack"), ST.filter((x) => s[x.key]).map((x) => `<span style="flex:${s[x.key]};background:${x.color}" title="${x.label}: ${s[x.key]}"></span>`).join(""));
+    patch($("legend"), ST.map((x) => `<div><span class="k"><i style="background:${x.color}"></i>${x.label}</span><span class="v num">${s[x.key] || 0}</span></div>`).join(""));
+    const today = pc.daily[pc.daily.length - 1], ratio = d.machine.load / d.machine.cpus;
+    const total = Object.values(pc.agents).reduce((a, b) => a + b, 0);
+    patch($("kpis"), [
+      kpi(today.done, "Bugün biten iş", "good"),
+      kpi(today.new, "Bugün açılan iş"),
+      kpi(gh.reduce((a, r) => a + r.merged24, 0), "Son 24 saatte birleşen PR"),
+      kpi(`${pc.agents.running || 0}<span class="muted"> / ${total}</span>`, "Çalışan ajan"),
+      kpi(pc.staleBlocked, "3 günden uzun bekleyen iş", pc.staleBlocked ? "warn" : ""),
+      kpi(d.machine.load, `Makine yükü, ${d.machine.cpus} işlemci`, ratio > 4 ? "bad" : ratio > 1.5 ? "warn" : "good"),
+    ].join(""));
+    const bmax = Math.max(1, ...pc.blocked.map((r) => r.count));
+    patch($("blocked"), pc.blocked.map((r) => `<div class="row">
+      <div class="row-top"><span class="row-title">${/^AJA-/.test(r.id) ? `<a href="${PC}${esc(r.id)}" target="_blank" rel="noopener" data-key="b:${esc(r.id)}">${esc(r.id)}</a>` : `<b>${esc(r.id)}</b> `}${esc(r.title)}</span><span class="row-count">${r.count}</span></div>
+      <div class="track" aria-hidden="true"><span style="width:${(r.count / bmax) * 100}%;background:var(--s2)"></span></div>
+      <div class="row-meta"><span class="pill ${r.status === "todo" ? "warn" : r.status === "blocked" ? "bad" : "idle"}">${esc(STATUS_TR[r.status] || "Engel yazılmamış")}</span><span>${esc(r.owner || "Sahibi yok")}</span></div></div>`).join("") || `<p class="empty">Bekleyen iş yok.</p>`);
+    patch($("recent"), pc.recent.map((r) => `<li><time datetime="${r.at}">${fmtTime.format(new Date(r.at))}</time><span><a href="${PC}${esc(r.id)}" target="_blank" rel="noopener" data-key="r:${esc(r.id)}">${esc(r.id)}</a>${esc(r.title)}</span></li>`).join(""));
+    renderLoad();
+  }
+  const segs = [["yeşil", "Geçti", "var(--s3)"], ["sürüyor", "Çalışıyor", "var(--s1)"], ["kırmızı", "Düştü", "var(--s2)"], ["yok", "Test yok", "var(--axis)"]];
+  patch($("repos"), gh.map((r) => {
+    const c = r.checks;
+    return `<section class="card" aria-label="${esc(r.repo)}">
+      <div class="card-head"><div><span class="repo-name">${esc(r.repo)}</span></div>${ciPill(r.main)}</div>
+      <div class="facts"><div><span class="v num">${r.open}</span><span class="l">Açık PR</span></div><div><span class="v num">${r.merged}</span><span class="l">Birleşen PR</span></div><div><span class="v num">${r.autoMerge}</span><span class="l">auto-merge etiketli</span></div></div>
+      <span class="sub">Açık PR'ların test durumu</span>
+      <div class="stack" role="img" aria-label="${segs.map(([k, l]) => `${l} ${c[k] || 0}`).join(", ")}">${segs.filter(([k]) => c[k]).map(([k, l, col]) => `<span style="flex:${c[k]};background:${col}" title="${l}: ${c[k]}"></span>`).join("")}</div>
+      <div class="series-key">${segs.map(([k, l, col]) => `<span><i style="background:${col}"></i>${l} ${c[k] || 0}</span>`).join("")}</div>
+      <ul class="merged">${r.latest.slice(0, 3).map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener" data-key="p:${esc(r.repo)}:${p.n}">#${p.n}</a><span>${esc(p.title)}</span></li>`).join("") || "<li><span>Henüz birleşen PR yok.</span></li>"}</ul>
+      <a class="btn ghost" href="${esc(r.url)}" target="_blank" rel="noopener" style="justify-self:start">Bütün PR'ları GitHub'da aç</a>
+    </section>`;
+  }).join(""));
+}
+
+function tickAgo() {
+  if (!lastAt) return;
+  const s = Math.round((Date.now() - lastAt) / 1000);
+  $("ago").textContent = paused ? "Yenileme durdu" : s < 5 ? "Az önce güncellendi" : s < 60 ? `${s} sn önce güncellendi` : `${Math.round(s / 60)} dk önce güncellendi`;
+  $("live").classList.toggle("paused", paused);
+}
+const SNAP = "snapshot.v1";
+function readSnap() { try { return JSON.parse(sessionStorage.getItem(SNAP) || localStorage.getItem("safeboard." + SNAP) || "null"); } catch { return null; } }
+function writeSnap(v) { const t = JSON.stringify(v); try { sessionStorage.setItem(SNAP, t); } catch {} try { localStorage.setItem("safeboard." + SNAP, t); } catch {} }
+async function load(manual = false) {
+  $("refresh").disabled = true;
+  try {
+    const [main, bd] = await Promise.all([
+      fetch("/api/data", { cache: "no-store" }).then((r) => r.json()),
+      fetch(`/api/burndown?team=${encodeURIComponent(bdTeam)}`, { cache: "no-store" }).then((r) => r.json()).catch(() => ({ error: "Burndown verisi alınamadı." })),
+    ]);
+    render(main, manual ? "user" : "auto");
+    if (bd.team === bdTeam || bd.error) { bdData = bd; renderBurndown(manual ? "user" : "auto"); }
+    writeSnap({ main, bd, team: bdTeam });
+    if (manual) $("announce").textContent = "Pano yenilendi.";
+  } catch {
+    $("live").classList.add("stale"); $("ago").textContent = "Sunucuya ulaşılamadı";
+  } finally { $("refresh").disabled = false; tickAgo(); }
+}
+function schedule() { clearInterval(timer); if (!paused) timer = setInterval(() => { if (!document.hidden) load(); }, REFRESH_MS); }
+$("refresh").addEventListener("click", () => load(true));
+$("pause").addEventListener("click", () => {
+  paused = !paused; store.set("paused", paused ? "1" : "0");
+  $("pause").setAttribute("aria-pressed", String(paused)); $("pause").textContent = paused ? "Sürdür" : "Durdur";
+  schedule(); tickAgo();
+});
+$("pause").setAttribute("aria-pressed", String(paused)); $("pause").textContent = paused ? "Sürdür" : "Durdur";
+document.addEventListener("visibilitychange", () => { if (!document.hidden && !paused && Date.now() - lastAt > REFRESH_MS) load(); });
+setInterval(tickAgo, 1000);
+
+// Highlight the section in view without moving the page.
+const navLinks = [...document.querySelectorAll(".nav a")];
+navLinks.forEach((a) => new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) navLinks.forEach((n) => n.setAttribute("aria-current", String(n === a))); }), { rootMargin: "-35% 0px -60% 0px" }).observe($(a.dataset.sec)));
+
+// ---------------------------------------------------------------------------
+// Sprint burndown. Counts work items in the sprint; no estimate is invented.
+// ---------------------------------------------------------------------------
+const fmtLong = new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric", weekday: "long" });
+const fmtWd = new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short", weekday: "short" });
+let bdTeam = TEAMS.includes(store.get("bdTeam", "Hepsi")) ? store.get("bdTeam", "Hepsi") : "Hepsi";
+let bdData = null;
+const dOf = (iso) => new Date(iso + "T12:00:00");
+
+function bdModel(b) {
+  const days = b.days, n = days.length;
+  const past = days.filter((x) => !x.future);
+  const now = past[past.length - 1];
+  const startScope = past.length ? past[0].scope : 0;
+  // Ideal line: one straight line from today's total scope at sprint start to zero at sprint end.
+  const idealAt = (k) => Math.round(now.scope * (1 - k / n));
+  const ideal = days.map((x, i) => idealAt(i + 1));
+  const dayNo = past.length, left = n - dayNo;
+  const doneTotal = past.reduce((a, x) => a + x.done, 0), added = past.reduce((a, x) => a + x.added, 0), removed = past.reduce((a, x) => a + x.removed, 0);
+  const last3 = past.slice(-3), pace = last3.length ? Math.round(last3.reduce((a, x) => a + x.done, 0) / last3.length) : 0;
+  const need = left > 0 ? Math.ceil(now.remaining / left) : now.remaining;
+  const gap = now.remaining - idealAt(past.length);
+  return { days, n, past, now, startScope, ideal, idealAt, dayNo, left, doneTotal, added, removed, pace, need, gap };
+}
+
+function bdChart(box, m, source = "auto") {
+  const W = Math.max(260, Math.floor(box.getBoundingClientRect().width)), H = 400;
+  const pad = { l: 44, r: 16, t: 24, b: 128 }, bandH = 80, bandTop = H - pad.b + 34;
+  const plotH = H - pad.t - pad.b;
+  const max = niceMax(Math.max(...m.past.map((x) => x.scope), 10));
+  const step = (W - pad.l - pad.r) / m.n;
+  const xc = (i) => pad.l + step * i + step / 2;
+  const xEdge = (i) => pad.l + step * i;
+  const y = (v) => pad.t + (1 - v / max) * plotH;
+  let g = "";
+  for (let k = 0; k <= 4; k++) { const v = Math.round((max * k) / 4); g += `<line x1="${pad.l}" x2="${W - pad.r}" y1="${y(v)}" y2="${y(v)}" stroke="${k ? "var(--grid)" : "var(--axis)"}"/><text x="${pad.l - 8}" y="${y(v) + 5}" text-anchor="end">${v}</text>`; }
+  // future shading and today marker
+  const ti = m.dayNo - 1;
+  g += `<rect x="${xEdge(m.dayNo)}" y="${pad.t}" width="${Math.max(0, W - pad.r - xEdge(m.dayNo))}" height="${plotH}" fill="var(--surface-2)" opacity=".55"/>`;
+  g += `<line x1="${xc(ti)}" x2="${xc(ti)}" y1="${pad.t - 6}" y2="${bandTop + bandH}" stroke="var(--ink-2)" stroke-dasharray="2 4"/>`;
+  g += `<text x="${xc(ti)}" y="${pad.t - 8}" text-anchor="middle" style="fill:var(--ink);font-weight:600">Bugün</text>`;
+  // ideal (dashed, whole sprint)
+  const idealPath = `M${pad.l},${y(m.now.scope)}L${W - pad.r},${y(0)}`;
+  g += `<path d="${idealPath}" fill="none" stroke="var(--ink-2)" stroke-width="1.5" stroke-dasharray="6 5"/>`;
+  // scope (step line)
+  let sp = `M${pad.l},${y(m.past[0].scope - m.past[0].added + m.past[0].removed)}`;
+  m.past.forEach((x, i) => { sp += `L${xEdge(i)},${y(x.scope)}L${xEdge(i + 1)},${y(x.scope)}`; });
+  g += `<path d="${sp}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linejoin="round"/>`;
+  g += `<text x="${xEdge(ti + 1) + 6}" y="${y(m.now.scope) + 5}" style="fill:var(--ink-2)">Kapsam ${m.now.scope}</text>`;
+  // remaining (area + line + points)
+  const rl = m.past.map((x, i) => `${i ? "L" : "M"}${xc(i)},${y(x.remaining)}`).join("");
+  g += `<path d="${rl}L${xc(ti)},${y(0)}L${xc(0)},${y(0)}Z" fill="url(#bd-fill)"/>`;
+  g += `<path d="${rl}" fill="none" stroke="var(--s1)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  m.past.forEach((x, i) => { g += `<circle cx="${xc(i)}" cy="${y(x.remaining)}" r="${i === ti ? 5 : 3.5}" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"/>`; });
+  g += `<text x="${xc(ti) + 10}" y="${y(m.now.remaining) + 5}" style="fill:var(--ink);font-weight:600">${m.now.remaining}</text>`;
+  // daily band: done above the band axis, added below
+  const bmax = Math.max(1, ...m.past.flatMap((x) => [x.done, x.added]));
+  const mid = bandTop + bandH / 2, bh = (v) => (v / bmax) * (bandH / 2 - 2), bw = Math.max(4, Math.min(18, step * 0.5));
+  g += `<line x1="${pad.l}" x2="${W - pad.r}" y1="${mid}" y2="${mid}" stroke="var(--axis)"/>`;
+  g += `<text x="${pad.l - 8}" y="${mid - bandH / 4 + 5}" text-anchor="end">+</text><text x="${pad.l - 8}" y="${mid + bandH / 4 + 5}" text-anchor="end">−</text>`;
+  m.past.forEach((x, i) => {
+    if (x.done) g += `<rect x="${xc(i) - bw / 2}" y="${mid - bh(x.done) - 1}" width="${bw}" height="${bh(x.done)}" rx="2" fill="var(--s3)"/>`;
+    if (x.added) g += `<rect x="${xc(i) - bw / 2}" y="${mid + 1}" width="${bw}" height="${bh(x.added)}" rx="2" fill="var(--s2)"/>`;
+  });
+  g += `<text x="${xc(ti) + bw / 2 + 6}" y="${mid - 8}">${m.now.done} biten</text><text x="${xc(ti) + bw / 2 + 6}" y="${mid + 20}">${m.now.added} eklenen</text>`;
+  // x labels
+  const every = Math.max(1, Math.ceil(m.n / Math.max(1, (W - pad.l - pad.r) / 64)));
+  m.days.forEach((x, i) => { if (i % every === 0 || i === m.n - 1) g += `<text x="${xc(i)}" y="${H - pad.b + 20}" text-anchor="middle">${fmtDay.format(dOf(x.d))}</text>`; });
+  let hits = "";
+  m.days.forEach((x, i) => { hits += `<rect data-i="${i}" x="${xEdge(i)}" y="${pad.t}" width="${step}" height="${H - pad.t}" fill="transparent"/>`; });
+  const label = `Sprint burndown. ${m.n} günün ${m.dayNo}. günü. Kalan iş ${m.now.remaining}, ideal ${m.ideal[ti]}.`;
+  const html = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${label}"><defs><linearGradient id="bd-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--s1)" stop-opacity=".18"/><stop offset="1" stop-color="var(--s1)" stop-opacity="0"/></linearGradient></defs>${g}
+    <line class="guide" x1="0" x2="0" y1="${pad.t}" y2="${bandTop + bandH}" stroke="var(--ink-2)" opacity="0"/>${hits}</svg><div class="tip"></div>`;
+  patch(box, html, source, () => {
+    const guide = box.querySelector(".guide");
+    attachTip(box, m.days.map((x, i) => ({
+      x: xc(i), y: x.future ? y(m.ideal[i]) : y(x.remaining),
+      html: x.future
+        ? `<b>${fmtWd.format(dOf(x.d))}</b><br>Henüz gelmedi<br>İdeal kalan: <b>${m.ideal[i]}</b>`
+        : `<b>${fmtWd.format(dOf(x.d))}</b><br>Kalan: <b>${x.remaining}</b> · İdeal: ${m.ideal[i]}<br>Kapsam: ${x.scope}<br>Biten: ${x.done} · Eklenen: ${x.added}${x.removed ? ` · Çıkarılan: ${x.removed}` : ""}`,
+      onShow: () => { guide.setAttribute("x1", xc(i)); guide.setAttribute("x2", xc(i)); guide.setAttribute("opacity", 1); },
+    })));
+  });
+}
+
+function renderBurndown(source = "auto") {
+  const b = bdData;
+  patch($("bd-teams"), segBtns(TEAMS.filter((t) => t !== "Diğer").map((t) => [t, t]), bdTeam, "bd"), source);
+  if (!b || b.error) { patch($("bd-verdict"), esc(b?.error || "Burndown yükleniyor."), source); return; }
+  const m = bdModel(b), sp = b.sprint;
+  patch($("bd-when"), `${esc(sp.name)}: ${fmtLong.format(dOf(sp.start))} ile ${fmtLong.format(dOf(sp.end))} arası. Bugün ${m.n} günün ${m.dayNo}. günü.${sp.source === "varsayılan" ? " Bu takvim varsayılandır." : ""}`, source);
+  const st = (v, l, cls = "") => `<div class="kpi"><span class="v num ${cls}">${v}</span><span class="l">${l}</span></div>`;
+  patch($("bd-stats"), [
+    st(m.now.remaining, "Kalan iş"),
+    st(m.doneTotal, "Sprintte biten", "good"),
+    st(m.now.scope, `Kapsam, ilk gün ${m.startScope}`),
+    st(`+${m.added}`, `Sonradan eklenen${m.removed ? `, çıkarılan ${m.removed}` : ""}`, m.added > m.doneTotal ? "warn" : ""),
+    st(m.need, "Günde bitmesi gereken"),
+    st(m.pace, "Son 3 günde günlük biten", m.pace >= m.need ? "good" : "bad"),
+  ].join(""), source);
+  bdChart($("bd-chart"), m, source);
+  const ahead = m.gap <= 0;
+  const verdict = m.left <= 0
+    ? (m.now.remaining === 0 ? "Sprint bitti. Bütün işler tamamlandı." : `Sprint bitti. ${m.now.remaining} iş tamamlanmadı.`)
+    : `${ahead ? "Takım ideal çizginin önünde." : "Takım ideal çizginin gerisinde."} Fark ${Math.abs(m.gap)} iş. ` +
+      `Sprint ${m.left} gün sonra bitiyor. Kalan işin bitmesi için günde ${m.need} iş bitmeli. Son 3 günde günde ortalama ${m.pace} iş bitti. ` +
+      (m.added > m.doneTotal ? "Sprint boyunca eklenen iş, biten işten fazla. Kapsam büyüyor." : "Biten iş, eklenen işten fazla. Kapsam eriyor.");
+  patch($("bd-verdict"), esc(verdict), source);
+  patch($("bd-rows"), m.days.map((x, i) => `<tr class="${i === m.dayNo - 1 ? "today" : ""}"><td>${fmtWd.format(dOf(x.d))}</td><td class="n">${x.future ? "–" : x.scope}</td><td class="n">${x.future ? "–" : x.remaining}</td><td class="n">${m.ideal[i]}</td><td class="n">${x.future ? "–" : x.done}</td><td class="n">${x.future ? "–" : x.added}</td><td class="n">${x.future ? "–" : x.removed}</td></tr>`).join(""), source);
+  const f = $("bd-form");
+  if (!f.contains(document.activeElement)) { f.name.value = sp.name; f.start.value = sp.start; f.end.value = sp.end; }
+}
+
+let bdSeq = 0;
+async function loadBurndown(source = "auto") {
+  const seq = ++bdSeq, want = bdTeam;
+  $("akis").setAttribute("aria-busy", "true");
+  let data;
+  try { data = await (await fetch(`/api/burndown?team=${encodeURIComponent(want)}`, { cache: "no-store" })).json(); }
+  catch { data = { error: "Burndown verisi alınamadı." }; }
+  if (seq !== bdSeq || want !== bdTeam) return; // a newer request owns the chart
+  bdData = data;
+  $("akis").removeAttribute("aria-busy");
+  renderBurndown(source);
+}
+$("bd-teams").addEventListener("click", (e) => { const b = e.target.closest("button[data-v]"); if (!b) return; bdTeam = b.dataset.v; store.set("bdTeam", bdTeam); patch($("bd-teams"), segBtns(TEAMS.filter((t) => t !== "Diğer").map((t) => [t, t]), bdTeam, "bd"), "user"); loadBurndown("user"); });
+$("bd-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = e.target, msg = $("bd-form-msg");
+  const r = await fetch("/api/sprint", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ name: f.name.value, start: f.start.value, end: f.end.value }) });
+  const j = await r.json();
+  msg.textContent = r.ok ? "Takvim kaydedildi. Burndown yeniden hesaplandı." : (j.error || "Takvim kaydedilemedi.");
+  if (r.ok) loadBurndown("user");
+});
+new ResizeObserver(() => { if (bdData && !bdData.error) { shown.delete("bd-chart"); bdChart($("bd-chart"), bdModel(bdData), "resize"); } }).observe($("bd-chart"));
+
+// Show the last known data at once, then replace it with fresh data.
+const snap = readSnap();
+if (snap && snap.main) {
+  render(snap.main, "user");
+  if (snap.bd && snap.team === bdTeam) { bdData = snap.bd; renderBurndown("user"); }
+  lastAt = Date.parse(snap.main.at) || Date.now();
+} else {
+  $("kpis").innerHTML = Array.from({ length: 6 }, () => `<div class="kpi skel"></div>`).join("");
+}
+load(); schedule();
+addEventListener("pageshow", (e) => { if (e.persisted) load(); });
+</script>
+</body>
+</html>
