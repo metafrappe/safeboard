@@ -1,0 +1,53 @@
+{
+  "scenario": "tie_active",
+  "covers_cases": [9],
+  "rule": "İki zincir aynı uzunluktadır. Kökü çözülünce daha çok aktif işi açan zincir kazanır. Ertelenmiş iş aktif sayılmaz.",
+  "input": {
+    "issue_prefix": "ORN",
+    "issues": [
+      {"identifier": "ORN-11", "title": "Ekran", "status": "blocked", "assignee": "Team A Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-12"], "blockedAt": "2026-01-13T09:00:00Z"},
+      {"identifier": "ORN-12", "title": "Uç", "status": "blocked", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-13"], "blockedAt": "2026-01-12T09:00:00Z"},
+      {"identifier": "ORN-13", "title": "Karar", "status": "in_progress", "assignee": "Team A PO", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-14", "title": "Belge", "status": "todo", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-13"], "blockedAt": "2026-01-12T10:00:00Z"},
+      {"identifier": "ORN-21", "title": "Ekran", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-22"], "blockedAt": "2026-01-06T09:00:00Z"},
+      {"identifier": "ORN-22", "title": "Uç", "status": "blocked", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-23"], "blockedAt": "2026-01-05T09:00:00Z"},
+      {"identifier": "ORN-23", "title": "Karar", "status": "in_progress", "assignee": "Team A PO", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-24", "title": "Plan", "status": "backlog", "assignee": "Team SAFe PM", "pi": null, "parentId": null, "blockedBy": ["ORN-23"], "blockedAt": "2026-01-05T10:00:00Z"}
+    ],
+    "missing_issues": [], "comments": [], "repos": [], "pull_requests": [], "external_blockers": []
+  },
+  "expected": {
+    "nodes": [
+      {"id": "issue:ORN-11", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-12", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-13", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-14", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-21", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-22", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-23", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-24", "kind": "issue", "team": "Team SAFe"},
+      {"id": "team:Team A", "kind": "team"},
+      {"id": "team:Team B", "kind": "team"},
+      {"id": "team:Team SAFe", "kind": "team"}
+    ],
+    "edges": [
+      {"from_node": "issue:ORN-11", "to_node": "issue:ORN-12", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-12", "to_node": "issue:ORN-13", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-14", "to_node": "issue:ORN-13", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-21", "to_node": "issue:ORN-22", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-22", "to_node": "issue:ORN-23", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-24", "to_node": "issue:ORN-23", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy"},
+      {"from_node": "team:Team B", "to_node": "team:Team A", "edge_kind": "team", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy", "count": 1, "members": ["issue:ORN-21->issue:ORN-22"]},
+      {"from_node": "team:Team SAFe", "to_node": "team:Team A", "edge_kind": "team", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy", "count": 1, "members": ["issue:ORN-24->issue:ORN-23"]}
+    ],
+    "critical_path": {
+      "company": {
+        "scope": {"kind": "company", "id": null}, "chain": ["issue:ORN-11", "issue:ORN-12", "issue:ORN-13"], "root": "issue:ORN-13", "edge_count": 2, "decided_by": "unlocked_active_issues",
+        "candidates": [
+          {"root": "issue:ORN-13", "edge_count": 2, "unlocked_active_issues": 3, "unlocked_teams": 1, "oldest_wait_started_at": "2026-01-12T09:00:00Z"},
+          {"root": "issue:ORN-23", "edge_count": 2, "unlocked_active_issues": 2, "unlocked_teams": 2, "oldest_wait_started_at": "2026-01-05T09:00:00Z"}
+        ]
+      }
+    }
+  }
+}

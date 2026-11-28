@@ -1,0 +1,186 @@
+{
+  "scenario": "main",
+  "covers_cases": [1, 2, 3, 4, 5, 6, 7, 8, 10],
+  "input": {
+    "issue_prefix": "ORN",
+    "issues": [
+      {"identifier": "ORN-101", "title": "Liste ekranı", "status": "blocked", "assignee": "Team B Full Stack Developer", "pi": "PI-1", "parentId": null, "blockedBy": ["ORN-102"], "blockedAt": "2026-01-08T09:00:00Z"},
+      {"identifier": "ORN-102", "title": "Liste ucu", "status": "blocked", "assignee": "Team A Backend Developer", "pi": "PI-1", "parentId": null, "blockedBy": ["ORN-103"], "blockedAt": "2026-01-07T09:00:00Z"},
+      {"identifier": "ORN-103", "title": "Liste tablosu", "status": "blocked", "assignee": "Team A Backend Developer", "pi": "PI-1", "parentId": null, "blockedBy": ["ORN-104"], "blockedAt": "2026-01-06T09:00:00Z"},
+      {"identifier": "ORN-104", "title": "Tablo taşıma betiği", "status": "blocked", "assignee": "Team A Backend Developer", "pi": "PI-1", "parentId": null, "blockedBy": ["ORN-105"], "blockedAt": "2026-01-05T09:00:00Z"},
+      {"identifier": "ORN-105", "title": "Veri modeli kararı", "status": "in_progress", "assignee": "Team A PO", "pi": "PI-1", "parentId": null, "blockedBy": []},
+
+      {"identifier": "ORN-121", "title": "Ayar ekranının formu", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": null, "parentId": "ORN-123", "blockedBy": ["ORN-122"], "blockedAt": "2026-01-09T09:00:00Z"},
+      {"identifier": "ORN-122", "title": "Ayar ucu", "status": "blocked", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-123", "title": "Ayar ekranı", "status": "todo", "assignee": "Team B PO", "pi": null, "parentId": null, "blockedBy": ["ORN-122"], "blockedAt": "2026-01-09T10:00:00Z"},
+
+      {"identifier": "ORN-131", "title": "Rapor ekranı", "status": "in_progress", "assignee": "Team A Frontend Developer", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-132", "title": "Rapor ucu", "status": "in_progress", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-144"], "blockedAt": "2026-01-03T09:00:00Z"},
+
+      {"identifier": "ORN-141", "title": "Eski dışa aktarma ekranı", "status": "blocked", "assignee": "Team A Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-142"], "blockedAt": "2026-01-04T09:00:00Z"},
+      {"identifier": "ORN-142", "title": "Eski dışa aktarma ucu", "status": "cancelled", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-143", "title": "Arama ekranı", "status": "blocked", "assignee": "Team A Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-144"], "blockedAt": "2026-01-04T10:00:00Z"},
+      {"identifier": "ORN-144", "title": "Arama ucu", "status": "done", "assignee": "Team A Backend Developer", "pi": null, "parentId": null, "blockedBy": []},
+
+      {"identifier": "ORN-151", "title": "Giriş ekranı", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-152"], "blockedAt": "2026-01-10T09:00:00Z"},
+      {"identifier": "ORN-152", "title": "Giriş ucu", "status": "blocked", "assignee": "Team B Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-153"], "blockedAt": "2026-01-10T10:00:00Z"},
+      {"identifier": "ORN-153", "title": "Giriş kuralları", "status": "blocked", "assignee": "Team B Backend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-151"], "blockedAt": "2026-01-10T11:00:00Z"},
+      {"identifier": "ORN-154", "title": "Giriş sonrası yönlendirme", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-151"], "blockedAt": "2026-01-11T09:00:00Z"},
+
+      {"identifier": "ORN-161", "title": "Bildirim ekranı", "status": "todo", "assignee": "Team B Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-162"], "blockedAt": "2026-01-11T10:00:00Z"},
+      {"identifier": "ORN-162", "title": "Bildirim ucu", "status": "backlog", "assignee": "Team B Backend Developer", "pi": null, "parentId": null, "blockedBy": []},
+
+      {"identifier": "ORN-171", "title": "Profil ekranı", "status": "in_progress", "assignee": "Team A Frontend Developer", "pi": null, "parentId": null, "blockedBy": [], "workProducts": ["eski-ornek/arayuz-eski#4"]},
+
+      {"identifier": "ORN-181", "title": "Yardım ekranı", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": null, "parentId": null, "blockedBy": ["ORN-999"], "blockedAt": "2026-01-11T11:00:00Z"},
+
+      {"identifier": "ORN-201", "title": "Fatura ekranı", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": "PI-2", "parentId": null, "blockedBy": ["ORN-202"], "blockedAt": "2026-01-13T09:00:00Z"},
+      {"identifier": "ORN-202", "title": "Fatura ucu", "status": "blocked", "assignee": "Team B Backend Developer", "pi": "PI-2", "parentId": null, "blockedBy": ["ORN-203"], "blockedAt": "2026-01-12T09:00:00Z"},
+      {"identifier": "ORN-203", "title": "Fatura kuralları", "status": "in_progress", "assignee": "Team B PO", "pi": "PI-2", "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-204", "title": "Makbuz ekranı", "status": "blocked", "assignee": "Team B Frontend Developer", "pi": "PI-2", "parentId": null, "blockedBy": ["ORN-205"], "blockedAt": "2026-01-12T10:00:00Z"},
+      {"identifier": "ORN-205", "title": "Makbuz ucu", "status": "in_progress", "assignee": "Team B Backend Developer", "pi": "PI-2", "parentId": null, "blockedBy": []},
+
+      {"identifier": "ORN-301", "title": "Sürüm notu", "status": "blocked", "assignee": "Team SAFe RM", "pi": null, "parentId": null, "blockedBy": ["ORN-302"], "blockedAt": "2026-01-14T11:00:00Z"},
+      {"identifier": "ORN-302", "title": "Sürüm listesi", "status": "blocked", "assignee": "Team SAFe RM", "pi": null, "parentId": null, "blockedBy": ["ORN-303"], "blockedAt": "2026-01-14T10:00:00Z"},
+      {"identifier": "ORN-303", "title": "Özellik sırası", "status": "blocked", "assignee": "Team SAFe PM", "pi": null, "parentId": null, "blockedBy": ["ORN-304"], "blockedAt": "2026-01-14T09:00:00Z"},
+      {"identifier": "ORN-304", "title": "Hedef kararı", "status": "in_progress", "assignee": "Team SAFe Business Owner", "pi": null, "parentId": null, "blockedBy": []},
+      {"identifier": "ORN-305", "title": "Takvim taslağı", "status": "todo", "assignee": "Team SAFe RTE", "pi": null, "parentId": null, "blockedBy": ["ORN-304"], "blockedAt": "2026-01-14T12:00:00Z"}
+    ],
+    "missing_issues": ["ORN-999"],
+    "comments": [
+      {"issue": "ORN-131", "body": "Bu iş ORN-132 bekliyor."}
+    ],
+    "repos": [
+      {"name": "ornek-org/arayuz", "archived": false, "movedTo": null},
+      {"name": "ornek-org/servis", "archived": false, "movedTo": null},
+      {"name": "eski-ornek/arayuz-eski", "archived": true, "movedTo": "ornek-org/arayuz"}
+    ],
+    "pull_requests": [
+      {"repo": "ornek-org/arayuz", "number": 8, "state": "open", "merged": false, "headRefName": "ozellik/ayar-formu", "baseRefName": "main", "body": "Depends on ornek-org/servis#3"},
+      {"repo": "ornek-org/servis", "number": 3, "state": "open", "merged": false, "headRefName": "ozellik/ayar-ucu", "baseRefName": "main", "body": ""},
+      {"repo": "ornek-org/arayuz", "number": 9, "state": "closed", "merged": false, "headRefName": "ozellik/taban", "baseRefName": "main", "body": ""},
+      {"repo": "ornek-org/arayuz", "number": 10, "state": "open", "merged": false, "headRefName": "ozellik/ust", "baseRefName": "ozellik/taban", "body": ""},
+      {"repo": "eski-ornek/arayuz-eski", "number": 4, "state": "open", "merged": false, "headRefName": "ozellik/profil", "baseRefName": "main", "body": ""}
+    ],
+    "external_blockers": [
+      {"id": "kota-1", "kind": "account_quota", "label": "Hesap kotası doldu", "open": true, "blocks": ["ORN-122"]}
+    ]
+  },
+  "expected": {
+    "nodes": [
+      {"id": "issue:ORN-101", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-102", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-103", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-104", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-105", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-121", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-122", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-123", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-131", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-132", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-141", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-142", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-143", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-144", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-151", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-152", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-153", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-154", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-161", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-162", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-171", "kind": "issue", "team": "Team A"},
+      {"id": "issue:ORN-181", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-201", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-202", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-203", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-204", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-205", "kind": "issue", "team": "Team B"},
+      {"id": "issue:ORN-301", "kind": "issue", "team": "Team SAFe"},
+      {"id": "issue:ORN-302", "kind": "issue", "team": "Team SAFe"},
+      {"id": "issue:ORN-303", "kind": "issue", "team": "Team SAFe"},
+      {"id": "issue:ORN-304", "kind": "issue", "team": "Team SAFe"},
+      {"id": "issue:ORN-305", "kind": "issue", "team": "Team SAFe"},
+      {"id": "issue:ORN-999", "kind": "issue", "missing": true},
+      {"id": "team:Team A", "kind": "team"},
+      {"id": "team:Team B", "kind": "team"},
+      {"id": "team:Team SAFe", "kind": "team"},
+      {"id": "repo:ornek-org/arayuz", "kind": "repo"},
+      {"id": "repo:ornek-org/servis", "kind": "repo"},
+      {"id": "repo:eski-ornek/arayuz-eski", "kind": "repo"},
+      {"id": "pr:ornek-org/arayuz#8", "kind": "pr"},
+      {"id": "pr:ornek-org/servis#3", "kind": "pr"},
+      {"id": "pr:ornek-org/arayuz#9", "kind": "pr"},
+      {"id": "pr:ornek-org/arayuz#10", "kind": "pr"},
+      {"id": "pr:eski-ornek/arayuz-eski#4", "kind": "pr"},
+      {"id": "external:kota-1", "kind": "external"}
+    ],
+    "edges": [
+      {"from_node": "issue:ORN-101", "to_node": "issue:ORN-102", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy", "on_critical_path": true},
+      {"from_node": "issue:ORN-102", "to_node": "issue:ORN-103", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy", "on_critical_path": true},
+      {"from_node": "issue:ORN-103", "to_node": "issue:ORN-104", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy", "on_critical_path": true},
+      {"from_node": "issue:ORN-104", "to_node": "issue:ORN-105", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy", "on_critical_path": true},
+
+      {"from_node": "issue:ORN-121", "to_node": "issue:ORN-122", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-123", "to_node": "issue:ORN-122", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy"},
+      {"from_node": "team:Team B", "to_node": "team:Team A", "edge_kind": "team", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": true, "source_ref": "blockedBy", "count": 3,
+       "members": ["issue:ORN-101->issue:ORN-102", "issue:ORN-121->issue:ORN-122", "issue:ORN-123->issue:ORN-122"]},
+      {"from_node": "issue:ORN-122", "to_node": "external:kota-1", "edge_kind": "external", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "account_quota"},
+      {"from_node": "pr:ornek-org/arayuz#8", "to_node": "pr:ornek-org/servis#3", "edge_kind": "pr", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "pr_body"},
+      {"from_node": "repo:ornek-org/arayuz", "to_node": "repo:ornek-org/servis", "edge_kind": "repo", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "pr_body", "count": 1,
+       "members": ["pr:ornek-org/arayuz#8->pr:ornek-org/servis#3"]},
+
+      {"from_node": "issue:ORN-131", "to_node": "issue:ORN-132", "edge_kind": "issue", "basis": "inferred", "state": "broken", "broken_kind": "dep.unrecorded", "cross_team": false, "source_ref": "comment"},
+      {"from_node": "issue:ORN-132", "to_node": "issue:ORN-144", "edge_kind": "issue", "basis": "explicit", "state": "resolved", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+
+      {"from_node": "issue:ORN-141", "to_node": "issue:ORN-142", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_cancelled", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-143", "to_node": "issue:ORN-144", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.stale_done_blocker", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "pr:ornek-org/arayuz#10", "to_node": "pr:ornek-org/arayuz#9", "edge_kind": "pr", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_closed_base", "cross_team": false, "source_ref": "baseRefName"},
+      {"from_node": "issue:ORN-151", "to_node": "issue:ORN-152", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_cycle", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-152", "to_node": "issue:ORN-153", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_cycle", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-153", "to_node": "issue:ORN-151", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_cycle", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-154", "to_node": "issue:ORN-151", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-161", "to_node": "issue:ORN-162", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "proc.backlog_root", "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-171", "to_node": "pr:eski-ornek/arayuz-eski#4", "edge_kind": "pr", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_legacy_repo", "cross_team": false, "source_ref": "work_product"},
+      {"from_node": "issue:ORN-181", "to_node": "issue:ORN-999", "edge_kind": "issue", "basis": "explicit", "state": "broken", "broken_kind": "dep.broken_missing_target", "cross_team": false, "source_ref": "blockedBy"},
+
+      {"from_node": "issue:ORN-201", "to_node": "issue:ORN-202", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-202", "to_node": "issue:ORN-203", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-204", "to_node": "issue:ORN-205", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+
+      {"from_node": "issue:ORN-301", "to_node": "issue:ORN-302", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-302", "to_node": "issue:ORN-303", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-303", "to_node": "issue:ORN-304", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"},
+      {"from_node": "issue:ORN-305", "to_node": "issue:ORN-304", "edge_kind": "issue", "basis": "explicit", "state": "open", "broken_kind": null, "cross_team": false, "source_ref": "blockedBy"}
+    ],
+    "parent_links": [
+      {"child": "issue:ORN-121", "parent": "issue:ORN-123", "counts_as_blocker": false}
+    ],
+    "broken_cases": [
+      {"type_no": 1, "broken_kind": "dep.broken_cancelled", "edges": ["issue:ORN-141->issue:ORN-142"], "note": "Beklenen iş iptal edildi."},
+      {"type_no": 2, "broken_kind": "dep.stale_done_blocker", "edges": ["issue:ORN-143->issue:ORN-144"], "note": "Bekleyen iş hâlâ engelli. Beklenen işlerin hepsi bitti."},
+      {"type_no": 3, "broken_kind": "dep.broken_closed_base", "edges": ["pr:ornek-org/arayuz#10->pr:ornek-org/arayuz#9"], "note": "Taban PR birleşmeden kapandı."},
+      {"type_no": 4, "broken_kind": "dep.broken_cycle", "edges": ["issue:ORN-151->issue:ORN-152", "issue:ORN-152->issue:ORN-153", "issue:ORN-153->issue:ORN-151"], "note": "Üç iş birbirini bekliyor."},
+      {"type_no": 5, "broken_kind": "proc.backlog_root", "edges": ["issue:ORN-161->issue:ORN-162"], "note": "Kök iş ertelenmiş durumda."},
+      {"type_no": 6, "broken_kind": "dep.broken_legacy_repo", "edges": ["issue:ORN-171->pr:eski-ornek/arayuz-eski#4"], "note": "Bağlı PR eski bir depoda kaldı."},
+      {"type_no": 7, "broken_kind": "dep.unrecorded", "edges": ["issue:ORN-131->issue:ORN-132"], "note": "Bağ yalnız yorumda yazılı."},
+      {"type_no": 8, "broken_kind": "dep.broken_missing_target", "edges": ["issue:ORN-181->issue:ORN-999"], "note": "Bağlı iş bulunamadı."}
+    ],
+    "waiting_counts": [
+      {"root": "issue:ORN-105", "direct_waiting": 1, "indirect_waiting": 3, "total_waiting": 4},
+      {"root": "issue:ORN-132", "direct_waiting": 0, "indirect_waiting": 0, "total_waiting": 0},
+      {"root": "issue:ORN-203", "direct_waiting": 1, "indirect_waiting": 1, "total_waiting": 2},
+      {"root": "issue:ORN-205", "direct_waiting": 1, "indirect_waiting": 0, "total_waiting": 1},
+      {"root": "issue:ORN-304", "direct_waiting": 2, "indirect_waiting": 2, "total_waiting": 4}
+    ],
+    "critical_path": {
+      "company": {"scope": {"kind": "company", "id": null}, "chain": ["issue:ORN-101", "issue:ORN-102", "issue:ORN-103", "issue:ORN-104", "issue:ORN-105"], "root": "issue:ORN-105", "edge_count": 4, "decided_by": "length"},
+      "pi": [
+        {"scope": {"kind": "pi", "id": "PI-1"}, "chain": ["issue:ORN-101", "issue:ORN-102", "issue:ORN-103", "issue:ORN-104", "issue:ORN-105"], "root": "issue:ORN-105", "edge_count": 4, "decided_by": "length"},
+        {"scope": {"kind": "pi", "id": "PI-2"}, "chain": ["issue:ORN-201", "issue:ORN-202", "issue:ORN-203"], "root": "issue:ORN-203", "edge_count": 2, "decided_by": "length"}
+      ],
+      "team": [
+        {"scope": {"kind": "team", "id": "Team SAFe"}, "chain": ["issue:ORN-301", "issue:ORN-302", "issue:ORN-303", "issue:ORN-304"], "root": "issue:ORN-304", "edge_count": 3, "decided_by": "length"}
+      ]
+    }
+  }
+}
