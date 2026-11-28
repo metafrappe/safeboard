@@ -20,16 +20,34 @@ Bu kurallar özet metninin her yerinde geçerlidir.
 
 1. Özet metni tek bir JSON nesnesidir.
 2. Anahtarlar her derinlikte sıraya dizilir. Sıra Unicode kod noktasına göredir. Büyük harf küçük harften önce gelir. Türkçe alfabe sırası kullanılmaz.
-3. Metinde boşluk ve satır sonu olmaz. Ayırıcılar yalnız `,` ve `:` işaretidir.
-4. Metin UTF-8 olur. Türkçe harfler olduğu gibi yazılır. Harfler `\u` biçimine çevrilmez.
-5. Metnin içinde yalnız üç şey kaçış işaretiyle yazılır. Bunlar çift tırnak, ters eğik çizgi ve denetim karakterleridir. Bu kural RFC 8785 belgesindeki metin kuralıyla aynıdır.
-6. Boş alan `null` yazılır. Boş alan metinden çıkarılmaz.
-7. Sayılar yalnız tam sayıdır. Ondalıklı sayı yazılmaz. `audit.record()` ondalıklı sayıyı reddeder.
-8. `id` ve `schema_version` tam sayı olarak yazılır. Diğer zarf alanları metin ya da `null` olur.
-9. Zaman metni tabloda nasıl duruyorsa özet metnine öyle girer. Zaman biçimi AJA-2047 sözleşmesindeki biçimdir. Örnek: `2026-11-28T09:14:02.000Z`.
-10. Özet, özet metninin UTF-8 baytlarından hesaplanır. Özet 64 karakterlik küçük harfli onaltılık metin olarak yazılır.
+3. Anahtar adları yalnız ASCII karakterlerinden oluşur. ASCII, Türkçe harf içermeyen temel karakter kümesidir. Bu kural `payload` içindeki her derinlikte geçerlidir. Böylece her programlama dili anahtarları aynı sıraya dizer.
+4. Metinde boşluk ve satır sonu olmaz. Ayırıcılar yalnız `,` ve `:` işaretidir.
+5. Metin UTF-8 olur. Değerlerdeki Türkçe harfler olduğu gibi yazılır. Harfler `\u` biçimine çevrilmez. Harflerin Unicode biçimi de değiştirilmez.
+6. Metnin içinde yalnız üç şey kaçış işaretiyle yazılır. Bunlar çift tırnak, ters eğik çizgi ve denetim karakterleridir. Bu kural RFC 8785 belgesindeki metin kuralıyla aynıdır.
+7. Boş alan `null` yazılır. Boş alan metinden çıkarılmaz.
+8. Sayılar yalnız tam sayıdır. Ondalıklı sayı yazılmaz.
+9. Tam sayı en az -9007199254740991, en çok 9007199254740991 olur. JavaScript daha büyük sayıyı bozar.
+10. Metinde eşi olmayan vekil karakter bulunmaz. Vekil karakter, UTF-16 metnindeki yarım harf parçasıdır. Bu parça UTF-8'e çevrilemez.
+11. Zarf alanlarının türü şöyledir:
+    - `id` ve `schema_version` tam sayıdır.
+    - `payload` bir nesnedir. `payload` hiçbir zaman `null` olmaz.
+    - `prev_hash` metindir. `prev_hash` hiçbir zaman `null` olmaz.
+    - Diğer zarf alanları metin ya da `null` olur.
+12. Zaman metni tabloda nasıl duruyorsa özet metnine öyle girer. Zaman biçimi AJA-2047 sözleşmesindeki biçimdir. Örnek: `2026-11-28T09:14:02.000Z`.
+13. Özet, özet metninin UTF-8 baytlarından hesaplanır. Özet 64 karakterlik küçük harfli onaltılık metin olarak yazılır.
 
 Python'daki `json` modülü üç ayarla bu biçimi verir. `sort_keys` açık olur. Ayırıcılar `,` ve `:` olur. `ensure_ascii` kapalı olur.
+
+### Kurala uymayan değer
+
+`audit.record()` şu dört durumda olayı reddeder. Deftere satır yazılmaz.
+
+1. Bir değer ondalıklı sayıdır. Bu kural her derinlikte geçerlidir.
+2. Bir tam sayı 9. kuraldaki aralığın dışındadır.
+3. Bir metinde eşi olmayan vekil karakter vardır.
+4. Bir anahtar adında ASCII dışı karakter vardır.
+
+**Örnek.** `payload` içinde `{"exitCode":1.5}` gelir. `1.5` ondalıklı sayıdır. `audit.record()` olayı reddeder.
 
 ## Karar 1: Özet metnine giren zarf alanları
 
@@ -43,6 +61,8 @@ Python'daki `json` modülü üç ayarla bu biçimi verir. `sort_keys` açık olu
 
 `id` alanı özete girdiği için `audit.record()` bu değeri satırı yazmadan önce belirler. `id` değeri son satırın `id` değerinin bir fazlasıdır. Defter boşsa `id` değeri 1 olur.
 
+`audit.record()` son satırı okur ve yeni satırı aynı veritabanı işleminde yazar. İşlem yazma kilidini okumadan önce alır. Böylece iki yazıcı aynı `id` değerini alamaz.
+
 `prev_hash` alanına bir önceki satırın `row_hash` değeri yazılır. Bir önceki satır, `id` değeri bir küçük olan satırdır.
 
 **Örnek.** Son satırın `id` değeri 1 ise yeni satırın `id` değeri 2 olur. Yeni satırın `prev_hash` değeri 1. satırın `row_hash` değeridir. Tam örnek bu notun sonundadır.
@@ -54,6 +74,8 @@ Bağlar özet metnine `objects` anahtarıyla girer. `objects` bir listedir.
 Listenin her öğesi bir bağdır. Her bağın dört alanı girer: `link_basis`, `object_id`, `object_kind` ve `recorded_at`. `event_id` alanı girmez. Çünkü bu değer satırın `id` alanıyla aynıdır.
 
 Liste önce `object_kind`, sonra `object_id` değerine göre dizilir. Sıra yine Unicode kod noktasına göredir.
+
+`object_kind` ve `object_id` değerleri yalnız ASCII karakterlerinden oluşur. Değerde ASCII dışı karakter varsa `audit.record()` olayı reddeder. Böylece her programlama dili bağları aynı sıraya dizer.
 
 Satırın hiç bağı yoksa `objects` değeri boş liste olur. Boş liste `[]` diye yazılır.
 
@@ -138,14 +160,23 @@ Bu değer `null` değildir. Böylece `prev_hash` alanı hiçbir satırda boş ka
 
 1. İzin listeleri tek yerde durur. Bu yer `audit` modülüdür.
 2. İzin listesi `payload` alanının en üst düzey anahtarlarına bakar.
-3. Listede olmayan anahtar yazılmaz. `audit.record()` bu anahtarı atar ve satırı yine yazar.
-4. Özet, atma işleminden sonra kalan `payload` ile hesaplanır.
-5. Atılan anahtarın değeri hiçbir yere yazılmaz. Yalnız anahtarın adı uyarı olarak günlüğe yazılabilir.
-6. Bir anahtarın değeri düz değer olur. Düz değer metin, tam sayı, `true`, `false` ya da `null` değeridir.
-7. İç içe nesne ve liste yalnız izin listesi açıkça söylerse yazılır.
-8. Bir olay türü hiç ayrıntı taşımıyorsa o türe boş bir izin listesi yazılır.
+3. Bir anahtarın değeri düz değer olur. Düz değer metin, tam sayı, `true`, `false` ya da `null` değeridir.
+4. İç içe nesne ve liste yalnız izin listesi açıkça söylerse yazılır.
+5. Bir olay türü hiç ayrıntı taşımıyorsa o türe boş bir izin listesi yazılır.
 
-**Örnek.** `run.finished` olayı `status` ve `logText` anahtarlarıyla gelir. `logText` listede yoktur. `audit.record()` `logText` anahtarını atar. Deftere yalnız `{"status":"failed"}` yazılır.
+### Kurala uymayan `payload`
+
+Üç ayrı durum vardır.
+
+1. **Anahtar listede yoktur.** `audit.record()` bu anahtarı atar ve satırı yine yazar. Özet, kalan `payload` ile hesaplanır. Atılan anahtarın değeri hiçbir yere yazılmaz. Yalnız anahtarın adı uyarı olarak günlüğe yazılabilir.
+2. **Anahtar listededir ama değeri izinsiz bir nesne ya da listedir.** `audit.record()` olayı reddeder. Deftere satır yazılmaz. Çünkü beklenen bir bilgi yanlış biçimde gelmiştir.
+3. **Değer ortak biçim kurallarına uymaz.** `audit.record()` olayı reddeder. Örneğin değer ondalıklı sayıdır. Bu kural izinli iç içe değerin her derinliğinde geçerlidir.
+
+Sıra şöyledir. `audit.record()` önce listede olmayan anahtarları atar. Sonra kalan değerleri denetler. Atılan bir anahtarın değeri olayı reddettirmez.
+
+**Örnek 1.** `run.finished` olayı `status` ve `logText` anahtarlarıyla gelir. `logText` listede yoktur. `audit.record()` `logText` anahtarını atar. Deftere yalnız `{"status":"failed"}` yazılır.
+
+**Örnek 2.** `run.finished` olayı `{"status":{"kod":"failed"}}` ile gelir. `status` listededir ama değeri bir nesnedir. `audit.record()` olayı reddeder.
 
 ### Bu özellikteki listeler
 
@@ -161,35 +192,58 @@ Tasarım `run.finished` listesini 1.7 bölümünde verir. Tasarım token sayıla
 ### `event.corrected` kuralları
 
 1. Yanlış satırın kimliği `payload` içine yazılmaz. Bu kimlik zarftaki `corrects_event_uid` alanına yazılır.
-2. `fields` bir nesnedir. Nesnenin her anahtarı bir zarf alanının adıdır. Değer o alanın doğru değeridir.
-3. Doğru değer boşsa `null` yazılır.
-4. Yedi zarf alanı düzeltilemez. Bu alanlar `id`, `event_uid`, `schema_version`, `recorded_at`, `prev_hash`, `row_hash` ve `corrects_event_uid` alanlarıdır.
-5. `fields` içinde `payload` anahtarı olabilir. Bu değer yanlış satırın bütün `payload` alanının yerine geçer.
-6. `fields` içindeki `payload` da izin listesinden geçer. Kullanılan liste yanlış satırın olay türünün listesidir. `fields` içinde `action` da varsa yeni olay türünün listesi kullanılır.
-7. Gizlilik kuralları `fields` için de geçerlidir. Örneğin `actor_id` düzeltilirken gerçek ad yazılmaz, takma ad yazılır.
+2. Düzeltme satırının `event_uid` değeri `safeboard:audit_event:<id>:corrected` biçimindedir. `<id>` düzeltme satırının kendi `id` değeridir. Bu biçim tasarımın 1.2 bölümündeki SAFeBoard tarifine uyar.
+3. Aynı satır birden çok kez düzeltilebilir. Her düzeltme satırının `id` değeri ayrıdır. Bu yüzden her düzeltmenin `event_uid` değeri de ayrıdır.
+4. Aynı alan iki kez düzeltildiyse `id` değeri büyük olan düzeltme geçerlidir.
+5. `fields` bir nesnedir. Nesnenin her anahtarı bir zarf alanının adıdır. Değer o alanın doğru değeridir.
+6. Doğru değer metin ya da `null` olur. Doğru değer boşsa `null` yazılır. Tek istisna `payload` anahtarıdır.
+7. Yedi zarf alanı düzeltilemez. Bu alanlar `id`, `event_uid`, `schema_version`, `recorded_at`, `prev_hash`, `row_hash` ve `corrects_event_uid` alanlarıdır.
+8. `fields` içinde `payload` anahtarı olabilir. Bu değer bir nesnedir. Bu değer yanlış satırın bütün `payload` alanının yerine geçer.
+9. `fields` içindeki `payload` da izin listesinden geçer. Kullanılan liste yanlış satırın olay türünün listesidir. `fields` içinde `action` da varsa yeni olay türünün listesi kullanılır.
+10. Gizlilik kuralları `fields` için de geçerlidir. Örneğin `actor_id` düzeltilirken gerçek ad yazılmaz, takma ad yazılır.
 
-**Örnek.** Bir `run.finished` satırı sonucu `failed` diye yazmıştı. Doğru sonuç `cancelled` idi. Düzeltme satırı şöyle olur:
+`audit.record()` şu altı durumda düzeltme olayını reddeder. Deftere satır yazılmaz.
+
+1. `payload` içinde `fields` anahtarı yoktur.
+2. `fields` boş bir nesnedir.
+3. `fields` içinde düzeltilemeyen yedi alandan biri vardır. Örneğin `row_hash` vardır.
+4. `fields` içinde zarf alanı olmayan bir ad vardır. Örneğin `renk` vardır.
+5. `corrects_event_uid` boştur ya da defterde bu kimlikle bir satır yoktur.
+6. `corrects_event_uid` bir `event.corrected` satırını gösterir. Düzeltme satırı düzeltilmez. Düzeltme yanlışsa asıl satıra yeni bir düzeltme yazılır.
+
+**Örnek.** Bir `run.finished` satırı sonucu `failed` diye yazmıştı. Doğru sonuç `cancelled` idi. Düzeltme satırı defterin 3. satırıdır. Satır şöyle olur:
 
 - `action` değeri `event.corrected` olur.
+- `event_uid` değeri `safeboard:audit_event:3:corrected` olur.
 - `corrects_event_uid` değeri `paperclip:run:kosu-0009:finished` olur.
 - `payload` değeri şudur:
 
 ```json
-{"fields":{"outcome":"cancelled","source_code":"user_cancelled"}}
+{"fields":{"outcome":"cancelled","payload":{"errorCode":"user_cancelled","status":"cancelled"},"source_code":"user_cancelled"}}
 ```
+
+Bu örnekte eski `payload` içindeki `status` değeri de yanlıştı. Bu yüzden `fields` yeni `payload` değerini de taşır.
 
 ### `event.linked` kuralları
 
 1. `target_event_uid` bağın eklendiği eski olayın `event_uid` değeridir.
-2. Yeni bağ `event_object` tablosuna yazılır. Bağın `event_id` değeri `event.linked` satırının `id` değeridir.
-3. Yeni bağ eski satırın `id` değeriyle yazılmaz. Böylece eski satırın özeti değişmez.
-4. Yeni bağ `event.linked` satırının `objects` listesine girer. Böylece yeni bağ da bir özetle korunur.
-5. `event.linked` satırında `issue_id`, `run_id`, `pr_ref` ve `requirement_id` alanları boş kalır.
-6. Bir olayın bütün bağları iki yerden okunur. Birinci yer olayın kendi bağlarıdır. İkinci yer o olayı gösteren `event.linked` satırlarının bağlarıdır.
+2. `event.linked` satırının `event_uid` değeri `safeboard:audit_event:<id>:linked` biçimindedir. `<id>` bu satırın kendi `id` değeridir.
+3. Yeni bağ `event_object` tablosuna yazılır. Bağın `event_id` değeri `event.linked` satırının `id` değeridir.
+4. Yeni bağ eski satırın `id` değeriyle yazılmaz. Böylece eski satırın özeti değişmez.
+5. Yeni bağ `event.linked` satırının `objects` listesine girer. Böylece yeni bağ da bir özetle korunur.
+6. `event.linked` satırında `issue_id`, `run_id`, `pr_ref` ve `requirement_id` alanları boş kalır.
+7. Bir olayın bütün bağları iki yerden okunur. Birinci yer olayın kendi bağlarıdır. İkinci yer o olayı gösteren `event.linked` satırlarının bağlarıdır.
 
-**Örnek.** Koşu olayının `ornek/depo#57` numaralı PR'a da bağlı olduğu sonradan bulundu. Yeni satır şöyle olur:
+`audit.record()` şu üç durumda bağ olayını reddeder. Deftere satır yazılmaz.
+
+1. `payload` içinde `target_event_uid` anahtarı yoktur ya da değeri boştur.
+2. Defterde `target_event_uid` kimliğiyle bir satır yoktur.
+3. `event.linked` satırının hiç bağı yoktur.
+
+**Örnek.** Koşu olayının `ornek/depo#57` numaralı PR'a da bağlı olduğu sonradan bulundu. Yeni satır defterin 4. satırıdır. Satır şöyle olur:
 
 - `action` değeri `event.linked` olur.
+- `event_uid` değeri `safeboard:audit_event:4:linked` olur.
 - `payload` değeri şudur:
 
 ```json
@@ -216,15 +270,16 @@ Takma ad `kisi-` ön eki ile bir tam sayıdan oluşur. Örnek: `kisi-3`.
 
 1. Sayı 1'den başlar. Her yeni kişi bir sonraki sayıyı alır.
 2. Sayının başına sıfır yazılmaz. `kisi-03` yanlıştır.
-3. Sırayı ilk görülme zamanı belirler. Panoda ilk işlem yapan kişi `kisi-1` olur.
+3. Takma ad, kişinin deftere yazılan ilk işleminde verilir. Panoya yalnız bakan kişiye takma ad verilmez. Deftere ilk işlemi yazılan kişi `kisi-1` olur.
 4. Backend Tailscale adını karşılaştırmadan önce düzeltir. Baştaki ve sondaki boşluklar silinir. Harfler küçük harfe çevrilir.
-5. Aynı kişi her zaman aynı takma adı alır.
-6. Bir sayı ikinci kez kullanılmaz.
-7. Eşleşme silinince tablodaki gerçek ad silinir. Takma adın satırı kalır. Böylece o sayı başkasına verilmez.
-8. Eşleşmesi silinen kişi panoya yeniden gelirse yeni bir sayı alır.
-9. Takma ad yalnız `actor_kind` değeri `board_user` olan satırlarda kullanılır.
-10. Localhost aşamasında Tailscale adı yoktur. O zaman `actor_id` değeri `local` olur. Bu kural AJA-2081 belgesindendir.
-11. Gerçek Tailscale adı `payload` alanına da yazılmaz.
+5. Küçük harfe çevirme bilgisayarın dil ayarına bağlı olmaz. `I` harfi her zaman `i` olur. `I` harfi `ı` olmaz.
+6. Aynı kişi her zaman aynı takma adı alır.
+7. Bir sayı ikinci kez kullanılmaz.
+8. Eşleşme silinince tablodaki gerçek ad silinir. Takma adın satırı kalır. Böylece o sayı başkasına verilmez.
+9. Eşleşmesi silinen kişi panoya yeniden gelirse yeni bir sayı alır.
+10. Takma ad yalnız `actor_kind` değeri `board_user` olan satırlarda kullanılır.
+11. Localhost aşamasında Tailscale adı yoktur. O zaman `actor_id` değeri `local` olur. Bu kural AJA-2081 belgesindendir.
+12. Gerçek Tailscale adı `payload` alanına da yazılmaz.
 
 **Örnek.** Panoyu önce birinci kişi, sonra ikinci kişi kullanır. Birinci kişi `kisi-1`, ikinci kişi `kisi-2` olur. Sonra `kisi-2` eşleşmesi silinir. Panoya üçüncü bir kişi gelir. Üçüncü kişi `kisi-3` olur. `kisi-2` adı kimseye verilmez.
 
@@ -292,7 +347,7 @@ Bu değer satırın `row_hash` alanına yazılır.
 
 ### Örnekte görülen kurallar
 
-- Üç boş alan `null` diye yazıldı.
+- Dört boş zarf alanı `null` diye yazıldı.
 - `agent` bağı `issue` bağından önce yazıldı.
 - `payload` içinde `errorCode` anahtarı `status` anahtarından önce yazıldı.
 - `prev_hash` değeri 1. satırın özetidir.
