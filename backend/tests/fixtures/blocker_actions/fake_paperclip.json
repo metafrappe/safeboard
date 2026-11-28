@@ -1,0 +1,365 @@
+{
+ "note": "Sahte veri. Gerçek kayıttan alınmadı. Açıklama README.md dosyasındadır.",
+ "cases": {
+  "1": {
+   "GET /api/companies/company-demo/agents": {
+    "status": 200,
+    "body": [
+     {
+      "id": "agent-demo-dev-1",
+      "name": "Team X Demo Dev 1",
+      "status": "idle",
+      "role": "engineer"
+     },
+     {
+      "id": "agent-demo-dev-2",
+      "name": "Team X Demo Dev 2",
+      "status": "idle",
+      "role": "engineer"
+     },
+     {
+      "id": "agent-demo-po-x",
+      "name": "Team X Demo PO",
+      "status": "idle",
+      "role": "pm"
+     }
+    ]
+   },
+   "GET /api/issues/DEMO-101": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-101",
+     "identifier": "DEMO-101",
+     "status": "blocked",
+     "assigneeAgentId": "agent-demo-dev-1"
+    }
+   },
+   "GET /api/agents/agent-demo-dev-2": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-2",
+     "name": "Team X Demo Dev 2",
+     "status": "idle",
+     "role": "engineer"
+    }
+   },
+   "GET /api/agents/agent-demo-dev-1": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-1",
+     "name": "Team X Demo Dev 1",
+     "status": "idle",
+     "role": "engineer"
+    }
+   },
+   "GET /api/companies/company-demo/live-runs": {
+    "status": 200,
+    "body": []
+   },
+   "GET /api/companies/company-demo/issues?assigneeAgentId=agent-demo-dev-1": {
+    "status": 200,
+    "body": [
+     {
+      "id": "DEMO-101",
+      "identifier": "DEMO-101",
+      "status": "blocked",
+      "assigneeAgentId": "agent-demo-dev-1"
+     },
+     {
+      "id": "DEMO-102",
+      "identifier": "DEMO-102",
+      "status": "todo",
+      "assigneeAgentId": "agent-demo-dev-1"
+     }
+    ]
+   },
+   "PATCH /api/issues/DEMO-101": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-101",
+     "identifier": "DEMO-101",
+     "status": "in_progress",
+     "assigneeAgentId": "agent-demo-dev-2"
+    }
+   },
+   "POST /api/agents/agent-demo-dev-1/heartbeat/invoke": {
+    "status": 202,
+    "body": {
+     "id": "run-demo-199",
+     "agentId": "agent-demo-dev-1",
+     "status": "queued"
+    }
+   },
+   "POST /api/issues/DEMO-101/interactions": {
+    "status": 201,
+    "body": {
+     "id": "card-demo-101",
+     "kind": "ask_user_questions",
+     "status": "pending"
+    }
+   }
+  },
+  "2": {},
+  "3": {},
+  "4": {
+   "GET /api/agents/agent-demo-dev-4": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-4",
+     "name": "Team X Demo Dev 4",
+     "status": "idle",
+     "role": "engineer"
+    }
+   },
+   "GET /api/issues/DEMO-401": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-401",
+     "identifier": "DEMO-401",
+     "status": "blocked",
+     "assigneeAgentId": null
+    }
+   },
+   "PATCH /api/issues/DEMO-401": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-401",
+     "identifier": "DEMO-401",
+     "status": "in_progress",
+     "assigneeAgentId": "agent-demo-dev-4"
+    }
+   }
+  },
+  "5": {
+   "GET /api/agents/agent-demo-dev-5": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-5",
+     "name": "Team X Demo Dev 5",
+     "status": "paused",
+     "role": "engineer"
+    }
+   },
+   "GET /api/companies/company-demo/live-runs": {
+    "status": 200,
+    "body": []
+   },
+   "GET /api/companies/company-demo/issues?assigneeAgentId=agent-demo-dev-5": {
+    "status": 200,
+    "body": [
+     {
+      "id": "DEMO-501",
+      "identifier": "DEMO-501",
+      "status": "todo",
+      "assigneeAgentId": "agent-demo-dev-5"
+     }
+    ]
+   }
+  },
+  "6": {
+   "GET /api/agents/agent-demo-dev-6": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-6",
+     "name": "Team X Demo Dev 6",
+     "status": "running",
+     "role": "engineer"
+    }
+   },
+   "GET /api/companies/company-demo/live-runs": {
+    "status": 200,
+    "body": [
+     {
+      "id": "run-demo-601",
+      "agentId": "agent-demo-dev-6",
+      "status": "running",
+      "issueId": "DEMO-601"
+     }
+    ]
+   },
+   "GET /api/companies/company-demo/issues?assigneeAgentId=agent-demo-dev-6": {
+    "status": 200,
+    "body": [
+     {
+      "id": "DEMO-601",
+      "identifier": "DEMO-601",
+      "status": "in_progress",
+      "assigneeAgentId": "agent-demo-dev-6"
+     }
+    ]
+   }
+  },
+  "7": {
+   "GET /api/agents/agent-demo-dev-7": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-7",
+     "name": "Team X Demo Dev 7",
+     "status": "idle",
+     "role": "engineer"
+    }
+   },
+   "GET /api/companies/company-demo/live-runs": {
+    "status": 200,
+    "body": []
+   },
+   "GET /api/companies/company-demo/issues?assigneeAgentId=agent-demo-dev-7": {
+    "status": 200,
+    "body": [
+     {
+      "id": "DEMO-702",
+      "identifier": "DEMO-702",
+      "status": "done",
+      "assigneeAgentId": "agent-demo-dev-7"
+     }
+    ]
+   }
+  },
+  "8": {
+   "GET /api/agents/agent-demo-dev-8": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-8",
+     "name": "Team X Demo Dev 8",
+     "status": "paused",
+     "role": "engineer"
+    }
+   },
+   "GET /api/issues/DEMO-801": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-801",
+     "identifier": "DEMO-801",
+     "status": "blocked",
+     "assigneeAgentId": null
+    }
+   }
+  },
+  "9": {
+   "GET /api/companies/company-demo/agents": {
+    "status": 200,
+    "body": [
+     {
+      "id": "agent-demo-dev-1",
+      "name": "Team X Demo Dev 1",
+      "status": "idle",
+      "role": "engineer"
+     },
+     {
+      "id": "agent-demo-po-x",
+      "name": "Team X Demo PO",
+      "status": "idle",
+      "role": "pm"
+     },
+     {
+      "id": "agent-demo-dev-9",
+      "name": "Team Y Demo Dev 9",
+      "status": "idle",
+      "role": "engineer"
+     },
+     {
+      "id": "agent-demo-po-y",
+      "name": "Team Y Demo PO",
+      "status": "idle",
+      "role": "pm"
+     }
+    ]
+   },
+   "GET /api/agents/agent-demo-dev-9": {
+    "status": 200,
+    "body": {
+     "id": "agent-demo-dev-9",
+     "name": "Team Y Demo Dev 9",
+     "status": "idle",
+     "role": "engineer"
+    }
+   },
+   "GET /api/issues/DEMO-901": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-901",
+     "identifier": "DEMO-901",
+     "status": "blocked",
+     "assigneeAgentId": "agent-demo-dev-1"
+    }
+   },
+   "PATCH /api/issues/DEMO-901": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-901",
+     "identifier": "DEMO-901",
+     "status": "in_progress",
+     "assigneeAgentId": "agent-demo-po-y"
+    }
+   }
+  },
+  "10": {
+   "GET /api/issues/DEMO-1001": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-1001",
+     "identifier": "DEMO-1001",
+     "status": "blocked",
+     "assigneeAgentId": "agent-demo-dev-1"
+    }
+   },
+   "GET /api/issues/DEMO-1001/interactions": {
+    "status": 200,
+    "body": []
+   },
+   "POST /api/issues/DEMO-1001/interactions": {
+    "status": 201,
+    "body": {
+     "id": "card-demo-1001",
+     "kind": "ask_user_questions",
+     "status": "pending"
+    }
+   }
+  },
+  "11": {
+   "POST /api/companies/company-demo/issues": {
+    "status": 201,
+    "body": {
+     "id": "DEMO-1190",
+     "identifier": "DEMO-1190",
+     "status": "todo",
+     "assigneeAgentId": null
+    }
+   },
+   "POST /api/issues/DEMO-1190/interactions": {
+    "status": 201,
+    "body": {
+     "id": "card-demo-1101",
+     "kind": "ask_user_questions",
+     "status": "pending"
+    }
+   }
+  },
+  "12": {
+   "GET /api/issues/DEMO-1201": {
+    "status": 200,
+    "body": {
+     "id": "DEMO-1201",
+     "identifier": "DEMO-1201",
+     "status": "blocked",
+     "assigneeAgentId": "agent-demo-dev-1"
+    }
+   },
+   "GET /api/issues/DEMO-1201/interactions": {
+    "status": 200,
+    "body": []
+   },
+   "POST /api/issues/DEMO-1201/interactions": {
+    "status": 201,
+    "body": {
+     "id": "card-demo-1201",
+     "kind": "ask_user_questions",
+     "status": "pending"
+    }
+   }
+  },
+  "13": {},
+  "14": {},
+  "15": {}
+ }
+}
