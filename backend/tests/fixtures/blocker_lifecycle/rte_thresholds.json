@@ -1,0 +1,38 @@
+{
+  "note": "Sahte RTE kaydı. Sayılar yalnız test içindir. Gerçek eşiği Team SAFe RTE yazar.",
+  "fake": true,
+  "version": 0,
+  "kaizenRules": {
+    "setBy": "sahte kayıt",
+    "period": {
+      "kind": "calendar_week",
+      "startsOn": "monday",
+      "timezone": "Europe/Istanbul",
+      "days": 7,
+      "keyFormat": "YYYY-Www"
+    },
+    "rules": {
+      "rule7": {
+        "rule": 7,
+        "name": "repeatedBlocker",
+        "enabled": true,
+        "period": "same_as_kaizenRules.period",
+        "byBlockerKey": {
+          "subject": "blocker_key",
+          "maxOpeningsPerPeriod": 3,
+          "opensInPeriodAtLeast": 4
+        },
+        "byRootCause": {
+          "subject": "root_cause_code",
+          "maxDistinctBlockerKeysPerPeriod": 4,
+          "distinctBlockerKeysInPeriodAtLeast": 5,
+          "excludeCodes": ["unknown.unclassified"]
+        },
+        "evidence": ["episode_list", "total_waiting_issues", "root_cause_code"],
+        "dedupeKey": "rule+subject+period",
+        "existingOpenCandidate": "append_evidence",
+        "manualRule": "manual.blocker"
+      }
+    }
+  }
+}
