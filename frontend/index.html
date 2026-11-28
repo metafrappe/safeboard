@@ -56,7 +56,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .nav a { color: var(--ink-2); font-size: var(--fs-sm); white-space: nowrap; padding: 0 var(--sp-3); min-height: 36px; display: inline-flex; align-items: center; border-radius: var(--r-ctl); }
 .nav a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
 .nav a[aria-current="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--ring); }
-.ctl { display: flex; align-items: center; gap: var(--sp-2); margin-left: auto; }
+.ctl { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--sp-2); margin-left: auto; }
 .live { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--ink-2); white-space: nowrap; }
 #ago { display: inline-block; min-width: 20ch; font-variant-numeric: tabular-nums; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); flex: none; }
@@ -94,6 +94,9 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--sp-5) var(--sp-4) var(-
 .kpi { background: var(--surface-2); border-radius: var(--r-inner); padding: var(--sp-3) var(--sp-4); display: grid; gap: 2px; min-width: 0; min-height: 86px; align-content: start; }
 .kpi .v { font-size: var(--fs-xl); font-weight: 600; line-height: 1.15; }
 .kpi .l { font-size: var(--fs-sm); color: var(--ink-2); }
+.groups { display: grid; gap: var(--sp-3); }
+@media (min-width: 640px) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.groups .l { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-2); }
 .good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
 .pill { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-sm); border-radius: var(--r-pill); padding: 2px var(--sp-2); white-space: nowrap; font-weight: 500; }
 .pill.good { color: var(--good); background: var(--good-bg); } .pill.warn { color: var(--warn); background: var(--warn-bg); } .pill.bad { color: var(--bad); background: var(--bad-bg); } .pill.idle { color: var(--ink-2); background: var(--surface-2); }
@@ -187,6 +190,7 @@ html.kbd a:focus-visible { box-shadow: none; text-decoration: underline; text-de
     <div class="brand"><span class="logo" aria-hidden="true">S</span><h1>SAFeBoard</h1></div>
     <nav class="nav" aria-label="Bölümler">
       <a href="#genel" data-sec="genel">Genel</a>
+      <a href="#iptaller" data-sec="iptaller">İptaller</a>
       <a href="#akis" data-sec="akis">Burndown</a>
       <a href="#pr" data-sec="pr">PR'lar</a>
       <a href="#engeller" data-sec="engeller">Engeller</a>
@@ -217,6 +221,14 @@ html.kbd a:focus-visible { box-shadow: none; text-decoration: underline; text-de
       <div class="kpis" id="kpis"></div>
     </section>
   </div>
+
+  <section class="card" aria-labelledby="h-iptal" id="iptaller">
+    <div class="card-head"><div><h2 id="h-iptal">Devir iptalleri</h2>
+      <p class="sub">Bir iş başka ajana verilince o işteki çalışma iptal olur. Pano bu iptalleri üç gruba ayırır.</p>
+      <p class="sub" id="iptal-ozet"></p></div></div>
+    <div class="groups" id="iptal-gruplari"></div>
+    <p class="sub" id="iptal-not" hidden></p>
+  </section>
 
   <section class="card bd" aria-labelledby="h-bd" id="akis">
     <div class="card-head">
@@ -520,11 +532,34 @@ onSeg("teams", (v) => { team = v; store.set("team", v); });
 onSeg("sorts", (v) => { sort = v; store.set("sort", v); });
 $("q").addEventListener("input", (e) => { query = e.target.value.trim(); renderLoad("user"); });
 
+// "issue_reassigned" cancellations in three groups. Only the interrupted group is lost work.
+const GROUPS = [
+  { key: "handoff", label: "Normal devir", text: "Ajan işi kendi çalışmasında devretti." },
+  { key: "interrupted", label: "Kesilen çalışma", text: "Çalışma sürerken iş başkasına verildi.", loss: true },
+  { key: "idleWake", label: "Boş uyanma", text: "Çalışma başlamadan iptal oldu." },
+];
+function renderReassign(ra) {
+  const note = $("iptal-not"), unknown = ra?.unknownActor || 0;
+  note.hidden = !unknown;
+  patch(note, unknown ? `${unknown} çalışmada devri yapan bulunamadı. Pano bu çalışmaları kesilen çalışma saydı.` : "");
+  if (!ra) {
+    patch($("iptal-ozet"), "");
+    patch($("iptal-gruplari"), `<p class="empty">Çalışma kayıtları okunamadı.</p>`);
+    return;
+  }
+  patch($("iptal-ozet"), `Pano son ${Number(ra.runs) || 0} çalışmaya baktı.${ra.since ? ` En eski çalışma ${esc(fmtTip.format(new Date(ra.since)))} tarihlidir.` : ""}`);
+  patch($("iptal-gruplari"), GROUPS.map((g) => {
+    const n = Number(ra[g.key]) || 0;
+    return `<div class="kpi"${g.loss ? ` data-loss="true"` : ""}><span class="v num${g.loss && n ? " bad" : ""}">${n}</span><span class="l"><span>${g.label}</span>${g.loss ? `<span class="pill bad">Kayıp</span>` : ""}</span><span class="sub">${g.text}</span></div>`;
+  }).join(""));
+}
+
 function render(d, source = "auto") {
   last = d; lastAt = Date.now();
   $("live").classList.remove("stale");
   patch($("errors"), (d.errors || []).map((e) => `<p class="err">${esc(e)}</p>`).join(""));
   const pc = d.paperclip, gh = d.github || [];
+  renderReassign(d.reassign);
   if (pc) {
     const s = pc.status, open = ST.reduce((a, x) => a + (s[x.key] || 0), 0) + (s.backlog || 0);
     patch($("open"), String(open));

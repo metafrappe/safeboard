@@ -36,6 +36,24 @@ docs/decisions/         decision records
 
 The backend listens only on `127.0.0.1`. It reads Paperclip and GitHub. It never writes to them.
 
+## Cancelled runs in three groups
+
+Paperclip cancels the run on an issue when the issue goes to another assignee. It writes the code `issue_reassigned`. The board reads the recent runs and the activity of each issue. It only reads. It puts each cancellation in one group:
+
+- "Boş uyanma": the run never started.
+- "Normal devir": the run started and gave the issue away itself.
+- "Kesilen çalışma": the run started and another agent or a user gave the issue away. Only this group is shown as lost work.
+
+A started run with no known reassigner counts as "Kesilen çalışma". The page says how many such runs there are.
+
+## Tests
+
+Tests use fake data. They never read Paperclip or GitHub.
+
+- Backend: `python3 -I -m unittest discover -s backend/tests -t backend -v`
+- Page, quick local run (one browser, 320 px): `cd frontend && npm run test:quick`
+- Page, full matrix (Chromium and WebKit, six widths): `cd frontend && npm test`. CI runs this on every pull request.
+
 ## Settings
 
 Environment variables override the defaults:
@@ -46,6 +64,7 @@ Environment variables override the defaults:
 | `SAFEBOARD_PAPERCLIP_API` | `http://127.0.0.1:3100/api` |
 | `SAFEBOARD_COMPANY_ID` | the Paperclip company of the MVP |
 | `SAFEBOARD_PROJECT_ID` | the Paperclip project of the MVP |
+| `SAFEBOARD_RUN_LIMIT` | `1000` recent runs read for the cancellation groups |
 | `SAFEBOARD_REPOS` | `metafrappe/backend,metafrappe/frontend` |
 | `SAFEBOARD_DATA_DIR` | `~/Library/Application Support/safeboard` |
 | `SAFEBOARD_STATIC_DIR` | `frontend/dist` |

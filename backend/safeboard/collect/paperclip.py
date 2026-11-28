@@ -1,5 +1,6 @@
 """Read-only Paperclip API client."""
 import json
+import urllib.parse
 import urllib.request
 
 from safeboard import config
@@ -21,3 +22,12 @@ def project_issues(issues):
 
 def all_agents():
     return get(f"/companies/{config.COMPANY}/agents")
+
+
+def heartbeat_runs(limit):
+    """The most recent runs of the company, newest first."""
+    return get(f"/companies/{config.COMPANY}/heartbeat-runs?limit={int(limit)}")
+
+
+def issue_activity(issue_id):
+    return get(f"/issues/{urllib.parse.quote(str(issue_id), safe='')}/activity")

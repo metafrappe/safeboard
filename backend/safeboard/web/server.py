@@ -3,6 +3,7 @@ import datetime as dt
 import json
 import os
 import threading
+import urllib.error
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
@@ -11,6 +12,7 @@ from safeboard.collect import github as gh_reader
 from safeboard.collect import paperclip as pc
 from safeboard.flow.board import summary
 from safeboard.flow.burndown import burndown as burndown_calc
+from safeboard.flow.reassign import counts as reassign_counts
 from safeboard.pi import sprint
 from safeboard.web.cache import cached, drop
 
@@ -26,6 +28,19 @@ def paperclip():
     issues = pc.project_issues(pc.all_issues())
     agents = {a["id"]: a for a in pc.all_agents()}
     return summary(issues, agents, dt.datetime.now(dt.timezone.utc))
+
+
+def reassign():
+    """Counts of "issue_reassigned" cancellations in the recent runs, in three groups."""
+    def activity_of(issue_id):
+        try:
+            return pc.issue_activity(issue_id)
+        except urllib.error.HTTPError as e:
+            if e.code == 404:  # the issue is gone; the run is counted with an unknown reassigner
+                return None
+            raise
+
+    return reassign_counts(pc.heartbeat_runs(config.RUN_LIMIT), activity_of)
 
 
 def burndown(team="Hepsi"):
@@ -68,6 +83,10 @@ class H(BaseHTTPRequestHandler):
             except Exception as e:  # report the failure on the page instead of a blank board
                 errors.append(f"Paperclip okunamadı: {e}")
             try:
+                data["reassign"] = cached("runs", 120, reassign)
+            except Exception as e:
+                errors.append(f"Çalışma kayıtları okunamadı: {e}")
+            try:
                 data["github"] = cached("gh", 90, gh_reader.github)
             except Exception as e:
                 errors.append(f"GitHub okunamadı: {e}")
@@ -96,7 +115,7 @@ class H(BaseHTTPRequestHandler):
 
 
 def warm():
-    for key, ttl, fn in (("pc", 25, paperclip), ("gh", 90, gh_reader.github), ("bd:Hepsi", 25, lambda: burndown("Hepsi"))):
+    for key, ttl, fn in (("pc", 25, paperclip), ("runs", 120, reassign), ("gh", 90, gh_reader.github), ("bd:Hepsi", 25, lambda: burndown("Hepsi"))):
         threading.Thread(target=lambda k=key, t=ttl, f=fn: cached(k, t, f), daemon=True).start()
 
 
