@@ -96,6 +96,7 @@ main { max-width: 1280px; margin: 0 auto; padding: var(--sp-5) var(--sp-4) var(-
 .kpi .l { font-size: var(--fs-sm); color: var(--ink-2); }
 .groups { display: grid; gap: var(--sp-3); }
 @media (min-width: 640px) { .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+#iptal-not:empty, #iptal-ozet:empty { display: none; }
 .groups .l { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-1) var(--sp-2); }
 .good { color: var(--good); } .warn { color: var(--warn); } .bad { color: var(--bad); }
 .pill { display: inline-flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-sm); border-radius: var(--r-pill); padding: 2px var(--sp-2); white-space: nowrap; font-weight: 500; }
@@ -227,7 +228,7 @@ html.kbd a:focus-visible { box-shadow: none; text-decoration: underline; text-de
       <p class="sub">Bir iş başka ajana verilince o işteki çalışma iptal olur. Pano bu iptalleri üç gruba ayırır.</p>
       <p class="sub" id="iptal-ozet"></p></div></div>
     <div class="groups" id="iptal-gruplari"></div>
-    <p class="sub" id="iptal-not" hidden></p>
+    <p class="sub" id="iptal-not"></p>
   </section>
 
   <section class="card bd" aria-labelledby="h-bd" id="akis">
@@ -539,9 +540,8 @@ const GROUPS = [
   { key: "idleWake", label: "Boş uyanma", text: "Çalışma başlamadan iptal oldu." },
 ];
 function renderReassign(ra) {
-  const note = $("iptal-not"), unknown = ra?.unknownActor || 0;
-  note.hidden = !unknown;
-  patch(note, unknown ? `${unknown} çalışmada devri yapan bulunamadı. Pano bu çalışmaları kesilen çalışma saydı.` : "");
+  const unknown = Number(ra?.unknownActor) || 0;
+  patch($("iptal-not"), unknown ? `${unknown} çalışmada devri yapan bulunamadı. Pano bu çalışmaları kesilen çalışma saydı.` : "");
   if (!ra) {
     patch($("iptal-ozet"), "");
     patch($("iptal-gruplari"), `<p class="empty">Çalışma kayıtları okunamadı.</p>`);
