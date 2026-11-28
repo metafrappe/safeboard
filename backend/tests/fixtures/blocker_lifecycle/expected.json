@@ -1,0 +1,1161 @@
+{
+  "note": "Sahte veri. Gerçek kayıttan alınmadı. Açıklama README.md dosyasındadır.",
+  "cases": [
+    {
+      "id": 1,
+      "title": "Engel beş aşamadan sırayla geçer.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "pr:example-org/demo-backend#7:gate:qual.ci_failed@2026-03-02T08:00:00Z",
+          "blocker_key": "pr:example-org/demo-backend#7:gate:qual.ci_failed",
+          "opened_at": "2026-03-02T08:00:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T08:00:00Z",
+              "actor": "github"
+            },
+            {
+              "stage": "Sahiplendi",
+              "at": "2026-03-02T08:30:00Z",
+              "actor": "agent-demo-dev-1"
+            },
+            {
+              "stage": "Eskale edildi",
+              "at": "2026-03-02T10:00:00Z",
+              "actor": "safeboard"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-02T11:00:00Z",
+              "actor": "github"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-02T12:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "qual.ci_failed",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "qual.ci_failed",
+              "basis": "rule",
+              "at": "2026-03-02T08:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 2,
+      "title": "\"Sahiplendi\" ve \"Eskale edildi\" birlikte olur.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "pr:example-org/demo-backend#8:gate:qual.ci_failed@2026-03-03T07:00:00Z",
+          "blocker_key": "pr:example-org/demo-backend#8:gate:qual.ci_failed",
+          "opened_at": "2026-03-03T07:00:00Z",
+          "stage": "Eskale edildi",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-03T07:00:00Z",
+              "actor": "github"
+            },
+            {
+              "stage": "Sahiplendi",
+              "at": "2026-03-03T07:50:00Z",
+              "actor": "agent-demo-rte"
+            },
+            {
+              "stage": "Eskale edildi",
+              "at": "2026-03-03T09:00:00Z",
+              "actor": "safeboard"
+            }
+          ],
+          "root_cause_code": "qual.ci_failed",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "qual.ci_failed",
+              "basis": "rule",
+              "at": "2026-03-03T07:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 3,
+      "title": "Bekleyen işi olmayan engel yalnız sinyalin yokluğuyla doğrulanır.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "interaction:card-demo-31@2026-03-02T13:00:00Z",
+          "blocker_key": "interaction:card-demo-31",
+          "opened_at": "2026-03-02T13:00:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T13:00:00Z",
+              "actor": "agent-demo-po"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-02T15:00:00Z",
+              "actor": "kisi-3"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-02T16:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "gate.human_question",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "gate.human_question",
+              "basis": "rule",
+              "at": "2026-03-02T13:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 4,
+      "title": "Çözülmüş ama doğrulanmamış engelin sinyali döner.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "pr:example-org/demo-backend#9:gate:qual.ci_failed@2026-03-04T08:00:00Z",
+          "blocker_key": "pr:example-org/demo-backend#9:gate:qual.ci_failed",
+          "opened_at": "2026-03-04T08:00:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T08:00:00Z",
+              "actor": "github"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-04T09:00:00Z",
+              "actor": "github"
+            },
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T09:40:00Z",
+              "actor": "github",
+              "returned": true
+            }
+          ],
+          "root_cause_code": "qual.ci_failed",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "qual.ci_failed",
+              "basis": "rule",
+              "at": "2026-03-04T08:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 5,
+      "title": "Doğrulanmış engelin sinyali döner. Yeni dönem açılır.",
+      "episode_count": 2,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-dev-5:cap.agent_paused@2026-03-04T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-5:cap.agent_paused",
+          "opened_at": "2026-03-04T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-04T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-04T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-5:cap.agent_paused@2026-03-05T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-5:cap.agent_paused",
+          "opened_at": "2026-03-05T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 2,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 6,
+      "title": "Kural kök neden kodu verir. Sonra insan kodu değiştirir.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-dev-6:cap.agent_paused@2026-03-02T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-6:cap.agent_paused",
+          "opened_at": "2026-03-02T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "quota.auth_required",
+          "root_cause_basis": "recorded",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "system"
+            },
+            {
+              "code": "quota.auth_required",
+              "basis": "recorded",
+              "at": "2026-03-02T06:30:00Z",
+              "actor": "local"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 7,
+      "title": "Kodu unknown.unclassified olan engel doğrulanır.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "issue:DEMO-701@2026-03-02T09:00:00Z",
+          "blocker_key": "issue:DEMO-701",
+          "opened_at": "2026-03-02T09:00:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T09:00:00Z",
+              "actor": "agent-demo-dev-7"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-02T10:00:00Z",
+              "actor": "agent-demo-dev-7"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-02T11:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "unknown.unclassified",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "unknown.unclassified",
+              "basis": "rule",
+              "at": "2026-03-02T09:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": [
+            "Kök neden kaydı eksik."
+          ]
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 8,
+      "title": "Aynı blocker_key dönem içinde eşikten çok açılır.",
+      "episode_count": 4,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-02T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-8:cap.agent_paused",
+          "opened_at": "2026-03-02T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-02T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-02T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-03T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-8:cap.agent_paused",
+          "opened_at": "2026-03-03T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-03T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-03T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 2,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-04T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-8:cap.agent_paused",
+          "opened_at": "2026-03-04T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-04T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-04T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 3,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-05T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-8:cap.agent_paused",
+          "opened_at": "2026-03-05T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-05T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-05T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 4,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [
+        {
+          "action": "kaizen.candidate_created",
+          "source": "safeboard",
+          "kaizen_key": {
+            "rule_key": "rule7",
+            "subject_kind": "blocker_key",
+            "subject": "agent:agent-demo-dev-8:cap.agent_paused",
+            "period": "2026-W10"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-03T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-04T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-8:cap.agent_paused@2026-03-05T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "kaizen_candidates": [
+        {
+          "rule_key": "rule7",
+          "subject_kind": "blocker_key",
+          "subject": "agent:agent-demo-dev-8:cap.agent_paused",
+          "period": "2026-W10",
+          "evidence": {
+            "episodes": [
+              "agent:agent-demo-dev-8:cap.agent_paused@2026-03-02T06:11:00Z",
+              "agent:agent-demo-dev-8:cap.agent_paused@2026-03-03T06:11:00Z",
+              "agent:agent-demo-dev-8:cap.agent_paused@2026-03-04T06:11:00Z",
+              "agent:agent-demo-dev-8:cap.agent_paused@2026-03-05T06:11:00Z"
+            ],
+            "total_waiting_issues": 0,
+            "root_cause_code": "cap.agent_paused"
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Aynı kök neden kodu farklı anahtarlarda eşikten çok görülür.",
+      "episode_count": 5,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-a:cap.agent_paused@2026-03-02T06:11:00Z",
+          "blocker_key": "agent:agent-demo-a:cap.agent_paused",
+          "opened_at": "2026-03-02T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-b:cap.agent_paused@2026-03-03T06:11:00Z",
+          "blocker_key": "agent:agent-demo-b:cap.agent_paused",
+          "opened_at": "2026-03-03T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-c:cap.agent_paused@2026-03-04T06:11:00Z",
+          "blocker_key": "agent:agent-demo-c:cap.agent_paused",
+          "opened_at": "2026-03-04T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-d:cap.agent_paused@2026-03-05T06:11:00Z",
+          "blocker_key": "agent:agent-demo-d:cap.agent_paused",
+          "opened_at": "2026-03-05T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-e:cap.agent_paused@2026-03-06T06:11:00Z",
+          "blocker_key": "agent:agent-demo-e:cap.agent_paused",
+          "opened_at": "2026-03-06T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [
+        {
+          "action": "kaizen.candidate_created",
+          "source": "safeboard",
+          "kaizen_key": {
+            "rule_key": "rule7",
+            "subject_kind": "root_cause_code",
+            "subject": "cap.agent_paused",
+            "period": "2026-W10"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-a:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-b:cap.agent_paused@2026-03-03T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-c:cap.agent_paused@2026-03-04T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-d:cap.agent_paused@2026-03-05T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-e:cap.agent_paused@2026-03-06T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "kaizen_candidates": [
+        {
+          "rule_key": "rule7",
+          "subject_kind": "root_cause_code",
+          "subject": "cap.agent_paused",
+          "period": "2026-W10",
+          "evidence": {
+            "episodes": [
+              "agent:agent-demo-a:cap.agent_paused@2026-03-02T06:11:00Z",
+              "agent:agent-demo-b:cap.agent_paused@2026-03-03T06:11:00Z",
+              "agent:agent-demo-c:cap.agent_paused@2026-03-04T06:11:00Z",
+              "agent:agent-demo-d:cap.agent_paused@2026-03-05T06:11:00Z",
+              "agent:agent-demo-e:cap.agent_paused@2026-03-06T06:11:00Z"
+            ],
+            "total_waiting_issues": 2,
+            "root_cause_code": "cap.agent_paused"
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Açık aday varken engel bir kez daha açılır.",
+      "episode_count": 5,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-02T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-10:cap.agent_paused",
+          "opened_at": "2026-03-02T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-02T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-02T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-02T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-03T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-10:cap.agent_paused",
+          "opened_at": "2026-03-03T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-03T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-03T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-03T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 2,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-04T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-10:cap.agent_paused",
+          "opened_at": "2026-03-04T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-04T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-04T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 3,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-05T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-10:cap.agent_paused",
+          "opened_at": "2026-03-05T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-05T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-05T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 4,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-06T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-10:cap.agent_paused",
+          "opened_at": "2026-03-06T06:11:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "paperclip"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 5,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [
+        {
+          "action": "kaizen.evidence_added",
+          "source": "safeboard",
+          "kaizen_key": {
+            "rule_key": "rule7",
+            "subject_kind": "blocker_key",
+            "subject": "agent:agent-demo-dev-10:cap.agent_paused",
+            "period": "2026-W10"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-06T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "kaizen_candidates": [
+        {
+          "rule_key": "rule7",
+          "subject_kind": "blocker_key",
+          "subject": "agent:agent-demo-dev-10:cap.agent_paused",
+          "period": "2026-W10",
+          "evidence": {
+            "episodes": [
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-02T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-03T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-04T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-05T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-06T06:11:00Z"
+            ],
+            "total_waiting_issues": 0,
+            "root_cause_code": "cap.agent_paused"
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Eşiğin altında kalan engel aday açmaz.",
+      "episode_count": 4,
+      "episodes": [
+        {
+          "blocker_id": "agent:agent-demo-dev-11:cap.agent_paused@2026-03-04T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-11:cap.agent_paused",
+          "opened_at": "2026-03-04T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-04T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-04T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-04T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-11:cap.agent_paused@2026-03-05T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-11:cap.agent_paused",
+          "opened_at": "2026-03-05T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-05T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-05T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-05T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 2,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-11:cap.agent_paused@2026-03-06T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-11:cap.agent_paused",
+          "opened_at": "2026-03-06T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-06T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-06T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-06T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 3,
+          "warnings": []
+        },
+        {
+          "blocker_id": "agent:agent-demo-dev-11:cap.agent_paused@2026-03-09T06:11:00Z",
+          "blocker_key": "agent:agent-demo-dev-11:cap.agent_paused",
+          "opened_at": "2026-03-09T06:11:00Z",
+          "stage": "Doğrulandı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-09T06:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Çözüldü",
+              "at": "2026-03-09T07:11:00Z",
+              "actor": "paperclip"
+            },
+            {
+              "stage": "Doğrulandı",
+              "at": "2026-03-09T08:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "root_cause_code": "cap.agent_paused",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "cap.agent_paused",
+              "basis": "rule",
+              "at": "2026-03-09T06:11:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [],
+      "kaizen_candidates": []
+    },
+    {
+      "id": 12,
+      "title": "\"Kaizen adayı yap\" düğmesiyle elle aday açılır.",
+      "episode_count": 1,
+      "episodes": [
+        {
+          "blocker_id": "interaction:card-demo-121@2026-03-02T13:00:00Z",
+          "blocker_key": "interaction:card-demo-121",
+          "opened_at": "2026-03-02T13:00:00Z",
+          "stage": "Açıldı",
+          "stage_history": [
+            {
+              "stage": "Açıldı",
+              "at": "2026-03-02T13:00:00Z",
+              "actor": "agent-demo-po"
+            }
+          ],
+          "root_cause_code": "gate.human_question",
+          "root_cause_basis": "rule",
+          "root_cause_history": [
+            {
+              "code": "gate.human_question",
+              "basis": "rule",
+              "at": "2026-03-02T13:00:00Z",
+              "actor": "system"
+            }
+          ],
+          "recurrence_count": 1,
+          "warnings": []
+        }
+      ],
+      "ledger_events": [
+        {
+          "action": "kaizen.candidate_created",
+          "source": "safeboard",
+          "kaizen_key": {
+            "rule_key": "manual.blocker",
+            "subject_kind": "blocker_key",
+            "subject": "interaction:card-demo-121",
+            "period": "2026-W10"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "interaction:card-demo-121@2026-03-02T13:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "kaizen_candidates": [
+        {
+          "rule_key": "manual.blocker",
+          "subject_kind": "blocker_key",
+          "subject": "interaction:card-demo-121",
+          "period": "2026-W10",
+          "evidence": {
+            "episodes": [
+              "interaction:card-demo-121@2026-03-02T13:00:00Z"
+            ],
+            "total_waiting_issues": 1,
+            "root_cause_code": "gate.human_question"
+          }
+        }
+      ]
+    }
+  ]
+}

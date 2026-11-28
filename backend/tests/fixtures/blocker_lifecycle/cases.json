@@ -1,0 +1,2126 @@
+{
+  "note": "Sahte veri. Gerçek kayıttan alınmadı. Açıklama README.md dosyasındadır.",
+  "cases": [
+    {
+      "id": 1,
+      "title": "Engel beş aşamadan sırayla geçer.",
+      "design_section": "5.1",
+      "context": {
+        "blockers": {
+          "pr:example-org/demo-backend#7:gate:qual.ci_failed": {
+            "root_issue_id": "DEMO-101",
+            "owner_kind": "agent",
+            "owner_ref": "agent-demo-dev-1",
+            "owner_team": "team_b",
+            "waiting_issue_ids": [
+              "DEMO-102"
+            ]
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "github:example-org/demo-backend#7:tl-7001",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T08:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T08:11:00Z",
+          "source": "github",
+          "source_ref": "tl-7001",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#7",
+          "outcome": "failed",
+          "source_code": "ci_failed",
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:run:run-demo-1:started",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T08:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T09:11:00Z",
+          "source": "paperclip",
+          "source_ref": "run-demo-1",
+          "action": "run.started",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-dev-1",
+          "issue_id": "DEMO-101",
+          "run_id": "run-demo-1",
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "safeboard:escalation_log:esc-demo-1:sent",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T10:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T10:00:00Z",
+          "source": "safeboard",
+          "source_ref": "esc-demo-1",
+          "action": "escalation.sent",
+          "actor_kind": "system",
+          "actor_id": "safeboard",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "blocker_key": "pr:example-org/demo-backend#7:gate:qual.ci_failed",
+            "blocker_started_at": "2026-03-02T08:00:00Z",
+            "step": 1
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "pr:example-org/demo-backend#7:gate:qual.ci_failed@2026-03-02T08:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "github:example-org/demo-backend#7:tl-7002",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T11:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T11:11:00Z",
+          "source": "github",
+          "source_ref": "tl-7002",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#7",
+          "outcome": "succeeded",
+          "source_code": null,
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:activity:act-demo-1",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T11:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T12:11:00Z",
+          "source": "paperclip",
+          "source_ref": "act-demo-1",
+          "action": "issue.status_changed",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-dev-3",
+          "issue_id": "DEMO-102",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "from": "blocked",
+            "to": "in_progress"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-1-8",
+          "started_at": "2026-03-02T08:10:00Z",
+          "finished_at": "2026-03-02T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-1-9",
+          "started_at": "2026-03-02T09:10:00Z",
+          "finished_at": "2026-03-02T09:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-1-11",
+          "started_at": "2026-03-02T11:10:00Z",
+          "finished_at": "2026-03-02T11:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-1-12",
+          "started_at": "2026-03-02T12:10:00Z",
+          "finished_at": "2026-03-02T12:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "\"Sahiplendi\" ve \"Eskale edildi\" birlikte olur.",
+      "design_section": "5.1",
+      "context": {
+        "blockers": {
+          "pr:example-org/demo-backend#8:gate:qual.ci_failed": {
+            "root_issue_id": "DEMO-201",
+            "owner_kind": "agent",
+            "owner_ref": "agent-demo-dev-2",
+            "owner_team": "team_b",
+            "waiting_issue_ids": [
+              "DEMO-202",
+              "DEMO-203"
+            ]
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "github:example-org/demo-backend#8:tl-8001",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T07:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-03T07:11:00Z",
+          "source": "github",
+          "source_ref": "tl-8001",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#8",
+          "outcome": "failed",
+          "source_code": "ci_failed",
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-2:requested",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T07:40:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-03T07:40:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-2",
+          "action": "action.requested",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "action_type": "assign_owner"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "pr:example-org/demo-backend#8:gate:qual.ci_failed@2026-03-03T07:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-2:completed",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T07:50:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-03T07:50:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-2",
+          "action": "action.completed",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-rte",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": "done",
+          "source_code": null,
+          "payload": {
+            "action_type": "assign_owner"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "pr:example-org/demo-backend#8:gate:qual.ci_failed@2026-03-03T07:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "safeboard:escalation_log:esc-demo-2:sent",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T09:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-03T09:00:00Z",
+          "source": "safeboard",
+          "source_ref": "esc-demo-2",
+          "action": "escalation.sent",
+          "actor_kind": "system",
+          "actor_id": "safeboard",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "blocker_key": "pr:example-org/demo-backend#8:gate:qual.ci_failed",
+            "blocker_started_at": "2026-03-03T07:00:00Z",
+            "step": 1
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "pr:example-org/demo-backend#8:gate:qual.ci_failed@2026-03-03T07:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-2-7",
+          "started_at": "2026-03-03T07:10:00Z",
+          "finished_at": "2026-03-03T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-2-8",
+          "started_at": "2026-03-03T08:10:00Z",
+          "finished_at": "2026-03-03T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-2-9",
+          "started_at": "2026-03-03T09:10:00Z",
+          "finished_at": "2026-03-03T09:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Bekleyen işi olmayan engel yalnız sinyalin yokluğuyla doğrulanır.",
+      "design_section": "5.1",
+      "context": {
+        "blockers": {
+          "interaction:card-demo-31": {
+            "root_issue_id": "DEMO-301",
+            "owner_kind": "human",
+            "owner_ref": "kisi-3",
+            "owner_team": null,
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:interaction:card-demo-31:opened",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T13:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T13:11:00Z",
+          "source": "paperclip",
+          "source_ref": "card-demo-31",
+          "action": "interaction.opened",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-po",
+          "issue_id": "DEMO-301",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "kind": "ask_user_questions"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:interaction:card-demo-31:resolved",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T15:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T15:11:00Z",
+          "source": "paperclip",
+          "source_ref": "card-demo-31",
+          "action": "interaction.resolved",
+          "actor_kind": "user",
+          "actor_id": "kisi-3",
+          "issue_id": "DEMO-301",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": "answered",
+          "source_code": null,
+          "payload": {
+            "kind": "ask_user_questions"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-3-13",
+          "started_at": "2026-03-02T13:10:00Z",
+          "finished_at": "2026-03-02T13:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-3-15",
+          "started_at": "2026-03-02T15:10:00Z",
+          "finished_at": "2026-03-02T15:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-3-16",
+          "started_at": "2026-03-02T16:10:00Z",
+          "finished_at": "2026-03-02T16:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Çözülmüş ama doğrulanmamış engelin sinyali döner.",
+      "design_section": "5.2",
+      "context": {
+        "blockers": {
+          "pr:example-org/demo-backend#9:gate:qual.ci_failed": {
+            "root_issue_id": "DEMO-401",
+            "owner_kind": "agent",
+            "owner_ref": "agent-demo-dev-4",
+            "owner_team": "team_b",
+            "waiting_issue_ids": [
+              "DEMO-402"
+            ]
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "github:example-org/demo-backend#9:tl-9001",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T08:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-04T08:11:00Z",
+          "source": "github",
+          "source_ref": "tl-9001",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#9",
+          "outcome": "failed",
+          "source_code": "ci_failed",
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "github:example-org/demo-backend#9:tl-9002",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T09:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-04T09:11:00Z",
+          "source": "github",
+          "source_ref": "tl-9002",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#9",
+          "outcome": "succeeded",
+          "source_code": null,
+          "payload": {},
+          "objects": []
+        },
+        {
+          "event_uid": "github:example-org/demo-backend#9:tl-9003",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T09:40:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-04T10:11:00Z",
+          "source": "github",
+          "source_ref": "tl-9003",
+          "action": "pr.ci_completed",
+          "actor_kind": "system",
+          "actor_id": "github",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": "example-org/demo-backend#9",
+          "outcome": "failed",
+          "source_code": "ci_failed",
+          "payload": {},
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-4-8",
+          "started_at": "2026-03-04T08:10:00Z",
+          "finished_at": "2026-03-04T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-4-9",
+          "started_at": "2026-03-04T09:10:00Z",
+          "finished_at": "2026-03-04T09:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-4-10",
+          "started_at": "2026-03-04T10:10:00Z",
+          "finished_at": "2026-03-04T10:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Doğrulanmış engelin sinyali döner. Yeni dönem açılır.",
+      "design_section": "5.2",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-dev-5:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-5:status:paused:2026-03-04T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T05:11:00Z",
+          "recorded_at": "2026-03-04T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-5",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-5:status:running:2026-03-04T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T06:11:00Z",
+          "recorded_at": "2026-03-04T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-5",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-5:status:paused:2026-03-05T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T08:11:00Z",
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-5",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-5-4-5",
+          "started_at": "2026-03-04T05:10:00Z",
+          "finished_at": "2026-03-04T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-5-4-6",
+          "started_at": "2026-03-04T06:10:00Z",
+          "finished_at": "2026-03-04T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-5-4-7",
+          "started_at": "2026-03-04T07:10:00Z",
+          "finished_at": "2026-03-04T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-5-4-8",
+          "started_at": "2026-03-04T08:10:00Z",
+          "finished_at": "2026-03-04T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-5-5-6",
+          "started_at": "2026-03-05T06:10:00Z",
+          "finished_at": "2026-03-05T06:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Kural kök neden kodu verir. Sonra insan kodu değiştirir.",
+      "design_section": "5.3",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-dev-6:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-6:status:paused:2026-03-02T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T05:11:00Z",
+          "recorded_at": "2026-03-02T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-6",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-6:requested",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T06:30:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-6",
+          "action": "action.requested",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "action_type": "root_cause_record"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-6:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-6:root_cause_recorded",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T06:30:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-6",
+          "action": "blocker.root_cause_recorded",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "root_cause_code": "quota.auth_required"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-6:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-6:completed",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:30:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T06:30:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-6",
+          "action": "action.completed",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": "done",
+          "source_code": null,
+          "payload": {
+            "action_type": "root_cause_record"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-6:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-6-5",
+          "started_at": "2026-03-02T05:10:00Z",
+          "finished_at": "2026-03-02T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-6-6",
+          "started_at": "2026-03-02T06:10:00Z",
+          "finished_at": "2026-03-02T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-6-7",
+          "started_at": "2026-03-02T07:10:00Z",
+          "finished_at": "2026-03-02T07:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Kodu unknown.unclassified olan engel doğrulanır.",
+      "design_section": "5.3",
+      "context": {
+        "blockers": {
+          "issue:DEMO-701": {
+            "root_issue_id": "DEMO-701",
+            "owner_kind": "agent",
+            "owner_ref": "agent-demo-dev-7",
+            "owner_team": "team_b",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:activity:act-demo-71",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T09:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T09:11:00Z",
+          "source": "paperclip",
+          "source_ref": "act-demo-71",
+          "action": "issue.status_changed",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-dev-7",
+          "issue_id": "DEMO-701",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "from": "in_progress",
+            "to": "blocked"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:activity:act-demo-72",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T10:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T10:11:00Z",
+          "source": "paperclip",
+          "source_ref": "act-demo-72",
+          "action": "issue.status_changed",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-dev-7",
+          "issue_id": "DEMO-701",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "from": "blocked",
+            "to": "in_progress"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-7-9",
+          "started_at": "2026-03-02T09:10:00Z",
+          "finished_at": "2026-03-02T09:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-7-10",
+          "started_at": "2026-03-02T10:10:00Z",
+          "finished_at": "2026-03-02T10:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-7-11",
+          "started_at": "2026-03-02T11:10:00Z",
+          "finished_at": "2026-03-02T11:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Aynı blocker_key dönem içinde eşikten çok açılır.",
+      "design_section": "5.4",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-dev-8:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:paused:2026-03-02T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T05:11:00Z",
+          "recorded_at": "2026-03-02T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:running:2026-03-02T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T06:11:00Z",
+          "recorded_at": "2026-03-02T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:paused:2026-03-03T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-03T05:11:00Z",
+          "recorded_at": "2026-03-03T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:running:2026-03-03T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-03T06:11:00Z",
+          "recorded_at": "2026-03-03T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:paused:2026-03-04T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T05:11:00Z",
+          "recorded_at": "2026-03-04T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:running:2026-03-04T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T06:11:00Z",
+          "recorded_at": "2026-03-04T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:paused:2026-03-05T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T05:11:00Z",
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-8:status:running:2026-03-05T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T06:11:00Z",
+          "recorded_at": "2026-03-05T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-8",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-8-2-5",
+          "started_at": "2026-03-02T05:10:00Z",
+          "finished_at": "2026-03-02T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-2-6",
+          "started_at": "2026-03-02T06:10:00Z",
+          "finished_at": "2026-03-02T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-2-7",
+          "started_at": "2026-03-02T07:10:00Z",
+          "finished_at": "2026-03-02T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-2-8",
+          "started_at": "2026-03-02T08:10:00Z",
+          "finished_at": "2026-03-02T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-3-5",
+          "started_at": "2026-03-03T05:10:00Z",
+          "finished_at": "2026-03-03T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-3-6",
+          "started_at": "2026-03-03T06:10:00Z",
+          "finished_at": "2026-03-03T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-3-7",
+          "started_at": "2026-03-03T07:10:00Z",
+          "finished_at": "2026-03-03T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-3-8",
+          "started_at": "2026-03-03T08:10:00Z",
+          "finished_at": "2026-03-03T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-4-5",
+          "started_at": "2026-03-04T05:10:00Z",
+          "finished_at": "2026-03-04T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-4-6",
+          "started_at": "2026-03-04T06:10:00Z",
+          "finished_at": "2026-03-04T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-4-7",
+          "started_at": "2026-03-04T07:10:00Z",
+          "finished_at": "2026-03-04T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-4-8",
+          "started_at": "2026-03-04T08:10:00Z",
+          "finished_at": "2026-03-04T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-5-5",
+          "started_at": "2026-03-05T05:10:00Z",
+          "finished_at": "2026-03-05T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-5-6",
+          "started_at": "2026-03-05T06:10:00Z",
+          "finished_at": "2026-03-05T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-5-7",
+          "started_at": "2026-03-05T07:10:00Z",
+          "finished_at": "2026-03-05T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-8-5-8",
+          "started_at": "2026-03-05T08:10:00Z",
+          "finished_at": "2026-03-05T08:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Aynı kök neden kodu farklı anahtarlarda eşikten çok görülür.",
+      "design_section": "5.4",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-a:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          },
+          "agent:agent-demo-b:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          },
+          "agent:agent-demo-c:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": [
+              "DEMO-902",
+              "DEMO-903"
+            ]
+          },
+          "agent:agent-demo-d:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          },
+          "agent:agent-demo-e:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-a:status:paused:2026-03-02T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T05:11:00Z",
+          "recorded_at": "2026-03-02T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-a",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-b:status:paused:2026-03-03T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-03T05:11:00Z",
+          "recorded_at": "2026-03-03T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-b",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-c:status:paused:2026-03-04T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T05:11:00Z",
+          "recorded_at": "2026-03-04T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-c",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-d:status:paused:2026-03-05T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T05:11:00Z",
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-d",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-e:status:paused:2026-03-06T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-06T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-06T05:11:00Z",
+          "recorded_at": "2026-03-06T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-e",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-9-2-5",
+          "started_at": "2026-03-02T05:10:00Z",
+          "finished_at": "2026-03-02T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-2-6",
+          "started_at": "2026-03-02T06:10:00Z",
+          "finished_at": "2026-03-02T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-3-5",
+          "started_at": "2026-03-03T05:10:00Z",
+          "finished_at": "2026-03-03T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-3-6",
+          "started_at": "2026-03-03T06:10:00Z",
+          "finished_at": "2026-03-03T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-4-5",
+          "started_at": "2026-03-04T05:10:00Z",
+          "finished_at": "2026-03-04T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-4-6",
+          "started_at": "2026-03-04T06:10:00Z",
+          "finished_at": "2026-03-04T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-5-5",
+          "started_at": "2026-03-05T05:10:00Z",
+          "finished_at": "2026-03-05T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-5-6",
+          "started_at": "2026-03-05T06:10:00Z",
+          "finished_at": "2026-03-05T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-6-5",
+          "started_at": "2026-03-06T05:10:00Z",
+          "finished_at": "2026-03-06T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-9-6-6",
+          "started_at": "2026-03-06T06:10:00Z",
+          "finished_at": "2026-03-06T06:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Açık aday varken engel bir kez daha açılır.",
+      "design_section": "5.4",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-dev-10:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": [
+          {
+            "rule_key": "rule7",
+            "subject_kind": "blocker_key",
+            "subject": "agent:agent-demo-dev-10:cap.agent_paused",
+            "period": "2026-W10",
+            "kaizen_item_id": "kz-demo-10",
+            "state": "aday",
+            "evidence_episodes": [
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-02T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-03T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-04T06:11:00Z",
+              "agent:agent-demo-dev-10:cap.agent_paused@2026-03-05T06:11:00Z"
+            ]
+          }
+        ]
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:paused:2026-03-02T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T05:11:00Z",
+          "recorded_at": "2026-03-02T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:running:2026-03-02T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-02T06:11:00Z",
+          "recorded_at": "2026-03-02T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:paused:2026-03-03T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-03T05:11:00Z",
+          "recorded_at": "2026-03-03T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:running:2026-03-03T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-03T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-03T06:11:00Z",
+          "recorded_at": "2026-03-03T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:paused:2026-03-04T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T05:11:00Z",
+          "recorded_at": "2026-03-04T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:running:2026-03-04T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T06:11:00Z",
+          "recorded_at": "2026-03-04T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:paused:2026-03-05T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T05:11:00Z",
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:running:2026-03-05T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T06:11:00Z",
+          "recorded_at": "2026-03-05T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "safeboard:kaizen_item:kz-demo-10:candidate_created",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "safeboard",
+          "source_ref": "kz-demo-10",
+          "action": "kaizen.candidate_created",
+          "actor_kind": "system",
+          "actor_id": "safeboard",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "kaizen_key": {
+              "rule_key": "rule7",
+              "subject_kind": "blocker_key",
+              "subject": "agent:agent-demo-dev-10:cap.agent_paused",
+              "period": "2026-W10"
+            }
+          },
+          "objects": [
+            {
+              "object_kind": "kaizen",
+              "object_id": "kz-demo-10",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-02T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-03T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-04T06:11:00Z",
+              "link_basis": "explicit"
+            },
+            {
+              "object_kind": "blocker",
+              "object_id": "agent:agent-demo-dev-10:cap.agent_paused@2026-03-05T06:11:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-10:status:paused:2026-03-06T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-06T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T08:11:00Z",
+          "recorded_at": "2026-03-06T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-10",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-10-2-5",
+          "started_at": "2026-03-02T05:10:00Z",
+          "finished_at": "2026-03-02T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-2-6",
+          "started_at": "2026-03-02T06:10:00Z",
+          "finished_at": "2026-03-02T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-2-7",
+          "started_at": "2026-03-02T07:10:00Z",
+          "finished_at": "2026-03-02T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-2-8",
+          "started_at": "2026-03-02T08:10:00Z",
+          "finished_at": "2026-03-02T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-3-5",
+          "started_at": "2026-03-03T05:10:00Z",
+          "finished_at": "2026-03-03T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-3-6",
+          "started_at": "2026-03-03T06:10:00Z",
+          "finished_at": "2026-03-03T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-3-7",
+          "started_at": "2026-03-03T07:10:00Z",
+          "finished_at": "2026-03-03T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-3-8",
+          "started_at": "2026-03-03T08:10:00Z",
+          "finished_at": "2026-03-03T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-4-5",
+          "started_at": "2026-03-04T05:10:00Z",
+          "finished_at": "2026-03-04T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-4-6",
+          "started_at": "2026-03-04T06:10:00Z",
+          "finished_at": "2026-03-04T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-4-7",
+          "started_at": "2026-03-04T07:10:00Z",
+          "finished_at": "2026-03-04T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-4-8",
+          "started_at": "2026-03-04T08:10:00Z",
+          "finished_at": "2026-03-04T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-5-5",
+          "started_at": "2026-03-05T05:10:00Z",
+          "finished_at": "2026-03-05T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-5-6",
+          "started_at": "2026-03-05T06:10:00Z",
+          "finished_at": "2026-03-05T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-5-7",
+          "started_at": "2026-03-05T07:10:00Z",
+          "finished_at": "2026-03-05T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-5-8",
+          "started_at": "2026-03-05T08:10:00Z",
+          "finished_at": "2026-03-05T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-10-6-6",
+          "started_at": "2026-03-06T06:10:00Z",
+          "finished_at": "2026-03-06T06:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Eşiğin altında kalan engel aday açmaz.",
+      "design_section": "5.4",
+      "context": {
+        "blockers": {
+          "agent:agent-demo-dev-11:cap.agent_paused": {
+            "root_issue_id": null,
+            "owner_kind": "role",
+            "owner_ref": "team_safe_rte",
+            "owner_team": "team_safe",
+            "waiting_issue_ids": []
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:paused:2026-03-04T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T05:11:00Z",
+          "recorded_at": "2026-03-04T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:running:2026-03-04T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-04T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-04T06:11:00Z",
+          "recorded_at": "2026-03-04T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:paused:2026-03-05T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T05:11:00Z",
+          "recorded_at": "2026-03-05T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:running:2026-03-05T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-05T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-05T06:11:00Z",
+          "recorded_at": "2026-03-05T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:paused:2026-03-06T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-06T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-06T05:11:00Z",
+          "recorded_at": "2026-03-06T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:running:2026-03-06T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-06T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-06T06:11:00Z",
+          "recorded_at": "2026-03-06T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:paused:2026-03-09T06:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-09T06:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-09T05:11:00Z",
+          "recorded_at": "2026-03-09T06:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "paused"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "paperclip:agent:agent-demo-dev-11:status:running:2026-03-09T07:11:00Z",
+          "schema_version": 2,
+          "occurred_at": "2026-03-09T07:11:00Z",
+          "time_basis": "observed",
+          "observed_after": "2026-03-09T06:11:00Z",
+          "recorded_at": "2026-03-09T07:11:00Z",
+          "source": "paperclip",
+          "source_ref": "agent-demo-dev-11",
+          "action": "agent.status_changed",
+          "actor_kind": "system",
+          "actor_id": "paperclip",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "status": "running"
+          },
+          "objects": []
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-11-4-5",
+          "started_at": "2026-03-04T05:10:00Z",
+          "finished_at": "2026-03-04T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-4-6",
+          "started_at": "2026-03-04T06:10:00Z",
+          "finished_at": "2026-03-04T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-4-7",
+          "started_at": "2026-03-04T07:10:00Z",
+          "finished_at": "2026-03-04T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-4-8",
+          "started_at": "2026-03-04T08:10:00Z",
+          "finished_at": "2026-03-04T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-5-5",
+          "started_at": "2026-03-05T05:10:00Z",
+          "finished_at": "2026-03-05T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-5-6",
+          "started_at": "2026-03-05T06:10:00Z",
+          "finished_at": "2026-03-05T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-5-7",
+          "started_at": "2026-03-05T07:10:00Z",
+          "finished_at": "2026-03-05T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-5-8",
+          "started_at": "2026-03-05T08:10:00Z",
+          "finished_at": "2026-03-05T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-6-5",
+          "started_at": "2026-03-06T05:10:00Z",
+          "finished_at": "2026-03-06T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-6-6",
+          "started_at": "2026-03-06T06:10:00Z",
+          "finished_at": "2026-03-06T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-6-7",
+          "started_at": "2026-03-06T07:10:00Z",
+          "finished_at": "2026-03-06T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-6-8",
+          "started_at": "2026-03-06T08:10:00Z",
+          "finished_at": "2026-03-06T08:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-9-5",
+          "started_at": "2026-03-09T05:10:00Z",
+          "finished_at": "2026-03-09T05:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-9-6",
+          "started_at": "2026-03-09T06:10:00Z",
+          "finished_at": "2026-03-09T06:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-9-7",
+          "started_at": "2026-03-09T07:10:00Z",
+          "finished_at": "2026-03-09T07:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-11-9-8",
+          "started_at": "2026-03-09T08:10:00Z",
+          "finished_at": "2026-03-09T08:11:00Z",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "\"Kaizen adayı yap\" düğmesiyle elle aday açılır.",
+      "design_section": "5.4",
+      "context": {
+        "blockers": {
+          "interaction:card-demo-121": {
+            "root_issue_id": "DEMO-1201",
+            "owner_kind": "human",
+            "owner_ref": "kisi-4",
+            "owner_team": null,
+            "waiting_issue_ids": [
+              "DEMO-1202"
+            ]
+          }
+        },
+        "kaizen_items": []
+      },
+      "audit_events": [
+        {
+          "event_uid": "paperclip:interaction:card-demo-121:opened",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T13:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T13:11:00Z",
+          "source": "paperclip",
+          "source_ref": "card-demo-121",
+          "action": "interaction.opened",
+          "actor_kind": "agent",
+          "actor_id": "agent-demo-po",
+          "issue_id": "DEMO-1201",
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "kind": "ask_user_questions"
+          },
+          "objects": []
+        },
+        {
+          "event_uid": "safeboard:action_request:req-demo-12:requested",
+          "schema_version": 2,
+          "occurred_at": "2026-03-02T14:00:00Z",
+          "time_basis": "source",
+          "observed_after": null,
+          "recorded_at": "2026-03-02T14:00:00Z",
+          "source": "safeboard",
+          "source_ref": "req-demo-12",
+          "action": "action.requested",
+          "actor_kind": "board_user",
+          "actor_id": "local",
+          "issue_id": null,
+          "run_id": null,
+          "pr_ref": null,
+          "outcome": null,
+          "source_code": null,
+          "payload": {
+            "action_type": "kaizen_candidate"
+          },
+          "objects": [
+            {
+              "object_kind": "blocker",
+              "object_id": "interaction:card-demo-121@2026-03-02T13:00:00Z",
+              "link_basis": "explicit"
+            }
+          ]
+        }
+      ],
+      "collect_runs": [
+        {
+          "collect_run_id": "collect-demo-12-13",
+          "started_at": "2026-03-02T13:10:00Z",
+          "finished_at": "2026-03-02T13:11:00Z",
+          "status": "ok"
+        },
+        {
+          "collect_run_id": "collect-demo-12-14",
+          "started_at": "2026-03-02T14:10:00Z",
+          "finished_at": "2026-03-02T14:11:00Z",
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}
