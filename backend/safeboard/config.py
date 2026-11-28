@@ -12,6 +12,8 @@ PORT = int(os.environ.get("SAFEBOARD_PORT") or os.environ.get("PANO_PORT") or "3
 API = os.environ.get("SAFEBOARD_PAPERCLIP_API", "http://127.0.0.1:3100/api")
 COMPANY = os.environ.get("SAFEBOARD_COMPANY_ID", "7a5ebc45-2e84-41af-a4ad-8d767b014f19")
 PROJECT = os.environ.get("SAFEBOARD_PROJECT_ID", "9610132e-ee0b-4fcc-a038-9490795e9e76")
+# How many recent runs the board reads to count "issue_reassigned" cancellations.
+RUN_LIMIT = int(os.environ.get("SAFEBOARD_RUN_LIMIT") or "1000")
 REPOS = [r.strip() for r in os.environ.get("SAFEBOARD_REPOS", "metafrappe/backend,metafrappe/frontend").split(",") if r.strip()]
 
 # Data stays outside the repository (architecture decision, question 2).

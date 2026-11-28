@@ -1,0 +1,22 @@
+{
+  "at": "2026-01-05T12:00:00+00:00",
+  "machine": { "load": 2, "cpus": 8 },
+  "paperclip": {
+    "status": { "todo": 3, "in_progress": 2, "in_review": 1, "blocked": 1, "done": 5 },
+    "burn": [
+      { "t": "2026-01-04T12:00:00+00:00", "open": 8 },
+      { "t": "2026-01-05T12:00:00+00:00", "open": 7 }
+    ],
+    "daily": [{ "d": "2026-01-05", "new": 2, "done": 3 }],
+    "workload": [
+      { "name": "Team X Sahte Geliştirici", "team": "Diğer", "state": "idle", "todo": 3, "in_progress": 2, "in_review": 1, "blocked": 1, "backlog": 0 }
+    ],
+    "blocked": [{ "id": "SAHTE-1", "title": "Sahte engel kaydı", "count": 1, "status": "todo", "owner": "Team X Sahte Geliştirici" }],
+    "staleBlocked": 0,
+    "agents": { "idle": 1 },
+    "recent": [{ "id": "SAHTE-2", "title": "Sahte biten iş", "at": "2026-01-05T11:00:00.000Z" }]
+  },
+  "reassign": { "handoff": 120, "interrupted": 6, "idleWake": 21, "unknownActor": 0, "runs": 1000, "since": "2026-01-05T06:00:00.000Z" },
+  "github": [],
+  "errors": []
+}
