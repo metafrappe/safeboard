@@ -14,3 +14,7 @@ sprint.json
 .env
 .env.*
 safeboard.local.toml
+
+# Test output
+frontend/test-results/
+frontend/playwright-report/
